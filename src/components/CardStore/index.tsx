@@ -2,13 +2,14 @@ import styles from "./styles.module.scss";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRight, faMapMarkerAlt} from "@fortawesome/free-solid-svg-icons";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import Image from "next/image";
 
 export function CardStore({data}) {
     return (
         <div className={styles.card}>
             <div className={styles.card_header}>
                 <div className={styles.banner}>
-                    <img src={data.banner} alt="" />
+                    <Image src={data.banner} alt="" layout="fill" loading="lazy"/>
                 </div>
                 <div className={styles.overflow}></div>
                 <div className={styles.avatar}>
