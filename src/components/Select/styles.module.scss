@@ -65,10 +65,10 @@
             -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
         }
-        svg {
-            transition: 0.3s;
+        svg, i {
             color: #999;
             font-size: 0.875rem;
+            transition: 0.3s;
         }
         &.show {
             svg {
