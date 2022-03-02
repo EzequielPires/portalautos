@@ -52,9 +52,11 @@ export default function Login() {
             </Head>
             <div className={styles.left}>
                 <form onSubmit={handleSignIn}>
-                    <div className={styles.logo}>
-                        <img src={Logo.src} alt="" />
-                    </div>
+                    <Link href={'/'}>
+                        <a className={styles.logo}>
+                            <img src={Logo.src} alt="" />
+                        </a>
+                    </Link>
                     <p className={styles.info}>Para ver e gerenciar as informações da sua conta, entre abaixo.</p>
                     <InputEmail {...email} />
                     <div className="mt-4"></div>

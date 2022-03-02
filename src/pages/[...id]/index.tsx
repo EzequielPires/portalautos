@@ -1654,7 +1654,7 @@ export default function Search() {
                         </div>
                     </nav>
                     <div className={styles.title}>
-                        {brand ? <h2>{brand.name}</h2> : <h2>Carros Novos e Usados em Todo o Brasil</h2>}
+                        {brand ? <h2>{brand.name}</h2> : <h2>Exibindo resultados</h2>}
                         <span>3.659 carros encontrados</span>
                     </div>
                     <div className={styles.list + " d-flex flex-wrap justify-content-center gap-4"}>
