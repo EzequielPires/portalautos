@@ -1,4 +1,4 @@
-import Carousel from 'react-bootstrap/Carousel'
+import Carousel from 'react-bootstrap/Carousel';
 
 export function CarouselCard({array}) {
     return (

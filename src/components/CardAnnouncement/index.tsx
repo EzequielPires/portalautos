@@ -2,11 +2,8 @@ import Link from "next/link";
 import VMasker from "vanilla-masker/build/vanilla-masker.min";
 import styles from "./styles.module.scss";
 import NoImage from "../../assets/no-image.svg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { faMapMarkerAlt} from "@fortawesome/free-solid-svg-icons";
+import {FaMapMarkedAlt} from "react-icons/fa";
 import {CarouselCard} from "../CarouselCard";
-import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 
@@ -42,7 +39,7 @@ export function CardAnnouncement({data}) {
                         </div>
                         <hr />
                         <div className="d-flex justify-content-between px-2 px-md-3">
-                            <span className="d-flex align-items-center gap-1"><FontAwesomeIcon icon={faMapMarkerAlt as IconProp}/>Catalão - GO</span>
+                            <span className="d-flex align-items-center gap-1"><FaMapMarkedAlt />Catalão - GO</span>
                         </div>
                     </footer>
                 </div>
