@@ -7,6 +7,7 @@ import { Filter } from "./Filter";
 import { List } from "./List";
 import useFocus from "../../hooks/useFocus";
 import { useFetch } from "../../hooks/useFetch";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 type SelectType = {
     label: string,
@@ -62,7 +63,7 @@ export function Select({ label, options, onChange, value, error, validate, place
             <button className={show ? styles.show : null} onClick={handleShow}>
                 <label className={styles.label}>{label}</label>
                 <span className={selected === placeholder || selected === 'Selecione uma opção' ? styles.placeholder : null}>{selected}</span>
-                <FontAwesomeIcon icon={faChevronDown} />
+                <FontAwesomeIcon icon={faChevronDown as IconProp} />
             </button>
             {show && options.length > 0 ?
                 <ul className={styles.body}>

@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import styles from "./styles.module.scss";
 import { ModalReportVehicle } from "../../ModalReportVehicle";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export function StepOne() {
     const {
@@ -56,7 +57,7 @@ export function StepOne() {
         <div className={step === 1 ? styles.step_one : styles.step_one + ' ' + styles.concluded}>
             <div className={styles.step_header}>
                 <div className={styles.state}>
-                    <FontAwesomeIcon icon={step === 1 ? faEllipsisH : faCheck} />
+                    <FontAwesomeIcon icon={step === 1 ? faEllipsisH as IconProp : faCheck as IconProp} />
                 </div>
                 <div className={styles.step_title}>
                     <span>ETAPA 1</span>

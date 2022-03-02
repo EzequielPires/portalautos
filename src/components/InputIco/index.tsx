@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styles from "./styles.module.scss";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 type Input = {
     id?: string
@@ -32,7 +33,7 @@ export function InputIco({
     return (
         <div className={styles.input_box}>
             <label htmlFor={id}>{label}</label>
-            <FontAwesomeIcon icon={ico} />
+            <FontAwesomeIcon icon={ico as IconProp} />
             <input
                 type={type}
                 id={id}

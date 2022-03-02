@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faLock } from "@fortawesome/free-solid-svg-icons";
 import styles from "./styles.module.scss";
 import { useRef } from "react";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 type Input = {
     label?: string;
@@ -33,8 +34,8 @@ export function InputPassword({
     return (
         <div className={styles.input_box}>
             <label htmlFor="password">{label ?? 'Password*'}</label>
-            <FontAwesomeIcon icon={faLock} />
-            <FontAwesomeIcon icon={faEye}
+            <FontAwesomeIcon icon={faLock as IconProp} />
+            <FontAwesomeIcon icon={faEye as IconProp}
                 onClick={checkPassword}
                 onMouseDown={(e) => {
                     e.preventDefault();

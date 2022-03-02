@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { faEllipsisH, faTachometerAlt, faDollarSign, faCheck } from "@fortawesome/free-solid-svg-icons";
 import styles from "./styles.module.scss";
 import { MotorcycleContext } from "../../../contexts/MotorcycleContext";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export function StepTwo() {
     const {
@@ -43,7 +44,7 @@ export function StepTwo() {
         <div className={step === 2 ? styles.step_two : styles.step_two + ' ' + styles.concluded}>
             <div className={styles.step_header}>
                 <div className={styles.state}>
-                    <FontAwesomeIcon icon={step === 2 ? faEllipsisH : faCheck} />
+                    <FontAwesomeIcon icon={step === 2 ? faEllipsisH as IconProp : faCheck as IconProp} />
                 </div>
                 <div className={styles.step_title}>
                     <span>ETAPA 2</span>

@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import styles from "./styles.module.scss";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 type Input = {
     onChange: any;
@@ -25,7 +26,7 @@ export function InputEmail({
     return (
         <div className={styles.input_box}>
             <label htmlFor="email">Email*</label>
-            <FontAwesomeIcon icon={faEnvelope} />
+            <FontAwesomeIcon icon={faEnvelope as IconProp} />
             <input
                 type="email"
                 id="email"

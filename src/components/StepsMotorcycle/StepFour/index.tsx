@@ -10,6 +10,7 @@ import { InputDefault } from "../../InputDefault";
 import { Loading } from "../../Loading";
 import { useRouter } from "next/router";
 import { MotorcycleContext } from "../../../contexts/MotorcycleContext";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export function StepFour() {
     const {
@@ -122,7 +123,7 @@ export function StepFour() {
         <div className={step === 4 ? styles.step_four : styles.step_four + ' ' + styles.concluded}>
             <div className={styles.step_header}>
                 <div className={!checkConcluded() ? styles.state : styles.state + ' ' + styles.concluded}>
-                    <FontAwesomeIcon icon={step === 4 || !checkConcluded() ? faEllipsisH : faCheck} />
+                    <FontAwesomeIcon icon={step === 4 || !checkConcluded() ? faEllipsisH as IconProp : faCheck as IconProp} />
                 </div>
                 <div className={styles.step_title}>
                     <span>ETAPA 4</span>

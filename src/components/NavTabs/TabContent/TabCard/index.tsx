@@ -10,6 +10,7 @@ import { faEdit, faTrashAlt, faRetweet } from "@fortawesome/free-solid-svg-icons
 import styles from "./styles.module.scss";
 import {ModalActionContext} from "../../../../contexts/ModalActionContext";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export function TabCard({ content }) {
     const { activeVehicle, soldVehicle } = useContext(AnnouncementContext);
@@ -49,12 +50,12 @@ export function TabCard({ content }) {
                                 <button className={styles.btn_removed} onClick={() => {
                                     handleShow('Deseja mesmo desativar este anúncio?', 'active', content.id);
                                 }}>
-                                    <FontAwesomeIcon icon={faTrashAlt}/>
+                                    <FontAwesomeIcon icon={faTrashAlt as IconProp}/>
                                     Remover
                                 </button> : <button className={styles.btn_removed} onClick={() => {
                                     handleShow('Deseja mesmo restaurar este anúncio?', 'active', content.id);
                                 }}>
-                                    <FontAwesomeIcon icon={faRetweet}/>
+                                    <FontAwesomeIcon icon={faRetweet as IconProp}/>
                                     Restaurar
                                 </button>}
                             {content.active ?

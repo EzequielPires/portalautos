@@ -8,6 +8,7 @@ import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 import { MotorcycleContext } from "../../../contexts/MotorcycleContext";
 import {GalleryContext} from "../../../contexts/GalleryContext";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export function StepThree() {
     const { gallery } = useContext(GalleryContext);
@@ -33,7 +34,7 @@ export function StepThree() {
         <div className={step === 3 ? styles.step_three : styles.step_three + ' ' + styles.concluded}>
             <div className={styles.step_header}>
                 <div className={!checkConcluded() ? styles.state : styles.state + ' ' + styles.concluded}>
-                    <FontAwesomeIcon icon={step === 3 || !checkConcluded() ? faEllipsisH : faCheck} />
+                    <FontAwesomeIcon icon={step === 3 || !checkConcluded() ? faEllipsisH as IconProp : faCheck as IconProp} />
                 </div>
                 <div className={styles.step_title}>
                     <span>ETAPA 3</span>

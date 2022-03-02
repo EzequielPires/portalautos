@@ -7,6 +7,7 @@ import styles from "./styles.module.scss";
 import { NavTabs } from "./NavTabs";
 import { useRouter } from "next/router";
 import { MotorcycleContext } from "../../../contexts/MotorcycleContext";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export function StepFive() {
     const {
@@ -34,7 +35,7 @@ export function StepFive() {
         <div className={step === 5 ? styles.step_five : styles.step_five + ' ' + styles.concluded}>
             <div className={styles.step_header}>
                 <div className={!checkConcluded() ? styles.state : styles.state + ' ' + styles.concluded}>
-                    <FontAwesomeIcon icon={step === 5 || !checkConcluded() ? faEllipsisH : faCheck} />
+                    <FontAwesomeIcon icon={step === 5 || !checkConcluded() ? faEllipsisH as IconProp : faCheck as IconProp} />
                 </div>
                 <div className={styles.step_title}>
                     <span>ETAPA 5</span>
