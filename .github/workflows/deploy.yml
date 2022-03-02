@@ -1,0 +1,46 @@
+name: Deploy
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [synchronize]
+    branches:
+      - master
+
+    # Also trigger on page_build, as well as release created events
+  page_build:
+    release:
+      types: # This configuration does not affect the page_build event above
+        - created
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Copy repository contents via scp
+        uses: appleboy/scp-action@master
+        with:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: ${{ secrets.PORT }}
+          KEY: ${{ secrets.SSHKEY }}
+          source: "."
+          target: "/var/www/html/classified"
+
+      - name: Executing remote command
+        uses: appleboy/ssh-action@master
+        with:
+          passphrase: ${{ secrets.DEPLOY_PASSPHRASE }}
+          host: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: ${{ secrets.PORT }}
+          KEY: ${{ secrets.SSHKEY }}
+          script: cd /var/www/html && pm2 stop classified && cd /var/www/html/classified && rm -rf node_modules/ && rm -rf .next/ && npm install && npm run build && cd /var/www/html && pm2 start classified

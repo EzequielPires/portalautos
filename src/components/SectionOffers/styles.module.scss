@@ -1,0 +1,18 @@
+.section_offers {
+ display: flex;
+ flex-direction: column;
+}
+
+#swiper_slide {
+ width: 280px;
+}
+.title {
+ font-size: 1.5rem;
+ font-weight: 600;
+ color: #333;
+ margin-bottom: 1.5rem;
+ span {
+  font-weight: 700;
+  color: var(--main-color);
+ }
+}

@@ -1,0 +1,29 @@
+.filter {
+    width: 100%;
+    padding: .5rem .75rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    input {
+        height: 32px;
+        width: 100%;
+        border: 1px solid #e5e5e5 !important;
+        outline: 0;
+        padding: .5rem;
+        font-size: .875rem;
+        color: #555;
+        border-radius: 4px;
+    }
+    input:focus {
+        border: 1px solid var(--main-color) !important;
+        & ~ svg {
+            color: var(--main-color);
+        }
+    }
+    svg {
+        position: absolute;
+        right: 1.2rem;
+        color: #d3d3d3;
+    }
+
+}

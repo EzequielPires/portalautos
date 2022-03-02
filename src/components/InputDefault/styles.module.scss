@@ -1,0 +1,45 @@
+.input_box {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    height: 58px;
+    width: 100%;
+    min-width: 320px;
+    label {
+        position: absolute;
+        top: 0;
+        left: 12px;
+        background: #fff;
+        padding: 0 6px;
+        font-weight: 600;
+        font-size: .875rem;
+        color: var(--main-color);
+    }
+    svg {
+        position: absolute;
+        font-size: 20px;
+        color: #999;
+        top: 24px;
+        left: 12px;
+        pointer-events: none;
+    }
+    input, input:focus {
+        height: 48px;
+        width: 100%;
+        border-radius: 6px;
+        border: 1px solid #d3d3d3;
+        padding: .5rem 16px;
+        outline: 0;
+        font-size: 1rem;
+        color: #555;
+        &:read-only {
+            color: #acacac;
+            border: 1px solid #ebebeb;
+            pointer-events: none;
+        }
+        &::placeholder {
+            color: #d3d3d3;
+        }
+    }
+}

@@ -1,0 +1,33 @@
+#modal {
+    position: fixed !important;
+    border: 0 !important;
+    margin: 0!important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &>div {
+        width: 480px;
+        max-width: 100%;
+        height: 170px !important;
+    }
+    #modal_body {
+        padding: 1rem;
+        p {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .alert {
+            color: #555;
+            strong {
+                color: var(--red-color);
+            }
+        }
+    }
+}

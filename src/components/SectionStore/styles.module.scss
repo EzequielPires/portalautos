@@ -1,0 +1,23 @@
+.section_store {
+  margin: 48px 0;
+  height: 460px;
+  padding: 2rem 0;
+  background: #1d1d1d;
+  .title {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+  #swiper_slide {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 720px) {
+  .section_store {
+    #swiper_slide {
+      width: 280px;
+    }
+  }
+}
