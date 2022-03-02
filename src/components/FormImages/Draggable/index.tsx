@@ -4,11 +4,12 @@ import Delete from "../../../assets/ico/delete.svg";
 import Zoom from "../../../assets/ico/zoom.svg";
 import { useContext, useEffect, useRef } from 'react';
 import { GalleryContext } from '../../../contexts/GalleryContext';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon, FontAwesomeIconProps} from "@fortawesome/react-fontawesome";
 
 import { faCheck, faEllipsisH, faSearchPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 import styles from './styles.module.scss';
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 type DraggableType = {
     image: any,
@@ -37,7 +38,7 @@ export function Draggable({ image, index, onClick, id, type }: DraggableType) {
                         <button onClick={() => {
                             onClick(image);
                         }}>
-                            <FontAwesomeIcon icon={faSearchPlus}/>
+                            <FontAwesomeIcon icon={faSearchPlus as IconProp}/>
                         </button>
                         <button onClick={() => {
                             dropImageGallery(index, image.id, id);
@@ -45,7 +46,7 @@ export function Draggable({ image, index, onClick, id, type }: DraggableType) {
                             onMouseDown={() => {
                                 dropImageGallery(index, image.id, id);
                             }}>
-                            <FontAwesomeIcon icon={faTrashAlt}/>
+                            <FontAwesomeIcon icon={faTrashAlt as IconProp}/>
                         </button>
                     </div>
                     :
