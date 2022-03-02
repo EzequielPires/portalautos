@@ -7,6 +7,7 @@ import LogoGiovanni from "../../assets/giovanni-logo.svg";
 import {useState} from "react";
 import {faArrowRight, faMapMarkerAlt} from "@fortawesome/free-solid-svg-icons";
 import {CardAnnouncement} from "../../components/CardAnnouncement";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 const data = {
     "vehicles": [
@@ -1650,7 +1651,7 @@ export default function Store() {
                     </div>
                     <h4 className={styles.name}>{store.name}</h4>
                     <div className={styles.address + " d-flex align-items-center gap-2"}>
-                        <FontAwesomeIcon icon={faMapMarkerAlt} />
+                        <FontAwesomeIcon icon={faMapMarkerAlt as IconProp} />
                         <span>Catalão - GO</span>
                     </div>
                     <hr />
@@ -1660,7 +1661,7 @@ export default function Store() {
                         <p className={styles.text_results}><span>10 veículos</span> em estoque</p>
                         <Link href="/">
                             <a className={styles.filter_results + " d-flex align-items-center gap-2"}>
-                                <span>Filtrar resultados</span><FontAwesomeIcon icon={faArrowRight} />
+                                <span>Filtrar resultados</span><FontAwesomeIcon icon={faArrowRight as IconProp} />
                             </a>
                         </Link>
 

@@ -12,6 +12,7 @@ import useForm from "../../hooks/useForm";
 import { useSelect } from "../../hooks/useSelect";
 import { vehicle } from "../../services/api";
 import styles from "./styles.module.scss";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export default function CriarLoja() {
     const name = useForm('name');
@@ -72,7 +73,7 @@ export default function CriarLoja() {
                 <div className={styles.step_one}>
                     <div className={styles.step_header}>
                         <div className={styles.state}>
-                            <FontAwesomeIcon icon={faStore} />
+                            <FontAwesomeIcon icon={faStore as IconProp} />
                         </div>
                         <div className={styles.step_title}>
                             <span>CADASTRO</span>
