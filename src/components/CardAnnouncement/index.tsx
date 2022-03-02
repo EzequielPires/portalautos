@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faMapMarkerAlt} from "@fortawesome/free-solid-svg-icons";
 import {CarouselCard} from "../CarouselCard";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export function CardAnnouncement({data}) {
     return (
@@ -30,7 +31,7 @@ export function CardAnnouncement({data}) {
                         </div>
                         <hr />
                         <div className="d-flex justify-content-between px-3">
-                            <span className="d-flex align-items-center gap-1"><FontAwesomeIcon icon={faMapMarkerAlt}/>Catalão - GO</span>
+                            <span className="d-flex align-items-center gap-1"><FontAwesomeIcon icon={faMapMarkerAlt as IconProp}/>Catalão - GO</span>
                         </div>
                     </footer>
                 </div>
