@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styles from "./styles.module.scss"
 import {faArrowLeft, faSearch} from "@fortawesome/free-solid-svg-icons";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 const brands = [
     {
@@ -591,7 +592,7 @@ export function ContentMore() {
         <div className={active ? styles.content_more + " " + styles.active: styles.content_more}>
             <div className="d-flex p-3 align-items-center">
                 <button className={styles.prev} onClick={() => setActive(false)}>
-                    <FontAwesomeIcon icon={faArrowLeft}/>
+                    <FontAwesomeIcon icon={faArrowLeft as IconProp}/>
                 </button>
                 <p className={styles.span}>Marcas</p>
             </div>
@@ -604,7 +605,7 @@ export function ContentMore() {
                         onChange={e => setValue(e.target.value)}
                         placeholder="Digite uma marca"
                     />
-                    <FontAwesomeIcon icon={faSearch} />
+                    <FontAwesomeIcon icon={faSearch as IconProp} />
                 </form>
             </div>
             <div className={styles.content}>
