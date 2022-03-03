@@ -1657,7 +1657,7 @@ export default function Comprar() {
     }, [id]);
 
     return (
-        <Accordion className={styles.comprar + " comprar"}>
+        <Accordion alwaysOpen className={styles.comprar + " comprar"}>
             <NavbarFixed/>
             {vehicle ?
                 <>
