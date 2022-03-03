@@ -17,8 +17,9 @@
     align-items: center;
     justify-content: flex-end;
     padding: 1rem;
-    img {
+    .content_image {
       position: absolute;
+      width: 340px;
       height: 190px;
       top: -30%;
     }
@@ -53,7 +54,8 @@
     overflow: hidden;
     padding: 0;
     .content {
-      img {
+      .content_image {
+        width: 260px;
         height: 137px;
         top: 8px;
         left: 40%;
