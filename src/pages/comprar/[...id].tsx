@@ -9,7 +9,7 @@ import {SectionFinancing} from "../../components/SectionFinancing";
 import {Aside} from "../../components/ViewVehicleComponents/Aside";
 import {Footer} from "../../components/Footer";
 import {BsWhatsapp, BsEnvelope} from "react-icons/bs";
-import {FaRegHeart} from "react-icons/fa";
+import {FaRegHeart, FaCheck} from "react-icons/fa";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMoneyBillWave} from "@fortawesome/free-solid-svg-icons";
 import {IoShieldCheckmark} from "react-icons/io5";
@@ -1687,7 +1687,7 @@ export default function Comprar() {
                                                 <FaRegHeart/>
                                             </button>
                                         </div>
-                                        <div className="d-flex">
+                                        <div className={styles.list_items + " d-flex flex-wrap gap-2"}>
                                             <div className={styles.item}>
                                                 <span>Cidade</span>
                                                 <strong>Catalão - GO</strong>
@@ -1798,40 +1798,64 @@ export default function Comprar() {
                                         <div className="d-flex flex-wrap gap-4">
                                             <div className="d-flex flex-wrap gap-2">
                                                 <div className={styles.item + " mb-3"}>
-                                                    <strong>Trava elétrica</strong>
+                                                    <div className={"d-flex align-items-center gap-2"}>
+                                                        <FaCheck/> <strong>Trava elétrica</strong>
+                                                    </div>
                                                 </div>
                                                 <div className={styles.item + " mb-3"}>
-                                                    <strong>Airbag motorista</strong>
+                                                    <div className={"d-flex align-items-center gap-2"}>
+                                                        <FaCheck/> <strong>Airbag motorista</strong>
+                                                    </div>
                                                 </div>
                                                 <div className={styles.item + " mb-3"}>
-                                                    <strong>Alarme</strong>
+                                                    <div className={"d-flex align-items-center gap-2"}>
+                                                        <FaCheck/> <strong>Alarme</strong>
+                                                    </div>
                                                 </div>
                                                 <div className={styles.item + " mb-3"}>
-                                                    <strong>Freios ABS</strong>
+                                                    <div className={"d-flex align-items-center gap-2"}>
+                                                        <FaCheck/> <strong>Freios ABS</strong>
+                                                    </div>
                                                 </div>
                                                 <div className={styles.item + " mb-3"}>
-                                                    <strong>Ar condicionado</strong>
+                                                    <div className={"d-flex align-items-center gap-2"}>
+                                                        <FaCheck/> <strong>Ar condicionado</strong>
+                                                    </div>
                                                 </div>
                                                 <div className={styles.item + " mb-3"}>
-                                                    <strong>Direção hidráulica</strong>
+                                                    <div className={"d-flex align-items-center gap-2"}>
+                                                        <FaCheck/> <strong>Direção hidráulica</strong>
+                                                    </div>
                                                 </div>
                                                 <div className={styles.item + " mb-3"}>
-                                                    <strong>Ajuste de altura para bancos</strong>
+                                                    <div className={"d-flex align-items-center gap-2"}>
+                                                        <FaCheck/> <strong>Ajuste de altura para bancos</strong>
+                                                    </div>
                                                 </div>
                                                 <div className={styles.item + " mb-3"}>
-                                                    <strong>Ajuste de altura para volante</strong>
+                                                    <div className={"d-flex align-items-center gap-2"}>
+                                                        <FaCheck/> <strong>Ajuste de altura para volante</strong>
+                                                    </div>
                                                 </div>
                                                 <div className={styles.item + " mb-3"}>
-                                                    <strong>Computador de bordo</strong>
+                                                    <div className={"d-flex align-items-center gap-2"}>
+                                                        <FaCheck/> <strong>Computador de bordo</strong>
+                                                    </div>
                                                 </div>
                                                 <div className={styles.item + " mb-3"}>
-                                                    <strong>Retrovisores elétricos</strong>
+                                                    <div className={"d-flex align-items-center gap-2"}>
+                                                        <FaCheck/> <strong>Retrovisores elétricos</strong>
+                                                    </div>
                                                 </div>
                                                 <div className={styles.item + " mb-3"}>
-                                                    <strong>Vidros elétricos</strong>
+                                                    <div className={"d-flex align-items-center gap-2"}>
+                                                        <FaCheck/> <strong>Vidros elétricos</strong>
+                                                    </div>
                                                 </div>
                                                 <div className={styles.item + " mb-3"}>
-                                                    <strong>Computador de bordo</strong>
+                                                    <div className={"d-flex align-items-center gap-2"}>
+                                                        <FaCheck/> <strong>Computador de bordo</strong>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1854,7 +1878,7 @@ export default function Comprar() {
                         </button>
                     </div>
                 </>
-                : null}
+                : <div style={{height: "100vh"}}></div>}
             <Footer/>
         </div>
     );
