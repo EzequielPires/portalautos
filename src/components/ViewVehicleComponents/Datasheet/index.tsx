@@ -8,8 +8,8 @@ export function Datasheet() {
             <Accordion.Header>
                 <span className={styles.title_section}>Ficha Técnica</span>
             </Accordion.Header>
-            <Accordion.Body className="d-flex flex-wrap gap-4">
-                <div className="d-flex flex-wrap gap-2">
+            <Accordion.Body className="d-flex flex-wrap gap-3">
+                <div className="d-flex flex-wrap gap-3">
                     <div className={styles.item}>
                         <span>Carroceria</span>
                         <strong>Picape</strong>
@@ -27,7 +27,7 @@ export function Datasheet() {
                         <strong>Injeção eletrônica</strong>
                     </div>
                 </div>
-                <div className="d-flex flex-wrap gap-2">
+                <div className="d-flex flex-wrap gap-3">
                     <div className={styles.item}>
                         <span>Câmbio de marchas</span>
                         <strong>Manual</strong>
@@ -45,7 +45,7 @@ export function Datasheet() {
                         <strong>Preto</strong>
                     </div>
                 </div>
-                <div className="d-flex flex-wrap gap-2">
+                <div className="d-flex flex-wrap gap-3">
                     <div className={styles.item}>
                         <span>Único dono</span>
                         <strong>Sim</strong>
@@ -63,7 +63,7 @@ export function Datasheet() {
                         <strong>Sim</strong>
                     </div>
                 </div>
-                <div className="d-flex flex-wrap gap-2">
+                <div className="d-flex flex-wrap gap-3">
                     <div className={styles.item}>
                         <span>IPVA pago</span>
                         <strong>Sim</strong>
