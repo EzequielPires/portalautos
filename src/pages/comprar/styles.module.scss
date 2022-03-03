@@ -176,6 +176,12 @@
         box-shadow: none;
         border-radius: 0;
         border-bottom: 1px solid #ededed;
+        .description {
+          font-weight: 400 !important;
+        }
+        .title_section {
+          margin-bottom: .5rem;
+        }
         .item {
           min-width: 210px;
           strong {
