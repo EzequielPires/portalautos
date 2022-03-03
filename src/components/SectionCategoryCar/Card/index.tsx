@@ -1,10 +1,11 @@
+import Image from "next/image";
 import styles from "./styles.module.scss";
 
 export function Card({data}) {
     return (
         <div className={styles.card}>
             <div className={styles.card_header}>
-                <img src={data.img} alt="" />
+                <Image src={data.img} alt="" layout={"fill"}/>
             </div>
             <div className={styles.card_body}>
                 <div className="d-flex flex-column align-items-center">
