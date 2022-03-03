@@ -14,6 +14,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMoneyBillWave} from "@fortawesome/free-solid-svg-icons";
 import {IoShieldCheckmark} from "react-icons/io5";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import {VehicleItems} from "../../components/ViewVehicleComponents/VehicleItems";
+import {Accordion} from "react-bootstrap";
+import {Datasheet} from "../../components/ViewVehicleComponents/Datasheet";
 
 export default function Comprar() {
     const data = {
@@ -1654,7 +1657,7 @@ export default function Comprar() {
     }, [id]);
 
     return (
-        <div className={styles.comprar + " comprar"}>
+        <Accordion className={styles.comprar + " comprar"}>
             <NavbarFixed/>
             {vehicle ?
                 <>
@@ -1707,83 +1710,7 @@ export default function Comprar() {
 
                                     </div>
                                     <hr/>
-                                    <div className="d-flex flex-column">
-                                        <span className={styles.title_section}>Ficha técnica</span>
-                                        <div className="d-flex flex-wrap gap-4">
-                                            <div className="d-flex flex-wrap gap-2">
-                                                <div className={styles.item}>
-                                                    <span>Carroceria</span>
-                                                    <strong>Picape</strong>
-                                                </div>
-                                                <div className={styles.item}>
-                                                    <span>Estilo</span>
-                                                    <strong>Picape</strong>
-                                                </div>
-                                                <div className={styles.item}>
-                                                    <span>Combustível</span>
-                                                    <strong>Diesel</strong>
-                                                </div>
-                                                <div className={styles.item}>
-                                                    <span>Sistema de combustível</span>
-                                                    <strong>Injeção eletrônica</strong>
-                                                </div>
-                                            </div>
-                                            <div className="d-flex flex-wrap gap-2">
-                                                <div className={styles.item}>
-                                                    <span>Câmbio de marchas</span>
-                                                    <strong>Manual</strong>
-                                                </div>
-                                                <div className={styles.item}>
-                                                    <span>Quant. de portas</span>
-                                                    <strong>4</strong>
-                                                </div>
-                                                <div className={styles.item}>
-                                                    <span>Final de placa</span>
-                                                    <strong>0</strong>
-                                                </div>
-                                                <div className={styles.item}>
-                                                    <span>Cor</span>
-                                                    <strong>Preto</strong>
-                                                </div>
-                                            </div>
-                                            <div className="d-flex flex-wrap gap-2">
-                                                <div className={styles.item}>
-                                                    <span>Único dono</span>
-                                                    <strong>Sim</strong>
-                                                </div>
-                                                <div className={styles.item}>
-                                                    <span>Aceita troca</span>
-                                                    <strong>Sim</strong>
-                                                </div>
-                                                <div className={styles.item}>
-                                                    <span>Condição</span>
-                                                    <strong>Novo</strong>
-                                                </div>
-                                                <div className={styles.item}>
-                                                    <span>Alienado</span>
-                                                    <strong>Sim</strong>
-                                                </div>
-                                            </div>
-                                            <div className="d-flex flex-wrap gap-2">
-                                                <div className={styles.item}>
-                                                    <span>IPVA pago</span>
-                                                    <strong>Sim</strong>
-                                                </div>
-                                                <div className={styles.item}>
-                                                    <span>Licenciado</span>
-                                                    <strong>Sim</strong>
-                                                </div>
-                                                <div className={styles.item}>
-                                                    <span>Garantia de fábrica</span>
-                                                    <strong>Sim</strong>
-                                                </div>
-                                                <div className={styles.item}>
-                                                    <span>Revisões feitas</span>
-                                                    <strong>Sim</strong>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <Datasheet />
                                     <hr/>
                                     <div className="d-flex flex-column">
                                         <span className={styles.title_section}>Sobre o veículo</span>
@@ -1793,73 +1720,7 @@ export default function Comprar() {
                                             mudanças suaves e em dia com as prestações apresentadas pelo 2.0 TDI.</p>
                                     </div>
                                     <hr/>
-                                    <div className="d-flex flex-column">
-                                        <span className={styles.title_section}>Itens de veículo</span>
-                                        <div className="d-flex flex-wrap gap-4">
-                                            <div className="d-flex flex-wrap gap-2">
-                                                <div className={styles.item + " mb-3"}>
-                                                    <div className={"d-flex align-items-center gap-2"}>
-                                                        <FaCheck/> <strong>Trava elétrica</strong>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.item + " mb-3"}>
-                                                    <div className={"d-flex align-items-center gap-2"}>
-                                                        <FaCheck/> <strong>Airbag motorista</strong>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.item + " mb-3"}>
-                                                    <div className={"d-flex align-items-center gap-2"}>
-                                                        <FaCheck/> <strong>Alarme</strong>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.item + " mb-3"}>
-                                                    <div className={"d-flex align-items-center gap-2"}>
-                                                        <FaCheck/> <strong>Freios ABS</strong>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.item + " mb-3"}>
-                                                    <div className={"d-flex align-items-center gap-2"}>
-                                                        <FaCheck/> <strong>Ar condicionado</strong>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.item + " mb-3"}>
-                                                    <div className={"d-flex align-items-center gap-2"}>
-                                                        <FaCheck/> <strong>Direção hidráulica</strong>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.item + " mb-3"}>
-                                                    <div className={"d-flex align-items-center gap-2"}>
-                                                        <FaCheck/> <strong>Ajuste de altura para bancos</strong>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.item + " mb-3"}>
-                                                    <div className={"d-flex align-items-center gap-2"}>
-                                                        <FaCheck/> <strong>Ajuste de altura para volante</strong>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.item + " mb-3"}>
-                                                    <div className={"d-flex align-items-center gap-2"}>
-                                                        <FaCheck/> <strong>Computador de bordo</strong>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.item + " mb-3"}>
-                                                    <div className={"d-flex align-items-center gap-2"}>
-                                                        <FaCheck/> <strong>Retrovisores elétricos</strong>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.item + " mb-3"}>
-                                                    <div className={"d-flex align-items-center gap-2"}>
-                                                        <FaCheck/> <strong>Vidros elétricos</strong>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.item + " mb-3"}>
-                                                    <div className={"d-flex align-items-center gap-2"}>
-                                                        <FaCheck/> <strong>Computador de bordo</strong>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <VehicleItems />
                                 </div>
                                 <SectionFinancing/>
                             </div>
@@ -1880,6 +1741,6 @@ export default function Comprar() {
                 </>
                 : <div style={{height: "100vh"}}></div>}
             <Footer/>
-        </div>
+        </Accordion>
     );
 }
