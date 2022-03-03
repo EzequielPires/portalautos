@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export function CarouselCard({array}) {
     return (
-        <Carousel fade interval={null} touch={false}>
+        <Carousel fade interval={null} touch={false} className={"w-100"}>
             <Carousel.Item key={array[0].name}>
                 <Image
                     src={"https://classificados.portalcatalao.com.br/veiculos/"
