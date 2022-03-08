@@ -9,6 +9,13 @@
             }
         }
     }
+    .btn_sign_in {
+        display: flex;
+        align-items: center;
+        gap: .25rem;
+        font-size: .875rem;
+        font-weight: 600;
+    }
     .btn {
         min-width: 190px;
     }
@@ -105,6 +112,9 @@
 }
 @media (max-width: 992px) {
     .button_user {
+        .btn_sign_in {
+            display: none;
+        }
         .btn {
             display: none;
         }
