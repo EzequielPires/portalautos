@@ -135,34 +135,6 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
   width: 100%;
   padding: 0 1.5rem;
 }
-.section_offers .swiper .swiper-button-prev:after, .section_offers .swiper .swiper-button-next:after {
-  font-size: 1.5rem;
-  color: #fff;
-}
-.section_offers .swiper .swiper-button-next {
-  opacity: 0;
-  top: 50% !important;
-  right: -.75rem !important;
-  height: 56px !important;
-  width: 56px !important;
-  border-radius: 56px 0 0 56px;
-  background: var(--main-color);
-  box-shadow: -4px 4px 8px rgba(0, 0, 0, .35),
-  -4px 4px 4px rgba(0, 0, 0, .35);
-  transition: .2s;
-}
-.section_offers .swiper .swiper-button-prev {
-  opacity: 0;
-  top: 50% !important;
-  left: -.75rem !important;
-  height: 56px !important;
-  width: 56px !important;
-  border-radius: 0 56px 56px 0;
-  background: var(--main-color);
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, .35),
-  4px 4px 4px rgba(0, 0, 0, .35);
-  transition: .2s;
-}
 .gallery .swiper .swiper-button-next {
   pointer-events: none;
   justify-content: flex-end;
@@ -187,10 +159,6 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
   background: linear-gradient(90deg, #1d1d1d 0%, rgba(196, 196, 196, 0) 100%);
   transition: .2s;
 }
-.section_vehicles_popular .swiper .swiper-button-prev:after, .section_vehicles_popular .swiper .swiper-button-next:after {
-  font-size: 1.5rem;
-  color: #fff;
-}
 .gallery .swiper .swiper-button-prev:after, .gallery .swiper .swiper-button-next:after {
   pointer-events: all;
   width: 48px;
@@ -203,46 +171,44 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
   font-size: 1.5rem;
   color: #fff;
 }
-.section_vehicles_popular .swiper .swiper-button-next {
+.section_vehicles_popular .swiper .swiper-button-prev:after, 
+.section_vehicles_popular .swiper .swiper-button-next:after {
+  font-size: 1.5rem;
+  color: #fff;
+}
+.section_vehicles_popular .swiper .swiper-button-next,
+.section_offers .swiper .swiper-button-next,
+.section_offers .swiper .swiper-button-prev:after, 
+.section_offers .swiper .swiper-button-next:after {
   opacity: 0;
-  top: 50% !important;
-  right: -.75rem !important;
-  height: 56px !important;
-  width: 56px !important;
-  border-radius: 56px 0 0 56px;
-  background: var(--main-color);
-  box-shadow: -4px 4px 8px rgba(0, 0, 0, .35),
-  -4px 4px 4px rgba(0, 0, 0, .35);
+  top: 22px !important;
+  right: 0rem !important;
+  height: 100% !important;
+  width: 10% !important;
+  background: linear-gradient(90deg, rgba(196, 196, 196, 0) 0%, #1d1d1d 100%);
+  justify-content: flex-end;
+  padding-right: 1.5rem;
   transition: .2s;
 }
-.section_vehicles_popular .swiper .swiper-button-prev {
+.section_vehicles_popular .swiper .swiper-button-prev,
+.section_offers .swiper .swiper-button-prev  {
   opacity: 0;
-  top: 50% !important;
-  left: -.75rem !important;
-  height: 56px !important;
-  width: 56px !important;
-  border-radius: 0 56px 56px 0;
-  background: var(--main-color);
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, .35),
-  4px 4px 4px rgba(0, 0, 0, .35);
+  top: 22px !important;
+  left: 0rem !important;
+  height: 100% !important;
+  width: 10% !important;
+  background: linear-gradient(90deg, #1d1d1d 0%, rgba(196, 196, 196, 0) 100%);
+  justify-content: flex-start;
+  padding-left: 1.5rem;
   transition: .2s;
 }
-.section_offers:hover .swiper .swiper-button-next {
-  opacity: 1;
-}
-.section_offers:hover .swiper .swiper-button-prev {
-  opacity: 1;
-}
-.section_vehicles_popular:hover .swiper .swiper-button-next {
-  opacity: 1;
-}
-.section_vehicles_popular:hover .swiper .swiper-button-prev {
-  opacity: 1;
-}
-.gallery .swiper:hover .swiper-button-next {
-  opacity: 1;
-}
-.gallery .swiper:hover .swiper-button-prev {
+.section_offers:hover .swiper .swiper-button-next,
+.section_offers:hover .swiper .swiper-button-prev,
+.section_vehicles_popular:hover .swiper .swiper-button-next,
+.section_vehicles_popular:hover .swiper .swiper-button-prev,
+.gallery .swiper:hover .swiper-button-next,
+.gallery .swiper:hover .swiper-button-prev
+{
   opacity: 1;
 }
 .swiper-button-disabled {

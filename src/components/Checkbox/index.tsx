@@ -6,7 +6,7 @@ export function Checkbox({id, label, value, onChange}) {
     const route = useRouter();
 
     return (
-        <Link href={`${route.asPath}/${label}`} replace>
+        <Link href={`${label}`} replace>
             <div className={styles.input_box}>
                 <input
                     type="checkbox"
