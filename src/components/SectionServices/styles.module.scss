@@ -2,10 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 1.5rem;
     margin-bottom: 64px;
     h2 {
-        font-weight: 700;
+        font-size: 1.5rem;
+        font-weight: 600;
         color: #333;
+        strong {
+            font-weight: 700;
+            color: var(--main-color);
+        }
     }
     span {
         color: #555;
@@ -17,7 +23,6 @@
         flex-wrap: wrap;
         gap: 1rem;
         justify-content: center;
-        padding: 0 1.5rem;
         //max-width: 640px;
         .item {
             display: flex;
@@ -25,6 +30,7 @@
             align-items: center;
             justify-content: center;
             flex: 1;
+            min-width: 148px;
             height: 120px;
             background: #1d1d1d;
             border-radius: 6px;
