@@ -3,11 +3,13 @@ import {NavbarFixed} from "../../components/NavbarFixed";
 import {Filter} from "../../components/Filter";
 import {CardAnnouncement} from "../../components/CardAnnouncement";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faMinusCircle, faSlidersH} from "@fortawesome/free-solid-svg-icons";
+import {faMinusCircle, faSlidersH} from "@fortawesome/free-solid-svg-icons";
 import {useContext} from "react";
 import {FilterContext} from "../../contexts/FilterContext";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import {SkeletonCardAnnouncement} from "../../components/Skeleton/SkeletonCardAnnouncement";
+import {useFetch} from "../../hooks/useFetch";
+
 const data = {
     "vehicles": [
         {
@@ -1631,27 +1633,28 @@ const data = {
     ],
 }
 export default function Search() {
+    const {data} = useFetch('/api/ad/filter?type=car');
     const {brand, activeFilter, setActiveFilter} = useContext(FilterContext);
     return (
         <div className={styles.search + ` ${activeFilter && styles.active_filter}`}>
-            <NavbarFixed />
+            <NavbarFixed/>
             <div className={styles.content}>
                 <Filter show={true}/>
                 <div className="d-flex flex-column w-100">
                     <nav className={styles.nav_filter}>
                         <button className={styles.btn_filter} onClick={() => setActiveFilter(!activeFilter)}>
-                            <FontAwesomeIcon icon={faSlidersH as IconProp} />
+                            <FontAwesomeIcon icon={faSlidersH as IconProp}/>
                         </button>
                         <div className="d-flex gap-2">
                             <button className={styles.item}>
                                 Brasil
-                                <FontAwesomeIcon icon={faMinusCircle as IconProp} />
+                                <FontAwesomeIcon icon={faMinusCircle as IconProp}/>
                             </button>
                             {brand ?
                                 <button className={styles.item}>
-                                {brand.name}
-                                <FontAwesomeIcon icon={faMinusCircle as IconProp} />
-                            </button> : null}
+                                    {brand.name}
+                                    <FontAwesomeIcon icon={faMinusCircle as IconProp}/>
+                                </button> : null}
                         </div>
                     </nav>
                     <div className={styles.title}>
@@ -1660,17 +1663,20 @@ export default function Search() {
                     </div>
                     <div className={styles.list + " d-flex flex-wrap justify-content-center gap-4"}>
                         {brand ?
-                            data.vehicles?.map((vehicle, idx) => (
+                            data && data.vehicles?.map((vehicle, idx) => (
                                 <>
-                                    {brand.name.toLowerCase() === vehicle.fipe_vehicle.model.brand.name ? <CardAnnouncement data={vehicle}/> : null}
+                                    {brand.name.toLowerCase() === vehicle.fipe_vehicle.model.brand.name ?
+                                        <CardAnnouncement data={vehicle}/> : null}
                                 </>
 
-                                ))
-                        :
-                            data.vehicles?.map((vehicle, idx) => (
-                                    // <CardAnnouncement key={idx} data={vehicle}/>
-                                <SkeletonCardAnnouncement key={idx}/>
-                                ))
+                            ))
+                            : <>
+                                <SkeletonCardAnnouncement/>
+                                <SkeletonCardAnnouncement/>
+                                <SkeletonCardAnnouncement/>
+                                <SkeletonCardAnnouncement/>
+                                <SkeletonCardAnnouncement/>
+                            </>
                         }
 
                     </div>
