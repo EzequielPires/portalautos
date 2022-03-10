@@ -7,6 +7,7 @@ import { faMinusCircle, faSlidersH} from "@fortawesome/free-solid-svg-icons";
 import {useContext} from "react";
 import {FilterContext} from "../../contexts/FilterContext";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import {SkeletonCardAnnouncement} from "../../components/Skeleton/SkeletonCardAnnouncement";
 const data = {
     "vehicles": [
         {
@@ -1635,7 +1636,7 @@ export default function Search() {
         <div className={styles.search + ` ${activeFilter && styles.active_filter}`}>
             <NavbarFixed />
             <div className={styles.content}>
-                <Filter />
+                <Filter show={true}/>
                 <div className="d-flex flex-column w-100">
                     <nav className={styles.nav_filter}>
                         <button className={styles.btn_filter} onClick={() => setActiveFilter(!activeFilter)}>
@@ -1667,7 +1668,8 @@ export default function Search() {
                                 ))
                         :
                             data.vehicles?.map((vehicle, idx) => (
-                                    <CardAnnouncement key={idx} data={vehicle}/>
+                                    // <CardAnnouncement key={idx} data={vehicle}/>
+                                <SkeletonCardAnnouncement key={idx}/>
                                 ))
                         }
 

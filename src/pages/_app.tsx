@@ -14,6 +14,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MotorcycleProvider } from '../contexts/MotorcycleContext';
@@ -23,7 +24,6 @@ import { GalleryProvider } from '../contexts/GalleryContext';
 import { CarProvider } from '../contexts/CarContext';
 import { ModalAction } from '../components/ModalAction';
 import {FilterProvider} from "../contexts/FilterContext";
-import {Filter} from "../components/Filter";
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
@@ -39,7 +39,6 @@ function MyApp({ Component, pageProps }) {
                     <MotorcycleProvider>
                       <AuthProvider>
                         <Component {...pageProps} />
-                        <Filter />
                         <ModalAction />
                       </AuthProvider>
                     </MotorcycleProvider>
@@ -52,11 +51,6 @@ function MyApp({ Component, pageProps }) {
       </QueryClientProvider>
     </SSRProvider>
   )
-}
-const fs = require('fs');
-export function getStaticProps() {
-  fs
-  return { props: { msg: 'hello world' } }
 }
 
 export default MyApp

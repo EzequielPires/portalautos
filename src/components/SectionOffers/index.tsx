@@ -2,6 +2,7 @@ import styles from "./styles.module.scss"
 import {CardAnnouncement} from "../CardAnnouncement";
 import {Swiper, SwiperSlide} from 'swiper/react';
 import { Navigation } from 'swiper';
+import {SkeletonCardAnnouncement} from "../Skeleton/SkeletonCardAnnouncement";
 
 export function SectionOffers() {
     const data = {
@@ -1532,7 +1533,8 @@ export function SectionOffers() {
                 >
                     {data.vehicles?.map(item => (
                         <SwiperSlide id={styles.swiper_slide} key={item.id}>
-                            <CardAnnouncement data={item}/>
+                            {/*<CardAnnouncement data={item}/>*/}
+                            <SkeletonCardAnnouncement />
                         </SwiperSlide>
                     ))}
                 </Swiper>

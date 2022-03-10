@@ -18,6 +18,9 @@
 }
 
 @media (max-width: 720px) {
+  .section_category_car {
+    display: none;
+  }
   #swiper_slide {
     display: flex;
     justify-content: center;

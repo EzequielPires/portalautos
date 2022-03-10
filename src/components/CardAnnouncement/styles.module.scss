@@ -58,6 +58,14 @@
         color: #555;
       }
     }
+    .btn_favorites {
+      border: 0;
+      background: transparent;
+      svg {
+        color: #555;
+        font-size: 18px;
+      }
+    }
   }
 }
 @media (max-width: 720px) {

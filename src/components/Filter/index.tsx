@@ -13,11 +13,18 @@ import {BodyworkVehicle} from "./BodyworkVehicle";
 import {CharacteristicsVehicle} from "./CharacteristicsVehicle";
 import {ContentMore} from "./ContentMore";
 import {FuelVehicle} from "./FuelVehicle";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {FilterContext} from "../../contexts/FilterContext";
 
-export function Filter() {
+type Filter = {
+    show?: boolean;
+}
+
+export function Filter({show = false}) {
     const {activeFilter, setActiveFilter} = useContext(FilterContext);
+    useEffect(() => {
+        setActiveFilter(show);
+    }, [])
     return (
         <nav className={styles.filter + ` ${activeFilter && styles.active_filter}`}>
             <div className={styles.content}>

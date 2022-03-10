@@ -19,6 +19,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../../contexts/AuthContext";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import {FaChevronDown} from "react-icons/fa";
 
 export function ButtonUser() {
     const [userName, setUserName] = useState('');
@@ -40,8 +41,9 @@ export function ButtonUser() {
                 <button className={styles.btn} onClick={user ? () => handleShow() : () => router.push('/login')}>
                     {user ?
                         <>
-                            <FontAwesomeIcon icon={faUser as IconProp} />{userName}<FontAwesomeIcon
-                                icon={faChevronDown as IconProp} />
+                            <AiOutlineUser />
+                            {userName}
+                            <FaChevronDown />
                         </> : "Entrar"}
                 </button> :
                 <Link href="/login">

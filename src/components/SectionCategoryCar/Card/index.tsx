@@ -5,7 +5,7 @@ export function Card({data}) {
     return (
         <div className={styles.card}>
             <div className={styles.card_header}>
-                <Image src={data.img} alt="" layout={"fill"}/>
+                <img src={data.img} alt="" />
             </div>
             <div className={styles.card_body}>
                 <div className="d-flex flex-column align-items-center">

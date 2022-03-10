@@ -1,11 +1,11 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-import { faBullhorn, faHandshake, faQuestion, faUserEdit } from "@fortawesome/free-solid-svg-icons";
-import { ButtonUser } from "../ButtonUser";
+import {faBullhorn, faHandshake, faQuestion, faUserEdit} from "@fortawesome/free-solid-svg-icons";
+import {ButtonUser} from "../ButtonUser";
 import Logo from "../../assets/logo.svg"
 import styles from "./styles.module.scss";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import {useRouter} from "next/router";
+import {useEffect, useState} from "react";
 import Link from "next/link";
 
 export function NavbarFixed() {
@@ -22,8 +22,8 @@ export function NavbarFixed() {
             <nav className={styles.navbar}>
                 <div className={styles.logo}>
                     <Link href="/">
-                        <a >
-                            <img src={Logo.src} alt="" />
+                        <a>
+                            <img src={Logo.src} alt=""/>
                         </a>
                     </Link>
                 </div>
@@ -50,7 +50,11 @@ export function NavbarFixed() {
                             </Link>
                         </li>
                     </ul>
-                    <ButtonUser />
+                    <ButtonUser/>
+                    <button className={
+                        styles.btn_primary
+                    }>Anunciar meu veículo
+                    </button>
                 </div>
             </nav>
         </header>

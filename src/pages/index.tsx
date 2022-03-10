@@ -6,11 +6,13 @@ import {SectionCategoryCar} from "../components/SectionCategoryCar";
 import {SectionStore} from "../components/SectionStore";
 import {Footer} from "../components/Footer";
 import { SectionServices } from "../components/SectionServices";
+import {Filter} from "../components/Filter";
 
 export default function Home() {
   return (
     <div>
         <NavbarFixed />
+        <Filter />
         <SectionFormFilterHome />
         <SectionServices />
         <SectionOffers />

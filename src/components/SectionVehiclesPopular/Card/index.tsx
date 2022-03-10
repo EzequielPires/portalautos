@@ -10,7 +10,7 @@ export function Card({data}) {
         <div className={styles.card}>
             <div className={styles.content}>
                 <div className={styles.content_image}>
-                    <Image src={data.img} alt="" layout={"fill"}/>
+                    <img src={data.img} alt="" />
                 </div>
                 <div className="d-flex w-100 flex-column">
                     <span className={styles.brand}>{data.brand}</span>

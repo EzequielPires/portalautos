@@ -4,6 +4,8 @@
   .content {
     width: 100%;
     max-width: 1448px;
+    flex-wrap: wrap;
+    justify-content: center;
     display: flex;
     gap: 32px;
     background: transparent;

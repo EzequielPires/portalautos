@@ -41,14 +41,27 @@
                 color: #f9f9f9;
             }
         }
+        .btn_primary {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            background: var(--linear-gradient);
+            border: 0;
+            padding: 0 32px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+        }
     }
 }
 @media (max-width: 720px) {
     .header {
-        .navbar {
-
-        }
         .list_links {
+            display: none !important;
+        }
+        .btn_primary {
             display: none !important;
         }
     }

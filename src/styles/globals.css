@@ -1,269 +1,298 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap');
+
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: 'Open Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
 }
+
 body {
-  background-color: #fafafa !important;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  min-width: 350px;
+    background-color: #fafafa !important;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    min-width: 350px;
 }
 
 :root {
-  --main-color: #D21B60;
-  --yellow-color: #ebb61f;
-  --dark-color: #1d1d1d;
-  --red-color: #F3123C;
-  --green-color: #00AE1C;
-  --success: #00ae1c69;
-  --linear-gradient: linear-gradient(272.56deg, #F3123C 0%, #D21B60 100%);
+    --main-color: #D21B60;
+    --yellow-color: #ebb61f;
+    --dark-color: #1d1d1d;
+    --red-color: #F3123C;
+    --green-color: #00AE1C;
+    --success: #00ae1c69;
+    --linear-gradient: linear-gradient(272.56deg, #F3123C 0%, #D21B60 100%);
 }
+
 a {
-  color: inherit;
-  text-decoration: none !important;
+    color: inherit;
+    text-decoration: none !important;
 }
+
 li {
-  list-style: none;
+    list-style: none;
 }
+
 ul {
-  padding-left: 0 !important;
-  margin: 0;
+    padding-left: 0 !important;
+    margin: 0;
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:focus, input:-webkit-autofill:hover {
-  -webkit-box-shadow: inset 0 0 0 30px #fff!important;
+    -webkit-box-shadow: inset 0 0 0 30px #fff !important;
 }
 
 .draggable.dragging {
-  opacity: .5;
+    opacity: .5;
 }
+
 .is-dragging {
-  cursor: -webkit-grabbing;
-  cursor: grabbing;
-  opacity: 0.3 !important;
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+    opacity: 0.3 !important;
 }
 
 .over {
-  background-color: #4cd13711;
+    background-color: #4cd13711;
 }
+
 .draggable .disabled {
-  cursor: pointer !important;
+    cursor: pointer !important;
 }
+
 .uploading::after {
-  content: 'Carregando';
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 600;
-  position: absolute;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  width: 150px;
-  height: 150px;
-  background: #00ae1d8c;
-  transition: 0.3s;
+    content: 'Carregando';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    background: #00ae1d8c;
+    transition: 0.3s;
 }
+
 .waiting::after {
-  content: '';
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 600;
-  position: absolute;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  width: 150px;
-  height: 150px;
-  background: rgba(221, 221, 221, 0.466);
-  transition: 0.3s;
+    content: '';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    background: rgba(221, 221, 221, 0.466);
+    transition: 0.3s;
 }
+
 .modal-dialog {
-  width: 720px !important;
-  max-width: 100% !important;
-  max-height: 100% !important;
-  margin-top: 80px !important;
-  padding: 0.5rem;
+    width: 720px !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin-top: 80px !important;
+    padding: 0.5rem;
 }
+
 .modal-dialog button:focus {
-  box-shadow: none !important;
+    box-shadow: none !important;
 }
+
 .modal-content {
-  display: flex !important;
-  height: 100% !important;
-  max-height: 720px;
-  overflow: hidden;
+    display: flex !important;
+    height: 100% !important;
+    max-height: 720px;
+    overflow: hidden;
 }
+
 .modal-content .modal-body {
-  position: relative !important;
-  overflow: hidden;
-  padding: 0;
+    position: relative !important;
+    overflow: hidden;
+    padding: 0;
 }
-.modal-body .btn-close{
-  width: 24px;
-  height: 24px;
-  padding: 0 !important;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  color: #fff !important;
-  opacity: 1;
-  background: transparent url(../assets/ico/close.svg) center/1em auto no-repeat;
-  background-size: cover;
-  z-index: 9999;
+
+.modal-body .btn-close {
+    width: 24px;
+    height: 24px;
+    padding: 0 !important;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    color: #fff !important;
+    opacity: 1;
+    background: transparent url(../assets/ico/close.svg) center/1em auto no-repeat;
+    background-size: cover;
+    z-index: 9999;
 }
+
 .modal-content img {
-  width: 100%;
-  height: 100% !important;
-  object-fit: cover;
-  border-radius: 4px;
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+    border-radius: 4px;
 }
+
 .section_offers .swiper, .section_vehicles_popular .swiper {
-  width: 100%;
-  padding: 0 1.5rem;
+    width: 100%;
+    padding: 0 1.5rem;
 }
+
 .gallery .swiper .swiper-button-next {
-  pointer-events: none;
-  justify-content: flex-end;
-  padding: 2rem;
-  top: 22px !important;
-  right: 0 !important;
-  height: 100% !important;
-  width: 33.33% !important;
-  background: linear-gradient(90deg, rgba(196, 196, 196, 0) 0%, #1d1d1d 100%);
-  border-radius: 0 6px 6px 0;
-  transition: .2s;
+    pointer-events: none;
+    justify-content: flex-end;
+    padding: 2rem;
+    top: 22px !important;
+    right: 0 !important;
+    height: 100% !important;
+    width: 33.33% !important;
+    background: linear-gradient(90deg, rgba(196, 196, 196, 0) 0%, #1d1d1d 100%);
+    border-radius: 0 6px 6px 0;
+    transition: .2s;
 }
+
 .gallery .swiper .swiper-button-prev {
-  pointer-events: none;
-  justify-content: flex-start;
-  padding: 2rem;
-  top: 22px!important;
-  left: 0 !important;
-  height: 100% !important;
-  width: 33.33% !important;
-  border-radius: 0 0 6px 6px;
-  background: linear-gradient(90deg, #1d1d1d 0%, rgba(196, 196, 196, 0) 100%);
-  transition: .2s;
+    pointer-events: none;
+    justify-content: flex-start;
+    padding: 2rem;
+    top: 22px !important;
+    left: 0 !important;
+    height: 100% !important;
+    width: 33.33% !important;
+    border-radius: 0 0 6px 6px;
+    background: linear-gradient(90deg, #1d1d1d 0%, rgba(196, 196, 196, 0) 100%);
+    transition: .2s;
 }
+
 .gallery .swiper .swiper-button-prev:after, .gallery .swiper .swiper-button-next:after {
-  pointer-events: all;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--main-color);
-  font-size: 1.5rem;
-  color: #fff;
+    pointer-events: all;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--main-color);
+    font-size: 1.5rem;
+    color: #fff;
 }
-.section_vehicles_popular .swiper .swiper-button-prev:after, 
-.section_vehicles_popular .swiper .swiper-button-next:after {
-  font-size: 1.5rem;
-  color: #fff;
-}
-.section_vehicles_popular .swiper .swiper-button-next,
-.section_offers .swiper .swiper-button-next,
-.section_offers .swiper .swiper-button-prev:after, 
+
+.section_vehicles_popular .swiper .swiper-button-prev:after,
+.section_vehicles_popular .swiper .swiper-button-next:after,
+.section_offers .swiper .swiper-button-prev:after,
 .section_offers .swiper .swiper-button-next:after {
-  opacity: 0;
-  top: 22px !important;
-  right: 0rem !important;
-  height: 100% !important;
-  width: 10% !important;
-  background: linear-gradient(90deg, rgba(196, 196, 196, 0) 0%, #1d1d1d 100%);
-  justify-content: flex-end;
-  padding-right: 1.5rem;
-  transition: .2s;
+    font-size: 1.5rem;
+    color: #fff;
 }
+
+.section_vehicles_popular .swiper .swiper-button-next,
+.section_offers .swiper .swiper-button-next {
+    opacity: 0;
+    top: 22px !important;
+    right: 0rem !important;
+    height: 100% !important;
+    width: 10% !important;
+    background: linear-gradient(90deg, rgba(196, 196, 196, 0) 0%, #1d1d1d 100%);
+    justify-content: flex-end;
+    padding-right: 1.5rem;
+    transition: .2s;
+}
+
 .section_vehicles_popular .swiper .swiper-button-prev,
-.section_offers .swiper .swiper-button-prev  {
-  opacity: 0;
-  top: 22px !important;
-  left: 0rem !important;
-  height: 100% !important;
-  width: 10% !important;
-  background: linear-gradient(90deg, #1d1d1d 0%, rgba(196, 196, 196, 0) 100%);
-  justify-content: flex-start;
-  padding-left: 1.5rem;
-  transition: .2s;
+.section_offers .swiper .swiper-button-prev {
+    opacity: 0;
+    top: 22px !important;
+    left: 0rem !important;
+    height: 100% !important;
+    width: 10% !important;
+    background: linear-gradient(90deg, #1d1d1d 0%, rgba(196, 196, 196, 0) 100%);
+    justify-content: flex-start;
+    padding-left: 1.5rem;
+    transition: .2s;
 }
+
 .section_offers:hover .swiper .swiper-button-next,
 .section_offers:hover .swiper .swiper-button-prev,
 .section_vehicles_popular:hover .swiper .swiper-button-next,
 .section_vehicles_popular:hover .swiper .swiper-button-prev,
 .gallery .swiper:hover .swiper-button-next,
-.gallery .swiper:hover .swiper-button-prev
-{
-  opacity: 1;
+.gallery .swiper:hover .swiper-button-prev {
+    opacity: 1;
 }
+
 .swiper-button-disabled {
-  display: none !important;
+    display: none !important;
 }
+
 .carousel-indicators {
-  margin-bottom: .5rem !important;
+    margin-bottom: .5rem !important;
 }
+
 .carousel-indicators button {
-  height: 6px !important;
-  width: 6px !important;
-  border-radius: 50% !important;
-  border: 0 !important;
-  opacity: 1 !important;
+    height: 6px !important;
+    width: 6px !important;
+    border-radius: 50% !important;
+    border: 0 !important;
+    opacity: 1 !important;
 }
+
 .carousel-indicators button.active {
-  background: var(--main-color);
+    background: var(--main-color);
 }
+
 .carousel-item {
-  height: 212px;
-  width: 100%;
-  overflow: hidden;
+    height: 212px;
+    width: 100%;
+    overflow: hidden;
 }
+
 .carousel-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
+
 .swiper-pagination-bullet {
-  background: #fff !important;
-  opacity: 1 !important;
+    background: #fff !important;
+    opacity: 1 !important;
 }
+
 .swiper-pagination-bullet-active {
-  width: 24px !important;
-  border-radius: 16px !important;
-  background: var(--main-color) !important;
+    width: 24px !important;
+    border-radius: 16px !important;
+    background: var(--main-color) !important;
 }
 
 @media (max-width: 720px) {
-  .gallery .swiper:hover .swiper-button-next,
-  .gallery .swiper:hover .swiper-button-prev,
-  .gallery .swiper .swiper-button-next,
-  .gallery .swiper .swiper-button-prev,
-  .section_offers:hover .swiper .swiper-button-prev,
-  .section_offers:hover .swiper .swiper-button-next,
-  .section_offers .swiper .swiper-button-prev,
-  .section_offers .swiper .swiper-button-next
-  .section_vehicles_popular:hover .swiper .swiper-button-next,
-  .section_vehicles_popular:hover .swiper .swiper-button-prev,
-  .section_vehicles_popular .swiper .swiper-button-next,
-  .section_vehicles_popular .swiper .swiper-button-prev,
-  .carousel-indicators,
-  .carousel-control-prev,
-  .carousel-control-next
-  {
-    display: none !important;
-  }
+    .gallery .swiper:hover .swiper-button-next,
+    .gallery .swiper:hover .swiper-button-prev,
+    .gallery .swiper .swiper-button-next,
+    .gallery .swiper .swiper-button-prev,
+    .section_offers:hover .swiper .swiper-button-prev,
+    .section_offers:hover .swiper .swiper-button-next,
+    .section_offers .swiper .swiper-button-prev,
+    .section_offers .swiper .swiper-button-next
+    .section_vehicles_popular:hover .swiper .swiper-button-next,
+    .section_vehicles_popular:hover .swiper .swiper-button-prev,
+    .section_vehicles_popular .swiper .swiper-button-next,
+    .section_vehicles_popular .swiper .swiper-button-prev,
+    .carousel-indicators,
+    .carousel-control-prev,
+    .carousel-control-next {
+        display: none !important;
+    }
 }

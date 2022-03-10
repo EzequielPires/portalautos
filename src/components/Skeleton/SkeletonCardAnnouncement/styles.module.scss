@@ -1,0 +1,15 @@
+.card {
+  background: #fff;
+  width: 280px;
+  padding: 1rem;
+  .body {
+    padding-top: 1rem;
+    h4 {
+      width: 180px;
+      margin-bottom: 0;
+    }
+    .price {
+      width: 160px;
+    }
+  }
+}

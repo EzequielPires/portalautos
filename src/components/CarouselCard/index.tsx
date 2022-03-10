@@ -11,7 +11,8 @@ export function CarouselCard({ array }) {
                             src={"https://classificados.portalcatalao.com.br/veiculos/"
                                 + item.path}
                             layout="fill"
-                            loading="lazy"
+                            loading="eager"
+                            onLoad={(e) => console.log(e)}
                             alt="First slide"
                         />
                     </Carousel.Item>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import VMasker from "vanilla-masker/build/vanilla-masker.min";
 import styles from "./styles.module.scss";
 import NoImage from "../../assets/no-image.svg";
-import {FaMapMarkerAlt} from "react-icons/fa";
+import {FaMapMarkerAlt, FaRegHeart} from "react-icons/fa";
 import {CarouselCard} from "../CarouselCard";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
@@ -40,6 +40,7 @@ export function CardAnnouncement({data}) {
                         <hr />
                         <div className="d-flex justify-content-between px-2 px-md-3">
                             <span className="d-flex align-items-center gap-1"><FaMapMarkerAlt />Catalão - GO</span>
+                            <button className={styles.btn_favorites}><FaRegHeart /></button>
                         </div>
                     </footer>
                 </div>
