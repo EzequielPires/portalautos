@@ -15,6 +15,7 @@ import {ContentMore} from "./ContentMore";
 import {FuelVehicle} from "./FuelVehicle";
 import {useContext, useEffect} from "react";
 import {FilterContext} from "../../contexts/FilterContext";
+import {useRouter} from "next/router";
 
 type Filter = {
     show?: boolean;
@@ -22,11 +23,14 @@ type Filter = {
 
 export function Filter({show = false}) {
     const {activeFilter, setActiveFilter} = useContext(FilterContext);
+    const router = useRouter();
+    const path = router.asPath;
     useEffect(() => {
         setActiveFilter(show);
+        console.log(path);
     }, [])
     return (
-        <nav className={styles.filter + ` ${activeFilter && styles.active_filter}`}>
+        <nav className={styles.filter + ` ${activeFilter && styles.active_filter} ${path === "/" ? "d-md-none" : null}`}>
             <div className={styles.content}>
                 <div className="d-flex justify-content-center d-md-none pt-3">
                     <span style={{color: '#333', fontWeight: 600, fontSize: 16}}>FILTRAR</span>

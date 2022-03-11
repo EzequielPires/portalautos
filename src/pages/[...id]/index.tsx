@@ -1639,7 +1639,7 @@ export default function Search() {
         <div className={styles.search + ` ${activeFilter && styles.active_filter}`}>
             <NavbarFixed/>
             <div className={styles.content}>
-                <Filter show={true}/>
+                <Filter />
                 <div className="d-flex flex-column w-100">
                     <nav className={styles.nav_filter}>
                         <button className={styles.btn_filter} onClick={() => setActiveFilter(!activeFilter)}>
