@@ -217,7 +217,7 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
     content: '';
     width: 48px;
     height: 48px;
-    background-image: url(../assets/ico/arrow-left-solid.svg) !important;
+    background-image: url('../assets/ico/arrow-left-solid.svg') !important;
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center center;
