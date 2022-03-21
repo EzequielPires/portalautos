@@ -4,12 +4,12 @@ import { AnnouncementContext } from '../../contexts/AnnouncementContext';
 import styles from './styles.module.scss';
 
 export function ModalReportVehicle({ show, handleClose }) {
-    const { report_vehicle } = useContext(AnnouncementContext);
+    //const { report_vehicle } = useContext(AnnouncementContext);
     const [description, setDescription] = useState('');
     const [response, setResponse] = useState(null);
 
     const handleReportVehicle = async () => {
-        setResponse(await report_vehicle('not-found-vehicle', description));
+        //setResponse(await report_vehicle('not-found-vehicle', description));
     }
 
     return (
