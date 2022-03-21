@@ -190,32 +190,32 @@ export function MotorcycleProvider({ children }) {
     }
 
     const getYearModel = async (value) => {
-        model.setValue(value);
+        /* model.setValue(value);
         model.validate(value);
         const res = await getListVehicle.yearModel('motorcycle', value);
-        res.success ? setListYearModel(res.data) : console.log(res);
+        res.success ? setListYearModel(res.data) : console.log(res); */
     }
 
     const getYearFabrication = async (value) => {
-        yearModel.setValue(value);
+        /* yearModel.setValue(value);
         yearModel.validate(value);
         setListYearFabrication([]);
         setListVersion([]);
         setListColor([]);
-        setListYearFabrication([parseInt(value), parseInt(value) - 1]);
+        setListYearFabrication([parseInt(value), parseInt(value) - 1]); */
     }
 
     const getVersion = async (value) => {
-        const res = await getListVehicle.version('motorcycle', model.value, yearModel.value);
+        /* const res = await getListVehicle.version('motorcycle', model.value, yearModel.value);
         res.success ? setListVersion(res.data) : console.log(res);
         yearFabrication.setValue(value);
-        yearFabrication.validate(value);
+        yearFabrication.validate(value); */
     }
 
     const getColor = async (value) => {
         version.validate(value);
         version.setValue(value);
-        const res = await getListVehicle.color();
+        const res = await getListVehicle.details('motorcycle');
         res.success ? setListColor(res.data) : console.log(res);
     }
 
@@ -225,33 +225,33 @@ export function MotorcycleProvider({ children }) {
     }
 
     const getCategory = async () => {
-        const res = await getListVehicle.category('motorcycle');
+        const res = await getListVehicle.details('motorcycle');
         res.success ? setListCategory(res.data) : console.log(res);
     }
 
     const getStyle = async () => {
-        const res = await getListVehicle.style('motorcycle');
+        const res = await getListVehicle.details('motorcycle');
         res.success ? setListStyle(res.data) : console.log(res);
     }
 
     const getFuel = async () => {
-        const res = await getListVehicle.fuel();
+        const res = await getListVehicle.details('motorcycle');
         res.success ? setListFuel(res.data) : console.log(res);
     }
 
     const getSystemFuel = async () => {
-        const res = await getListVehicle.systemFuel();
+        const res = await getListVehicle.details('motorcycle');
         res.success ? setListSystemFuel(res.data) : console.log(res);
     }
 
     const getGearshift = async () => {
-        const res = await getListVehicle.gearshift();
+        const res = await getListVehicle.details('motorcycle');
         res.success ? setListGearshift(res.data) : console.log(res);
     }
 
     const getCharacteristics = async () => {
         setLoading(true);
-        const res = await getListVehicle.characteristics().then((res: any) => {
+        const res = await getListVehicle.details('motorcycle').then((res: any) => {
             setLoading(false);
             return res;
         })
@@ -260,7 +260,7 @@ export function MotorcycleProvider({ children }) {
 
     const getOptionals = async () => {
         setLoading(true);
-        const res = await getListVehicle.optionals('motorcycle').then((res: any) => {
+        const res = await getListVehicle.details('motorcycle').then((res: any) => {
             setLoading(false);
             return res;
         })
@@ -269,7 +269,7 @@ export function MotorcycleProvider({ children }) {
 
     const getSafety = async () => {
         setLoading(true);
-        const res = await getListVehicle.safety('motorcycle').then((res: any) => {
+        const res = await getListVehicle.details('motorcycle').then((res: any) => {
             setLoading(false);
             return res;
         })
@@ -311,12 +311,12 @@ export function MotorcycleProvider({ children }) {
     }
 
     const getBrake = async () => {
-        const res = await getListVehicle.brake('motorcycle');
+        const res = await getListVehicle.details('motorcycle');
         res.success ? setListBrake(res.data) : console.log(res);
     }
 
     const getTypeMotor = async () => {
-        const res = await getListVehicle.typeMotor('motorcycle');
+        const res = await getListVehicle.details('motorcycle');
         res.success ? setListTypeMotor(res.data) : console.log(res);
     }
 
@@ -326,7 +326,7 @@ export function MotorcycleProvider({ children }) {
     }
 
     const getStarter = async () => {
-        const res = await getListVehicle.starter('motorcycle');
+        const res = await getListVehicle.details('motorcycle');
         res.success ? setListStarter(res.data) : console.log(res);
     }
 
