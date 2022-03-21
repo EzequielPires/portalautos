@@ -43,7 +43,7 @@ export default function Search() {
                         <span>3.659 carros encontrados</span>
                     </div>
                     <div className={styles.list + " d-flex flex-wrap justify-content-center gap-4"}>
-                        {data && data.data.result.vehicles ? data.data.result.vehicles.map((vehicle, idx) => (<CardAnnouncement data={vehicle} />))
+                        {data && data.data.result.vehicles ? data.data.result.vehicles.map((vehicle, idx) => (<CardAnnouncement key={idx} data={vehicle} />))
                             :
                             <>
                                 <SkeletonCardAnnouncement />
