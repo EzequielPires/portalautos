@@ -191,43 +191,30 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
     color: #fff;
 }
 
-.section_vehicles_popular .swiper .swiper-button-next,
-.section_vehicles_popular .swiper .swiper-button-prev
+.section_vehicles_popular .swiper .swiper-button-next::after,
+.section_vehicles_popular .swiper .swiper-button-prev::after
  {
-    background: var(--main-color);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    font-size: 1.5rem;
+    color: #fff;
 }
 .section_offers .swiper .swiper-button-next,
 .section_offers .swiper .swiper-button-prev,
 .section_store .swiper .swiper-button-prev,
 .section_store .swiper .swiper-button-next {
-    background: #333;
     width: 48px;
     height: 48px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .section_offers .swiper .swiper-button-prev:after,
 .section_offers .swiper .swiper-button-next:after,
 .section_store .swiper .swiper-button-prev:after,
-.section_store .swiper .swiper-button-next:after,
-.section_vehicles_popular .swiper .swiper-button-prev:after,
-.section_vehicles_popular .swiper .swiper-button-next:after {
-    content: '';
-    width: 48px;
-    height: 48px;
-    background: url('../assets/ico/arrow-left-solid.svg') center/1em auto no-repeat !important;
-    background-size: cover;
+.section_store .swiper .swiper-button-next:after {
     font-size: 1.5rem;
     color: #333;
 }
-.section_store .swiper .swiper-button-prev:after,
-.section_offers .swiper .swiper-button-prev:after,
-.section_vehicles_popular .swiper .swiper-button-prev:after {
-    transform: rotate(-180deg);
-}
-
 .carousel-indicators {
     margin-bottom: .5rem !important;
 }
