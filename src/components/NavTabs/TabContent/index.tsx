@@ -54,6 +54,7 @@ export function TabContent({ link, active }) {
     }
 
     useEffect(() => {
+        console.log(data);
         { data && data.data.vehicles ? setVehicles(data.data.vehicles) : null}
         { data && data.data.vehicles ? setLengthResponse(data.data.vehicles.length) : null}
         { data && data.data.vehicles && active === "Ativos" ? setActiveVehicles(data.data.vehicles ) : null}

@@ -12,16 +12,16 @@ import styles from './styles.module.scss';
 export function NavTabs() {
     const search = useForm('search_id');
     const [active, setActive] = useState('Ativos');
-    const [link, setLink] = useState('/admin/vehicle/list?limit=12&active=1');
-    const { searchVehiclesIdentified } = useContext(AnnouncementContext);
+    const [link, setLink] = useState('/vehicle/list?limit=16&active=1');
+    //const { searchVehiclesIdentified } = useContext(AnnouncementContext);
 
     const onClick = (link) => {
         setActive(link);
-        {link === 'Ativos' ? setLink('/admin/vehicle/list?limit=12&active=1') : null}
-        {link === 'Removidos' ? setLink('/admin/vehicle/list?limit=12&active=0') : null}
-        {link === 'Incompletos' ? setLink('/admin/vehicle/list?limit=12&complete=0') : null}
-        {link === 'Vendidos' ? setLink('/admin/vehicle/list?limit=12&sold=1') : null}
-        {link === 'Search' ? setLink(`/admin/vehicle/list?limit=12&identifier=${search.value}&plate=${search.value}`) : null}
+        {link === 'Ativos' ? setLink('/vehicle/list?limit=12&active=1') : null}
+        {link === 'Removidos' ? setLink('/vehicle/list?limit=12&active=0') : null}
+        {link === 'Incompletos' ? setLink('/vehicle/list?limit=12&complete=0') : null}
+        {link === 'Vendidos' ? setLink('/vehicle/list?limit=12&sold=1') : null}
+        {link === 'Search' ? setLink(`/vehicle/list?limit=12&identifier=${search.value}&plate=${search.value}`) : null}
     }
     const searchVehicle = (e) => {
         e.preventDefault();

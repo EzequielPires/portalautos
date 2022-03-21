@@ -1,10 +1,15 @@
 import router from "next/router";
 import { createContext, useState } from "react"
+import { User } from "../entities/User";
+import { UserFactory } from "../factory/UserFactory";
 import useForm from "../hooks/useForm";
 import { maskCep, maskCpf, maskPhone, validateCpf } from "../hooks/useMask";
-import { apiUser } from "../services/api";
+import { UserRepository } from "../repositories/UserRepository";
+import { api, apiUser } from "../services/api";
+import { UserService } from "../services/UserService";
 
 type UserContextType = {
+    user: User;
     name: any;
     cpf: any;
     email: any;
@@ -29,6 +34,8 @@ type UserContextType = {
 export const UserContext = createContext({} as UserContextType);
 
 export function UserProvider({ children }) {
+    let user = UserFactory.createForUseFormUser(); 
+    const userService = new UserService();
     const name = useForm('name');
     const cpf = useForm('cpf');
     const email = useForm('email');
@@ -44,17 +51,7 @@ export function UserProvider({ children }) {
     const [readCpf, setReadCpf] = useState(false);
 
     function cls() {
-        name.setValue('');
-        telefone.setValue('');
-        email.setValue('');
-        cpf.setValue('');
-        password.setValue('');
-        password_repeat.setValue('');
-        old_password.setValue('');
-        code_verification.setValue('');
-        cep.setValue('');
-        city.setValue('');
-        state.setValue('');
+        user.fromObjectClean();
     }
 
     function cpfCheck(str) {
@@ -67,98 +64,65 @@ export function UserProvider({ children }) {
     }
 
     async function getZipcode(str) {
-        cep.setValue(maskCep(str));
+        user.address.zipcode.setValue(maskCep(str));
         if (str.replace(/[^0-9]/g, '').length >= 8) {
-            const response = await apiUser.get(`/address/cep/${str.replace(/[^0-9]/g, '')}`)
+            const response = await api.get(`/address/cep/${str.replace(/[^0-9]/g, '')}`)
                 .then((res): any => res.data)
                 .catch(error => console.error(error));
             addressCheck(response.data);
         } else {
-            cep.setError(null);
-            city.setValue('');
-            state.setValue('');
+            user.address.zipcode.setError(null);
+            user.address.city.setValue('');
+            user.address.state.setValue('');
         }
     }
 
     function addressCheck(address) {
         address.cep ? cep.setValue(maskCep(address.cep)) : null;
         address.cep === 'Not Found' ? cep.setError('Cep não encontrado') : null;
-        address.city ? city.setValue(address.city) : null;
-        address.state ? state.setValue(address.state) : null;
+        address.city ? user.address.city.setValue(address.city) : null;
+        address.state ? user.address.state.setValue(address.state) : null;
     }
 
     async function buildUser() {
-        const response = await apiUser.get('/view')
-            .then((response): any => {
-                return response.data;
-            })
-            .catch(() => router.push('/error'));
-        if (response.success === true) {
-            let user = response.data.user;
-            name.setValue(user.name ?? '');
-            email.setValue(user.email ?? '');
-            user.cell_phone ? telefone.setValue(maskPhone(user.cell_phone)) : null;
-            user.cpf ? cpfCheck(user.cpf) : null;
-            user.cpf && validateCpf(user.cpf.replace(/[^0-9]/g, '')) ? setReadCpf(true) : setReadCpf(false);
-            user.address ? addressCheck(user.address) : null;
-        }
+        const userRepository = new UserRepository();
+        const data = await userRepository.findOne();
+        user = user.fromObject(data);
     }
 
     async function editUser() {
-        const data = new FormData();
-        data.append('user[name]', name.value);
-        data.append('user[email]', email.value);
-        data.append('user[cpf]', cpf.value);
-        data.append('user[cell_phone]', telefone.value);
-
-        const address = new FormData();
-        address.append('zipcode', cep.value);
-
-        let resUser = await apiUser.post('/edit', data)
-            .then(function (response: any) {
-                return response.data;
-            })
-            .catch(() => router.push('/error'));
-        let resAddress = await apiUser.post('/address/edit', address)
-            .then(function (response: any) {
-                return response.data;
-            })
-            .catch(() => router.push('/error'));
-
+        let resUser = await userService.update(user.toFormDataFromUseFormCar());
+        let resAddress = await userService.changeAddress(user.address.zipcode.value);
         if (resUser.success && resAddress.success) {
             return true;
-        } else {
+        } 
+        /* else {
              
             if(!resUser.success) {
                 let error = resUser.data.error;
                 error.cell_phone ? telefone.setError(error.cell_phone) : null;
                 error.cpf ? cpf.setError(error.cpf) : null;
             }
-        }
+        } */
     }
 
-    async function createUser() {
-        const data = new FormData();
-        data.append('user[name]', name.value);
-        data.append('user[cell_phone]', telefone.value);
-        data.append('user[email]', email.value);
-        data.append('user[password][first]', password.value);
-        data.append('user[password][second]', password_repeat.value);
-
-        const response = await apiUser.post('/new', data)
-            .then(function (response: any) {
-                return response.data;
-            })
-            .catch(() => router.push('/error'));
-
-        if (response.success === true) {
+    const createUser = async () => {
+        const userSevice = new UserService();
+        const user = await userSevice.create({
+            name: name.value,
+            cell_phone: telefone.value,
+            email: email.value,
+            password: password.value,
+            password_repeat: password_repeat.value,
+        });
+        if (user.success === true) {
             return true;
         } else {
-            if (response.data.error) {
-                response.data.error.cell_phone ? telefone.setError('Phone is already in use!') : null;
-                response.data.error.email ? email.setError('Email is already in use!') : null;
-                response.data.error.first ? password.setError('Different passwords.') : null;
-                return response.data;
+            if (user.data.error) {
+                user.data.error.cell_phone ? telefone.setError('Phone is already in use!') : null;
+                user.data.error.email ? email.setError('Email is already in use!') : null;
+                user.data.error.first ? password.setError('Different passwords.') : null;
+                return user.data;
             } else {
                 return false;
             }
@@ -181,6 +145,7 @@ export function UserProvider({ children }) {
 
     return (
         <UserContext.Provider value={{
+            user,
             name,
             cpf,
             email,

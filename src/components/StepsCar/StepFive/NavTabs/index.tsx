@@ -6,22 +6,16 @@ import { TabContent } from "./TabContent";
 
 export function NavTabs() {
     const [active, setActive] = useState('characteristics');
-    const { listOptional, listCharacteristics, getCharacteristics, listOptionalVehicle, getSafety, listSafety, step } = useContext(CarContext);
-    useEffect(() => {
-        if(step === 5 && listOptional.length === 0) {
-            listOptionalVehicle().then(() => {
-                getCharacteristics().then(() => {
-                    getSafety();
-                });
-            });
-        }
-    }, [step]);
+    const { car } = useContext(CarContext);
     return (
         <div className={styles.navtabs}>
             <nav className={styles.header}>
                 <button className={active === 'characteristics' ? styles.active : null} onClick={() => {
                     setActive('characteristics');
                 }}>Características</button>
+                <button className={active === 'comfort' ? styles.active : null} onClick={() => {
+                    setActive('comfort');
+                }}>Conforto</button>
                 <button className={active === 'optional' ? styles.active : null} onClick={() => {
                     setActive('optional');
                 }}>Opcionais</button>
@@ -31,13 +25,16 @@ export function NavTabs() {
             </nav>
             <hr />
             {active === 'optional' ?
-                <TabContent list={listOptional} type={active}/> 
+                <TabContent list={car.optional.options} type={active}/> 
             : null}
             {active === 'characteristics' ?
-                <TabContent list={listCharacteristics} type={active}/> 
+                <TabContent list={car.characteristic.options} type={active}/> 
             : null}
             {active === 'safety' ?
-                <TabContent list={listSafety} type={active}/> 
+                <TabContent list={car.safety.options} type={active}/> 
+            : null}
+            {active === 'comfort' ?
+                <TabContent list={car.confort.options} type={active}/> 
             : null}
         </div>
     );

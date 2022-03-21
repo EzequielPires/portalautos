@@ -15,9 +15,21 @@
             }
         }
         .input_box {
+            max-width: 782px;
+            display: flex;
+            align-items: flex-end;
             max-width: 50% !important;
+            div {
+                max-width: 300px !important;
+                min-width: 300px !important;
+            }
             input {
-                max-width: 782px;
+                width: 300px;
+                border-radius: 6px 0 0 6px;
+            }
+            .btn_submit {
+                width: 280px;
+                border-radius: 0 6px 6px 0;
             }
         }
         .header {
@@ -55,6 +67,27 @@
         }
         input {
             text-transform: uppercase;
+        }
+    }
+}
+@media (max-width: 720px) {
+    .edit_profile {
+        overflow: hidden;
+        .content {
+            margin-left: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            .input_box {
+                width: 100% !important;
+                max-width: 100% !important;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                button, input, div {
+                    min-width: 100% !important;
+                    border-radius: 6px !important;
+                }
+            }
         }
     }
 }

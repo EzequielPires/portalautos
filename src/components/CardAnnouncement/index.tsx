@@ -27,14 +27,14 @@ export function CardAnnouncement({data}) {
                 </div>
                 <div className={styles.card_body}>
                     <header className="d-flex flex-column">
-                        <h4 className={styles.title}>{data.fipe_vehicle.model.brand.name} <span>{data.fipe_vehicle.model.name}</span></h4>
-                        <h5 className={styles.subtitle}>{data.fipe_vehicle.name}</h5>
+                        <h4 className={styles.title}>{data.version.model.brand.name} <span>{data.version.model.name}</span></h4>
+                        <h5 className={styles.subtitle}>{data.version.name}</h5>
 
                         <h5 className={styles.price}><span>R$</span> {VMasker.toMoney(data.price)}</h5>
                     </header>
                     <footer>
                         <div className="d-flex justify-content-between px-2 px-md-3">
-                            <span>{data.year_manufacture}/{data.fipe_vehicle.year_model}</span>
+                            <span>{data.year_manufacture}/{data.year_model}</span>
                             <span>{data.mileage_traveled}Km</span>
                         </div>
                         <hr />

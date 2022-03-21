@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styles from "./styles.module.scss";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import { useEffect, useRef } from "react";
 
 type Input = {
     id?: string

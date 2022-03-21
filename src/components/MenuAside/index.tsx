@@ -1,15 +1,16 @@
 import Link from "next/link";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {faBullhorn, faHandshake, faQuestion, faSignOutAlt, faUserEdit} from "@fortawesome/free-solid-svg-icons";
+import { faBullhorn, faHandshake, faQuestion, faSignOutAlt, faUserEdit } from "@fortawesome/free-solid-svg-icons";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useRouter } from "next/router";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import Logo from "../../assets/logo.svg";
 import styles from "./styles.module.scss";
-import {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../../contexts/AuthContext";
-import {useRouter} from "next/router";
-import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export function MenuAside() {
-    const {user, signOut} = useContext(AuthContext);
+    const { user, signOut } = useContext(AuthContext);
     const router = useRouter();
     const [routeActive, setRouteActive] = useState('');
 
@@ -21,7 +22,11 @@ export function MenuAside() {
     return (
         <nav className={styles.menu_aside}>
             <div className={styles.menu_brand}>
-                <p>LOGO</p>
+                <Link href="/">
+                    <a >
+                        <img src={Logo.src} alt="" />
+                    </a>
+                </Link>
             </div>
             <div className={styles.menu_profile}>
                 <div className={styles.avatar}>
@@ -39,7 +44,7 @@ export function MenuAside() {
                     <Link href="/meus-anuncios">
                         <a className={routeActive === "meus-anuncios" ? styles.active : null}>
                             <span>
-                                <FontAwesomeIcon icon={faBullhorn as IconProp}/>
+                                <FontAwesomeIcon icon={faBullhorn as IconProp} />
                             </span>
                             Meus anúncios
                         </a>
@@ -49,7 +54,7 @@ export function MenuAside() {
                     <Link href="/minhas-vendas">
                         <a className={routeActive === "minhas-vendas" ? styles.active : null}>
                             <span>
-                                <FontAwesomeIcon icon={faHandshake as IconProp}/>
+                                <FontAwesomeIcon icon={faHandshake as IconProp} />
                             </span>
                             Minhas vendas
                         </a>
@@ -59,7 +64,7 @@ export function MenuAside() {
                     <Link href="/editar-perfil">
                         <a className={routeActive === "editar-perfil" ? styles.active : null}>
                             <span>
-                                <FontAwesomeIcon icon={faUserEdit as IconProp}/>
+                                <FontAwesomeIcon icon={faUserEdit as IconProp} />
                             </span>
                             Editar perfil
                         </a>
@@ -69,7 +74,7 @@ export function MenuAside() {
                     <Link href="/ajuda">
                         <a>
                             <span>
-                                <FontAwesomeIcon icon={faQuestion as IconProp}/>
+                                <FontAwesomeIcon icon={faQuestion as IconProp} />
                             </span>
                             Ajuda
                         </a>
@@ -79,7 +84,7 @@ export function MenuAside() {
                     <Link href="/login">
                         <a>
                             <span>
-                                <FontAwesomeIcon icon={faSignOutAlt as IconProp}/>
+                                <FontAwesomeIcon icon={faSignOutAlt as IconProp} />
                             </span>
                             Sair da conta
                         </a>

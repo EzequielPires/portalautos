@@ -1,20 +1,29 @@
+import router from "next/router";
+import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
 import { useContext, useEffect } from "react";
 import { NavbarSecondary } from "../../../components/NavbarSecondary";
-import { StepFour } from "../../../components/StepsCar/StepFour";
-import { StepOne } from "../../../components/StepsCar/StepOne";
-import { StepThree } from "../../../components/StepsCar/StepThree";
+import { StepOne } from "../../../components/StepsCar/StepOne"
 import { StepTwo } from "../../../components/StepsCar/StepTwo";
 import { CarContext } from "../../../contexts/CarContext";
+import { StoreRepository } from "../../../repositories/StoreRepository";
 
 import styles from "./styles.module.scss";
-import Head from "next/head";
 
 export default function Carro() {
     const {setStep, clearCar} = useContext(CarContext);
-    
+    const storeRepository = new StoreRepository();
+    const handleStore = async () => {
+        try {
+            const res = await storeRepository.view();
+            {!res.success ? router.push('/criar-loja') : null}
+        } catch {
+            return false;
+        }
+    }
     useEffect(() => {
+        handleStore();
         clearCar();
         setStep(1);
     }, [])

@@ -9,93 +9,27 @@ import { FormImages } from "../../FormImages";
 import { InputDefault } from "../../InputDefault";
 import { Loading } from "../../Loading";
 import { useRouter } from "next/router";
-import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export function StepFour() {
     const {
-        getCategoriesCar,
-        getFuel,
-        getSystemFuel,
-        getStyle,
-        getGearshift,
+        car,
         editVehicle,
-        last_digit_plate,
-        listStyle,
-        style,
-        doors,
-        listCategory,
-        listFuel,
-        listSystemFuel,
-        listGearshift,
-        category,
-        gearshift,
-        fuel,
-        systemFuel,
         loading,
-        setLoading,
         step,
         setStep,
-        direction,
-        listDirection,
-        getDirection,
-
     } = useContext(CarContext);
     const router = useRouter();
     const { id } = router.query;
-    const listDoors = [
-        {
-            id: 1,
-            name: '1',
-        },
-        {
-            id: 2,
-            name: '2',
-        },
-        {
-            id: 3,
-            name: '3',
-        },
-        {
-            id: 4,
-            name: '4',
-        },
-        {
-            id: 5,
-            name: '5',
-        }
-    ]
-
-    useEffect(() => {
-        if (
-            id &&
-            step === 4 &&
-            listCategory.length === 0
-        ) {
-            setLoading(true);
-            getCategoriesCar().then(() => {
-                getStyle().then(() => {
-                    getFuel().then(() => {
-                        getSystemFuel().then(() => {
-                            getGearshift().then(() => {
-                                getDirection().then(() => {
-                                    setLoading(false);
-                                })
-                            });
-                        });
-                    });
-                });
-            });
-        }
-    }, [id, step]);
 
     const checkConcluded = () => {
-        if (category.value != '0' ||
-            style.value != '0' ||
-            fuel.value != '0' ||
-            systemFuel.value != '0' ||
-            gearshift.value != '0' ||
-            doors.value != '0' ||
-            last_digit_plate.value != ''
+        if (car.categories.value != '0' ||
+            car.styles.value != '0' ||
+            car.fuels.value != '0' ||
+            car.fuel_systems.value != '0' ||
+            car.gear_shifts.value != '0' ||
+            car.doors.value != '0' ||
+            car.plate.value != ''
         ) {
             return true;
         } else {
@@ -103,13 +37,8 @@ export function StepFour() {
         }
     }
 
-    const handleLastDigit = (value) => {
-        last_digit_plate.setValue(value);
-    }
-
-    const handleDoors = (value) => {
-        doors.setValue(value);
-    }
+    const handleDoors = (value) => car.doors.setValue(value);
+    const handleGearNumber = (value) => car.gear_number.setValue(value);
 
 
     return (
@@ -128,78 +57,104 @@ export function StepFour() {
                 <div className="d-flex flex-wrap gap-4">
                     <Select
                         label="Categoria"
-                        options={listCategory}
-                        onChange={category.onChange}
-                        value={category.value}
-                        validate={category.validate}
+                        options={car.categories.options}
+                        onChange={car.categories.onChange}
+                        value={car.categories.value}
+                        validate={car.categories.validate}
                         error={null}
                     />
                     <Select
                         label="Estilo"
-                        options={listStyle}
-                        onChange={style.onChange}
-                        value={style.value}
-                        validate={style.validate}
+                        options={car.styles.options}
+                        onChange={car.styles.onChange}
+                        value={car.styles.value}
+                        validate={car.styles.validate}
                         error={null}
                     />
                     <Select
                         label="Combustível"
-                        options={listFuel}
-                        onChange={fuel.onChange}
-                        value={fuel.value}
-                        validate={fuel.validate}
+                        options={car.fuels.options}
+                        onChange={car.fuels.onChange}
+                        value={car.fuels.value}
+                        validate={car.fuels.validate}
                         error={null}
                     />
                     <Select
                         label="Sistema de combustível"
-                        options={listSystemFuel}
-                        onChange={systemFuel.onChange}
-                        value={systemFuel.value}
-                        validate={systemFuel.validate}
+                        options={car.fuel_systems.options}
+                        onChange={car.fuel_systems.onChange}
+                        value={car.fuel_systems.value}
+                        validate={car.fuel_systems.validate}
                         error={null}
                     />
                     <Select
                         label="Câmbio de marchas"
-                        options={listGearshift}
-                        onChange={gearshift.onChange}
-                        value={gearshift.value}
-                        validate={gearshift.validate}
+                        options={car.gear_shifts.options}
+                        onChange={car.gear_shifts.onChange}
+                        value={car.gear_shifts.value}
+                        validate={car.gear_shifts.validate}
                         error={null}
                     />
                     <Select
                         label="Direção"
-                        options={listDirection}
-                        onChange={direction.onChange}
-                        value={direction.value}
-                        validate={direction.validate}
+                        options={car.directions.options}
+                        onChange={car.directions.onChange}
+                        value={car.directions.value}
+                        validate={car.directions.validate}
                         error={null}
                     />
-
+                    <Select
+                        label="Freios"
+                        options={car.brakes.options}
+                        onChange={car.brakes.onChange}
+                        value={car.brakes.value}
+                        validate={car.brakes.validate}
+                        error={null}
+                    />
+                    <div className="d-flex flex-column" style={{ flex: 1, maxWidth: 392 }}>
+                        <InputDefault
+                            label="Placa"
+                            onChange={car.plate.onChange}
+                            value={car.plate.value}
+                            onBlur={car.plate.onBlur}
+                            type="text"
+                            error={car.plate.error}
+                        />
+                        <small style={{ color: "#999" }}>Visível apenas no administrativo</small>
+                    </div>
                     <div className="d-flex flex-wrap w-100 gap-4">
                         <div className={styles.last_digit + " d-flex"}>
                             <label htmlFor="">Quantidade de portas</label>
                             <small>Selecione:</small>
                             <div className="d-flex gap-2">
-                                <button onClick={() => handleDoors(1)} className={doors.value === 1 ? styles.active : null}>1</button>
-                                <button onClick={() => handleDoors(2)} className={doors.value === 2 ? styles.active : null}>2</button>
-                                <button onClick={() => handleDoors(3)} className={doors.value === 3 ? styles.active : null}>3</button>
-                                <button onClick={() => handleDoors(4)} className={doors.value === 4 ? styles.active : null}>4</button>
-                                <button onClick={() => handleDoors(5)} className={doors.value === 5 ? styles.active : null}>5</button>
-                                <button onClick={() => handleDoors(6)} className={doors.value === 6 ? styles.active : null}>6</button>
-                                <button onClick={() => handleDoors(7)} className={doors.value === 7 ? styles.active : null}>7</button>
+                                <button onClick={() => handleDoors(1)} className={car.doors.value === 1 ? styles.active : null}>1</button>
+                                <button onClick={() => handleDoors(2)} className={car.doors.value === 2 ? styles.active : null}>2</button>
+                                <button onClick={() => handleDoors(3)} className={car.doors.value === 3 ? styles.active : null}>3</button>
+                                <button onClick={() => handleDoors(4)} className={car.doors.value === 4 ? styles.active : null}>4</button>
+                                <button onClick={() => handleDoors(5)} className={car.doors.value === 5 ? styles.active : null}>5</button>
+                                <button onClick={() => handleDoors(6)} className={car.doors.value === 6 ? styles.active : null}>6</button>
+                                <button onClick={() => handleDoors(7)} className={car.doors.value === 7 ? styles.active : null}>7</button>
                             </div>
                         </div>
-                        <div className="d-flex flex-column" style={{flex: 1}}>
-                            <InputDefault
-                                label="Placa"
-                                onChange={last_digit_plate.onChange}
-                                value={last_digit_plate.value}
-                                onBlur={last_digit_plate.onBlur}
-                                type="text"
-                                error={last_digit_plate.error}
-                            />
-                            <small style={{color: "#999"}}>Visível apenas no administrativo</small>
+                        <div className={styles.last_digit + " d-flex"}>
+                            <label htmlFor="">Quantidade de marchas</label>
+                            <small>Selecione:</small>
+                            <div className="d-flex gap-2">
+                                <button onClick={() => handleGearNumber(1)} className={car.gear_number.value === 1 ? styles.active : null}>1</button>
+                                <button onClick={() => handleGearNumber(2)} className={car.gear_number.value === 2 ? styles.active : null}>2</button>
+                                <button onClick={() => handleGearNumber(3)} className={car.gear_number.value === 3 ? styles.active : null}>3</button>
+                                <button onClick={() => handleGearNumber(4)} className={car.gear_number.value === 4 ? styles.active : null}>4</button>
+                                <button onClick={() => handleGearNumber(5)} className={car.gear_number.value === 5 ? styles.active : null}>5</button>
+                                <button onClick={() => handleGearNumber(6)} className={car.gear_number.value === 6 ? styles.active : null}>6</button>
+                                <button onClick={() => handleGearNumber(7)} className={car.gear_number.value === 7 ? styles.active : null}>7</button>
+                                <button onClick={() => handleGearNumber(8)} className={car.gear_number.value === 8 ? styles.active : null}>8</button>
+                                <button onClick={() => handleGearNumber(9)} className={car.gear_number.value === 9 ? styles.active : null}>9</button>
+                                <button onClick={() => handleGearNumber(10)} className={car.gear_number.value === 10 ? styles.active : null}>10</button>
+                                <button onClick={() => handleGearNumber(11)} className={car.gear_number.value === 11 ? styles.active : null}>11</button>
+                                <button onClick={() => handleGearNumber(12)} className={car.gear_number.value === 12 ? styles.active : null}>12</button>
+                            </div>
                         </div>
+
                     </div>
                 </div>
                 {loading ? <Loading /> : null}

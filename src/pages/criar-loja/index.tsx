@@ -13,54 +13,34 @@ import { useSelect } from "../../hooks/useSelect";
 import { vehicle } from "../../services/api";
 import styles from "./styles.module.scss";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import { StoreService } from "../../services/StoreService";
+import { StoreRepository } from "../../repositories/StoreRepository";
 
 export default function CriarLoja() {
+    const storeService = new StoreService();
+    const storeRepository = new StoreRepository();
     const name = useForm('name');
     const [response, setResponse] = useState(null);
     const typeStore = useSelect();
     const [types, setTypes] = useState([]);
 
-    const getUser = async () => {
-        const { 'nextauth.token': token } = parseCookies();
-        if (token) {
-            const res = await vehicle.get('admin/store/type')
-                .then((res): any => res.data)
-                .catch((error) => {
-                    console.error("Error: " + error.message);
-                });
-            setTypes(res.data);
-        }
+    const handleTypesStore = async () => {
+        const res = await storeRepository.findTypesStore();
+        typeStore.setOptions(res.data);
     }
-
-    const setUser = async (value) => {
-        typeStore.setValue(value);
-        typeStore.validate(value);
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { 'nextauth.token': token } = parseCookies();
         if (
-            name.validate() &&
-            typeStore.validate(typeStore.value) &&
-            token
+            name.validate() && typeStore.validate(typeStore.value)
         ) {
-            const data = new FormData();
-            data.append('store[name]', name.value);
-            data.append('store[type]', typeStore.value);
-            const res = await vehicle.post('admin/store/create', data)
-                .then((res): any => res.data)
-                .catch((error) => {
-                    console.error("Error: " + error.message);
-                });
-            if(res.success === true) {
-                setResponse(true);
-            }
+            const res = await storeService.create(name.value, typeStore.value);
+            res && res.success === true ? setResponse(true) : null;
+            
         }
     }
 
     useEffect(() => {
-        getUser();
+        handleTypesStore();
     }, [])
 
     return (
@@ -85,7 +65,7 @@ export default function CriarLoja() {
                             <InputDefault label="Nome da loja*" type="text" {...name} />
                             <Select
                                 label="Marca*"
-                                options={types}
+                                options={typeStore.options}
                                 onChange={typeStore.onChange}
                                 value={typeStore.value}
                                 validate={typeStore.validate}

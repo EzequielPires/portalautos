@@ -19,10 +19,11 @@ export function StepTwo() {
         setStatePrice,
         setStateNew,
         stateNew,
+        car,
 
         step,
         setStep,
-        performFirstStep,
+        createCar,
         editVehicle
     } = useContext(CarContext);
     const newRouter = useRouter();
@@ -36,7 +37,7 @@ export function StepTwo() {
                 setStep(3);
             })
         } else {
-            performFirstStep(e);
+            createCar(e);
         }
     }
     useEffect(() => {
@@ -67,18 +68,15 @@ export function StepTwo() {
                             label="Preço*"
                             type="text"
                             ico={faDollarSign}
-                            {...price}
+                            {...car.price}
                         />
                         <div className={styles.input_box}>
                             <input
                                 type="checkbox"
                                 name="price"
                                 id="price"
-                                checked={statePrice}
-                                onChange={
-                                    () => {
-                                        setStatePrice(statePrice === true ? false : true)
-                                    }}
+                                checked={car.visible_price.value}
+                                onChange={car.visible_price.onChange}
                             />
                             <label htmlFor="price">Ocultar preço</label>
                         </div>
@@ -88,31 +86,28 @@ export function StepTwo() {
                             label="Km*"
                             type="text"
                             ico={faTachometerAlt}
-                            {...mileage_traveled}
+                            {...car.mileage_traveled}
                         />
                         <div className={styles.input_box}>
                             <input
                                 type="checkbox"
                                 name="new"
                                 id="new"
-                                checked={stateNew}
-                                onChange={
-                                    () => {
-                                        setStateNew(stateNew === true ? false : true)
-                                    }}
+                                checked={car.new.value}
+                                onChange={car.new.onChange}
                             />
                             <label htmlFor="new">Veículo usado</label>
                         </div>
                     </div>
                     <TextArea
                         label="Descrição"
-                        {...description}
+                        {...car.description}
                     />
                     <small>Descreva a situação do veículo ou informações relevantes do mesmo. Coloque as características e opcionais na etapa 4 e 5.</small>
 
                 </div>
                 <div className={styles.group_button}>
-                    {mileage_traveled.value === '' || price.value === '' || response === false ?
+                    {car.mileage_traveled.value === '' || car.price.value === '' || response === false ?
                         <button className={styles.btn_primary + " " + styles.disabled}>Prosseguir</button> :
                         <button className={styles.btn_primary} onClick={handleCreateVehicle}>Prosseguir</button>
                     }

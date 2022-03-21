@@ -5,7 +5,7 @@ export function getAPIClient(ctx?: any) {
     const { 'nextauth.token': token } = parseCookies(ctx);
 
     const api = axios.create({
-        baseURL: 'http://54.94.40.52:90'
+        baseURL: 'https://api.portalautos.com.br'
     })
 
     

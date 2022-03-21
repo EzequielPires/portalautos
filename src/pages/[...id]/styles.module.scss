@@ -1,8 +1,8 @@
 .search {
   transition: .2s;
-  padding-left: 0px;
+  padding-left: 336px;
   &.active_filter {
-    padding-left: 336px;
+    padding-left: 0;
   }
   .content {
     position: relative;
@@ -64,6 +64,7 @@
 }
 @media (max-width: 720px) {
   .search {
+    padding-left: 0;
     &.active_filter {
       padding-left: 0px;
     }

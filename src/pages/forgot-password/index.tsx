@@ -1,13 +1,10 @@
-import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { parseCookies } from "nookies";
 import { useContext, useState } from "react";
 import { Alert, Spinner } from "react-bootstrap";
 import Logo from "../../assets/logo.svg";
 import { AlertCreateUser } from "../../components/AlertCreateUser";
 import { InputEmail } from "../../components/InputEmail";
 import { AuthContext } from "../../contexts/AuthContext";
-import { UserContext } from "../../contexts/UserContext";
 import useForm from "../../hooks/useForm";
 
 import styles from "./styles.module.scss";

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import {FaChevronDown} from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
+import { MdClose } from "react-icons/md"
 import styles from "./styles.module.scss";
 import { Filter } from "./Filter";
 import { List } from "./List";
@@ -14,7 +15,8 @@ type SelectType = {
     validate: any,
     placeholder?: string,
     filter?: boolean,
-    link?: string
+    link?: string,
+    clean?: string,
 }
 
 export function Select({ label, options, onChange, value, error, validate, placeholder, filter, link }: SelectType) {
@@ -22,16 +24,19 @@ export function Select({ label, options, onChange, value, error, validate, place
     const [show, setShow] = useState(false);
     const [filterValue, setFilterValue] = useState('');
     const [selected, setSelected] = useState(placeholder ?? 'Selecione uma opção');
-    
-    const handleShow = () => { 
+
+    const handleShow = () => {
         setShow(!show);
     };
 
     useEffect(() => {
-        {show ? setInputRef() : null}
+        { show ? setInputRef() : null }
     }, [show]);
 
     useEffect(() => {
+        if (value === '0') {
+            setSelected('Selecione uma opção');
+        }
         if (options && options.length <= 0) {
             setSelected((placeholder ?? 'Selecione uma opção'));
         }
@@ -61,9 +66,12 @@ export function Select({ label, options, onChange, value, error, validate, place
                 <span className={selected === placeholder || selected === 'Selecione uma opção' ? styles.placeholder : null}>{selected}</span>
                 <FaChevronDown />
             </button>
+            <button className={styles.close} onClick={() => onChange('0')}>
+                <MdClose />
+            </button>
             {show && options.length > 0 ?
                 <ul className={styles.body}>
-                    {filter || options.length > 5 ? <Filter value={filterValue} onChange={setFilterValue} inputRef={inputRef}/> : null}
+                    {filter || options.length > 5 ? <Filter value={filterValue} onChange={setFilterValue} inputRef={inputRef} /> : null}
                     <List options={options} onChange={onChange} setSelected={setSelected} handleShow={handleShow} filter={filterValue} />
                 </ul>
                 : null}

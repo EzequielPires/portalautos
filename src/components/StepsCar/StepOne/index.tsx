@@ -11,44 +11,24 @@ import { ModalReportVehicle } from "../../ModalReportVehicle";
 
 export function StepOne() {
     const {
-        brand,
-        listBrand,
         getBrand,
-
-        model,
-        listModel,
         getModel,
-
-        yearModel,
-        listYearModel,
         getYearModel,
-
-        yearFabrication,
-        listYearFabrication,
         getYearFabrication,
-
-        version,
-        listVersion,
         getVersion,
-
-        color,
-        listColor,
         getColor,
         setColorFinish,
-
         handleSubmit,
-        handleStore,
         step,
         setStep,
+        car
     } = useContext(CarContext);
     const [show, setShow] = useState(false);
 
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
     useEffect(() => {
-        handleStore().then(() => {
-            getBrand();
-        });
+        getBrand();
     }, []);
 
     return (
@@ -68,57 +48,57 @@ export function StepOne() {
                     <Select
                         label="Marca*"
                         placeholder="Selecione uma marca"
-                        options={listBrand}
+                        options={car.brand.options}
                         onChange={getModel}
-                        value={brand.value}
-                        validate={brand.validate}
-                        error={brand.error}
+                        value={car.brand.value}
+                        validate={car.brand.validate}
+                        error={car.brand.error}
                         filter={true}
                     />
                     <Select
                         label="Modelo*"
                         placeholder="Selecione um modelo"
-                        options={listModel}
+                        options={car.model.options}
                         onChange={getYearModel}
-                        value={model.value}
-                        validate={model.validate}
-                        error={model.error}
+                        value={car.model.value}
+                        validate={car.model.validate}
+                        error={car.model.error}
                     />
                     <Select
                         label="Ano do Modelo*"
                         placeholder="Selecione um ano do modelo"
-                        options={listYearModel}
+                        options={car.year_model.options}
                         onChange={getYearFabrication}
-                        value={yearModel.value}
-                        validate={yearModel.validate}
-                        error={yearModel.error}
+                        value={car.year_model.value}
+                        validate={car.year_model.validate}
+                        error={car.year_model.error}
                     />
                     <Select
                         label="Ano de Fabricação*"
                         placeholder="Selecione um ano de fabricação"
-                        options={listYearFabrication}
+                        options={car.year_manufacture.options}
                         onChange={getVersion}
-                        value={yearFabrication.value}
-                        validate={yearFabrication.validate}
-                        error={yearFabrication.error}
+                        value={car.year_manufacture.value}
+                        validate={car.year_manufacture.validate}
+                        error={car.year_manufacture.error}
                     />
                     <Select
                         label="Versão*"
                         placeholder="Selecione uma versão"
-                        options={listVersion}
+                        options={car.version.options}
                         onChange={getColor}
-                        value={version.value}
-                        validate={version.validate}
-                        error={version.error}
+                        value={car.version.value}
+                        validate={car.version.validate}
+                        error={car.version.error}
                     />
                     <Select
                         label="Cor*"
                         placeholder="Selecione uma cor"
-                        options={listColor}
+                        options={car.color.options}
                         onChange={setColorFinish}
-                        value={color.value}
-                        validate={color.validate}
-                        error={color.error}
+                        value={car.color.value}
+                        validate={car.color.validate}
+                        error={car.color.error}
                     />
                 </div>
                 <ModalReportVehicle show={show} handleClose={handleClose} />

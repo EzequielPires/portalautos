@@ -16,28 +16,16 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { UserContext } from "../../contexts/UserContext";
 import styles from "./styles.module.scss";
 import Head from "next/head";
+import { ModalAlterPassword } from "../../components/ModalAlterPassword";
+import useModal from "../../hooks/useModal";
 
 export default function EditProfile() {
-    const {
-        emailVerification,
-    } = useContext(AuthContext);
-
     const [error, setError] = useState<void | boolean>(true);
     const [response, setResponse] = useState(false);
     const [loading, setLoading] = useState(false);
-
-    const [user, setUser] = useState<boolean>(false);
-
+    const modalPassword = useModal();
     const {
-        name,
-        email,
-        cpf,
-        password,
-        cep,
-        city,
-        state,
-        telefone,
-        email_status,
+        user,
         readCpf,
         buildUser,
         editUser,
@@ -46,20 +34,18 @@ export default function EditProfile() {
     useEffect(() => {
         setLoading(true);
         buildUser().then(() => setLoading(false));
-        password.setValue("********");
+        user.password.setValue("********");
     }, []);
 
     async function handleEditUser(e) {
         e.preventDefault();
         setResponse(false);
         if (
-            name.validate()
-            && email.validate()
-            && cpf.validate()
-            && cep.validate()
-            && city.validate()
-            && state.validate()
-            && telefone.validate()
+            user.name.validate()
+            && user.email.validate()
+            && user.cpf.validate()
+            && user.address.zipcode.validate()
+            && user.cell_phone.validate()
         ) {
             setLoading(true);
             let response = await editUser();
@@ -99,14 +85,14 @@ export default function EditProfile() {
                             label="Nome completo*"
                             type="text"
                             ico={faUser}
-                            {...name} />
+                            {...user.name} />
                         <InputIco
                             id="cpf"
                             label="CPF*"
                             type="text"
                             ico={faIdCard}
                             readOnly={readCpf}
-                            {...cpf} />
+                            {...user.cpf} />
                     </div>
                     <div className={styles.group_inputs + " d-flex flex-wrap gap-4"}>
                         <InputIco
@@ -115,22 +101,26 @@ export default function EditProfile() {
                             type="email"
                             ico={faEnvelope}
                             readOnly={true}
-                            {...email} />
-                        <InputIco
-                            id="password"
-                            label="Password*"
-                            type="password"
-                            ico={faLock}
-                            readOnly={true}
-                            {...password} />
-                    </div>
-                    <div className={styles.input_box}>
+                            {...user.email} />
                         <InputIco
                             id="telefone"
                             label="Telefone*"
                             type="text"
                             ico={faPhoneAlt}
-                            {...telefone} />
+                            {...user.cell_phone} />
+                    </div>
+                    <div className={styles.input_box}>
+                            <InputIco
+                            id="password"
+                            label="Password*"
+                            type="password"
+                            ico={faLock}
+                            readOnly={true}
+                            {...user.password} />
+                            <button className={styles.btn_submit} onClick={e => {
+                                e.preventDefault();
+                                modalPassword.handleShow();
+                            }}>Alterar password</button>
                     </div>
                     <div id="adress" className="d-flex flex-column">
                         <div className="d-flex flex-column">
@@ -142,19 +132,19 @@ export default function EditProfile() {
                                 id="cep"
                                 label="Cep*"
                                 type="text"
-                                {...cep} />
+                                {...user.address.zipcode} />
                             <InputDefault
                                 id="state"
                                 label="Estado*"
                                 type="text"
                                 readOnly={true}
-                                {...state} />
+                                {...user.address.state} />
                             <InputDefault
                                 id="city"
                                 label="Cidade*"
                                 type="text"
                                 readOnly={true}
-                                {...city} />
+                                {...user.address.city} />
                         </div>
                     </div>
                     <div className="d-flex flex-column align-items-start w-100">
@@ -166,6 +156,7 @@ export default function EditProfile() {
                         </div>
                 </form>
             </div>
+            <ModalAlterPassword modal={modalPassword}/>
         </div>
     );
 }

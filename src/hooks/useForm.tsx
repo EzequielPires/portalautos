@@ -22,7 +22,7 @@ const types = {
         mask: maskPrice,
         message: 'Preço inválido'
     },
-    last_digit_plate: {
+    plate: {
         regex: /^\d{1}$/,
         mask: maskLastDigitePlate,
         message: 'Digito inválido'

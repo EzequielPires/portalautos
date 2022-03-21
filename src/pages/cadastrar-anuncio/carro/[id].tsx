@@ -17,19 +17,19 @@ import styles from "./styles.module.scss";
 import Head from "next/head";
 
 export default function Carro() {
-    const { setStep, clearCar, editVehicle, buildVehicle } = useContext(CarContext);
+    const { setStep, clearCar, editVehicle, buildVehicle, getDetail } = useContext(CarContext);
     const { setGallery } = useContext(GalleryContext);
     const newRouter = useRouter();
     const { id } = newRouter.query;
-    const { data, isLoading } = useFetch(`admin/vehicle/${id}/view`);
+    const { data, isLoading } = useFetch(`/vehicle/${id}/view`);
     useEffect(() => {
         setStep(3);
         clearCar();
+        getDetail();
     }, []);
     useEffect(() => {
         if (id && data) {
             buildVehicle(data.data);
-            console.log(data.data.gallery ?? null)
             data.data.gallery ? setGallery(data.data.gallery.images ?? []) : setGallery([]);
         }
     }, [id, data]);

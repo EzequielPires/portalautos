@@ -58,8 +58,9 @@ export function SectionStore() {
             <div className="d-flex justify-content-md-center" style={{paddingLeft: 12}}>
                 <h4 className={styles.title}>Confira as <span>lojas</span> perto de você</h4>
             </div>
-            <div className="section_vehicles_popular w-100 d-flex justify-content-center gap-4">
+            <div className={styles.wrapper + " section_store w-100 d-flex justify-content-center gap-4"}>
                 <Swiper
+                    id={styles.swiper}
                     modules={[Navigation]}
                     spaceBetween={24}
                     slidesPerView="auto"

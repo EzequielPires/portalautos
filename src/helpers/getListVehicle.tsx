@@ -1,25 +1,13 @@
 import router from "next/router";
-import { vehicle } from "../services/api";
+import { api, vehicle } from "../services/api";
 
 export const getListVehicle = {
     brand,
     model,
     yearModel,
     version,
-    color,
-    category,
-    style,
-    fuel,
-    systemFuel,
-    gearshift,
-    direction,
-    optionals,
-    characteristics,
-    brake,
-    typeMotor,
-    starter,
+    details,
     gears,
-    safety
 }
 
 function gears() {
@@ -53,7 +41,7 @@ function gears() {
 } 
 
 async function brand(type) {
-    const res = await vehicle.get(`admin/vehicle/brands/${type}`)
+    const res = await api.get(`fipe/${type}/brand/list`)
         .then((res: any) => {
             return res.data;
         })
@@ -62,7 +50,7 @@ async function brand(type) {
 }
 
 async function model(type, value) {
-    const res = await vehicle.get(`/admin/vehicle/model/${type}/${value}`)
+    const res = await api.get(`/fipe/${type}/${value}/list`)
         .then((res): any => {
             return res.data;
         })
@@ -70,8 +58,8 @@ async function model(type, value) {
     return res;
 }
 
-async function yearModel(type, value) {
-    const res = await vehicle.get(`/admin/vehicle/fipe/${type}/${value}/year`)
+async function yearModel(type, brand, model) {
+    const res = await api.get(`/fipe/${type}/${brand}/${model}/years`)
         .then((res): any => {
             return res.data;
         })
@@ -79,8 +67,8 @@ async function yearModel(type, value) {
     return res;
 }
 
-async function version(type, model, year) {
-    const res = await vehicle.get(`admin/vehicle/fipe/${type}/${model}/${year}`)
+async function version(type, brand, model, year) {
+    const res = await api.get(`/fipe/${type}/${brand}/${model}/years/${year}`)
         .then((res): any => {
             return res.data;
         })
@@ -88,16 +76,8 @@ async function version(type, model, year) {
     return res;
 }
 
-async function color() {
-    const res = await vehicle.get(`/admin/vehicle/color`)
-        .then((res): any => {
-            return res.data;
-        })
-    return res;
-}
-
-async function category(type) {
-    const res = await vehicle.get(`/admin/vehicle/category/${type}`)
+async function details(type) {
+    const res = await api.get(`/details/${type}/list`)
         .then((res): any => {
             return res.data;
         })
@@ -105,84 +85,3 @@ async function category(type) {
     return res;
 }
 
-async function style(type) {
-    const res = await vehicle.get(`/admin/vehicle/style/${type}`)
-        .then((res): any => {
-            return res.data;
-        })
-        .catch(() => router.push('/error'));
-    return res;
-}
-
-async function fuel() {
-    const res = await vehicle.get(`/admin/vehicle/fuel`)
-        .then((res): any => {
-            return res.data;
-        })
-        .catch(() => router.push('/error'));
-    return res;
-}
-
-async function systemFuel() {
-    const res = await vehicle.get(`/admin/vehicle/fuelsystem`)
-        .then((res): any => {
-            return res.data;
-        })
-        .catch(() => router.push('/error'));
-    return res;
-}
-
-async function gearshift() {
-    const res = await vehicle.get(`/admin/vehicle/gearshift`)
-        .then((res): any => res.data)
-        .catch(() => router.push('/error'));
-    return res;
-}
-
-async function direction() {
-    const res = await vehicle.get(`/admin/vehicle/direction`)
-        .then((res): any => res.data)
-        .catch(() => router.push('/error'));
-    return res;
-}
-
-async function characteristics() {
-    const res = await vehicle.get(`/admin/vehicle/characteristics`)
-        .then((res): any => res.data)
-        .catch(() => router.push('/error'));
-    return res;
-}
-
-async function optionals(type) {
-    const res = await vehicle.get(`admin/vehicle/optional/${type}`)
-        .then((res: any) => res.data)
-        .catch(() => router.push('/error'));
-    return res;
-}
-
-async function safety(type) {
-    const res = await vehicle.get(`admin/vehicle/safety/${type}`)
-        .then((res: any) => res.data)
-        .catch(() => router.push('/error'));
-    return res;
-}
-
-async function brake(type) {
-    const res = await vehicle.get(`/admin/vehicle/${type}/brake`)
-        .then((res): any => res.data)
-        .catch(() => router.push('/error'));
-    return res;
-}
-
-async function typeMotor(type) {
-    const res = await vehicle.get(`/admin/vehicle/${type}/motor`)
-        .then((res): any => res.data)
-        .catch(() => router.push('/error'));
-    return res;
-}
-async function starter(type) {
-    const res = await vehicle.get(`/admin/vehicle/${type}/starter`)
-        .then((res): any => res.data)
-        .catch(() => router.push('/error'));
-    return res;
-}

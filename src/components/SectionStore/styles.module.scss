@@ -1,12 +1,19 @@
 .section_store {
   margin: 48px 0;
-  height: 460px;
-  padding: 2rem 0;
-  background: #1d1d1d;
+  height: auto;
+  background: transparent;
+  .wrapper {
+    position: relative;
+    padding: 0 70px 0 70px !important;
+}
   .title {
-    color: #fff;
+    color: #333;
     font-weight: 700;
     margin-bottom: 2rem;
+  }
+  #swiper {
+    position: unset;
+    padding-bottom: 1rem;
   }
   #swiper_slide {
     width: 100%;

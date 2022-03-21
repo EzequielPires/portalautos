@@ -1,6 +1,6 @@
 import router from "next/router";
 import { createContext, useEffect, useState } from "react";
-import { vehicle } from "../services/api";
+import { api, vehicle } from "../services/api";
 
 type GalleryContextType = {
     gallery: Array<File>,
@@ -139,14 +139,14 @@ export function GalleryProvider({ children }) {
     }
 
     const checkVehicle = async (id) => {
-        await vehicle.put(`/admin/vehicle/${id}/check`)
+        await api.put(`/vehicle/${id}/check`)
             .then((res: any) => res.data)
             .catch(() => router.push('/error'));
     }
 
     const initialGallery = async (id) => {
         setLoading(true);
-        const res = await vehicle.get(`/admin/gallery/${id}/view`)
+        const res = await api.get(`/gallery/${id}/view`)
             .then((res): any => {
                 checkVehicle(id).then(() => setLoading(false));
                 return res.data;
@@ -176,7 +176,7 @@ export function GalleryProvider({ children }) {
             draggable[length + pos].classList.add('uploading');
             draggable[length + pos].classList.remove('waiting');
             data.append('file', filelist[pos]);
-            await vehicle.post(`/admin/gallery/${id}/upload`, data).then(() => {
+            await api.post(`/gallery/${id}/upload`, data).then(() => {
                 draggable[gallery.length + pos].classList.remove('uploading');
                 if (pos + 1 < filelist.length && pos < 7) {
                     uploadServer(id, filelist, pos + 1, length);
@@ -224,14 +224,14 @@ export function GalleryProvider({ children }) {
         newArray.forEach(item => {
             data.append('order[]', item);
         });
-        await vehicle.post(`admin/gallery/${id}/order`, data)
+        await api.post(`/gallery/${id}/order`, data)
             .then()
             .catch(() => router.push('/error'));
     }
 
     const dropImageGallery = async (index, id, idVehicle) => {
         setLoading(true);
-        const res = await vehicle.delete(`/admin/gallery/${idVehicle}/delete/${id}`)
+        const res = await api.delete(`/gallery/${idVehicle}/delete/${id}`)
             .then((res): any => {
                 setLoading(false);
                 return res.data;

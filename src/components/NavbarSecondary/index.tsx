@@ -1,8 +1,5 @@
 import Link from "next/link";
 import { ButtonUser } from "../ButtonUser";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../../assets/logo.svg";
 
 import styles from "./styles.module.scss";

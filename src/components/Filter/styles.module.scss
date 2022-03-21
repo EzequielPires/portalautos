@@ -24,7 +24,7 @@
     margin: 1rem 0 !important;
   }
   &.active_filter {
-    left: 0;
+    left: -100%;
   }
 }
 @media (max-width: 720px) {
@@ -33,7 +33,7 @@
     left: -100%;
     width: 100vw;
     height: 100vh;
-    z-index: 999;
+    z-index: 9999;
     transition: .3s;
     .content {
       width: 100vw;
@@ -61,11 +61,11 @@
         border-radius: 6px;
       }
     }
-  }
-  .active_filter {
-    left: 0;
-    .btn_filter {
+    &.active_filter {
       left: 0;
+      .btn_filter {
+        left: 0;
+      }
     }
   }
 }

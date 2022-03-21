@@ -26,7 +26,7 @@ export function TabCard({ content }) {
         <div className={styles.card}>
             <div className={styles.card_header}>
                 <img src={content.gallery && content.gallery.images.length > 0
-                    ? "https://classificados.portalcatalao.com.br/veiculos/"
+                    ? "https://portalautos.com.br/"
                     + content.gallery.images[0].path : NoImage.src}
                     alt=""
                 />
@@ -34,8 +34,8 @@ export function TabCard({ content }) {
             </div>
             <div className={styles.card_body}>
                 <header className="d-flex flex-column">
-                    <h4 className={styles.title}>{content.fipe_vehicle.model.name} <span>{content.year_manufacture}/{content.fipe_vehicle.year_model}</span></h4>
-                    <h5 className={styles.subtitle}>{content.fipe_vehicle.name}</h5>
+                    <h4 className={styles.title}>{content.version.model.name} <span>{content.year_manufacture}/{content.year_model}</span></h4>
+                    <h5 className={styles.subtitle}>{content.version.name}</h5>
 
                     <h5 className={styles.price}><span>R$</span> {VMasker.toMoney(content.price)}</h5>
                 </header>

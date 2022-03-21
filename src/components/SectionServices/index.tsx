@@ -4,8 +4,8 @@ import styles from './styles.module.scss';
 export function SectionServices() {
     return (
         <div className={styles.section_services}>
-            <h2>Precisando de algo para seu <strong>automóvel</strong></h2>
-            <span>Vamos descobrir os melhores serviços para o seu carro perto de você.</span>
+            <h2 className='mb-3'>Serviços exclusivos para seu <strong>automóvel</strong></h2>
+            {/* <span>Vamos descobrir os melhores serviços para o seu carro perto de você.</span> */}
             <div className={styles.content}>
                 <Link href={'/'}>
                     <a className={styles.item}>

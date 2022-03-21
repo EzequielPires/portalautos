@@ -12,19 +12,18 @@ export function StepFive() {
     const {
         step,
         setStep,
-        editVehicle, 
-        optional,
-        characteristics,
-        safety
+        editVehicle,
+        car
     } = useContext(CarContext);
     const router = useRouter();
     const { id } = router.query;
 
     const checkConcluded = () => {
         if (
-            safety.length > 0 ||
-            optional.length > 0 ||
-            characteristics.length > 0
+            car.safety.value.length > 0 ||
+            car.optional.value.length > 0 ||
+            car.confort.value.length > 0 ||
+            car.characteristic.value.length > 0
         ) {
             return true;
         } else {

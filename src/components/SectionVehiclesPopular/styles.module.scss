@@ -1,22 +1,30 @@
 .section_vehicles_popular {
-  margin: 2rem 0;
+  margin: 2rem 0 0 0;
   padding: 2rem 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   background: #1d1d1d;
+  .wrapper {
+    position: relative;
+    padding: 0 70px 0 70px !important;
+}
   .title {
     margin-bottom: 24px;
     color: #fff;
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 600;
     span {
       font-weight: 700;
       color: var(--main-color);
     }
   }
+  #swiper {
+    position: unset;
+    padding: 0;
+  }
   #swiper_slide {
-    width: 420px !important;
+    width: 280px !important;
   }
 }
 @media (max-width: 720px) {

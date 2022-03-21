@@ -17,8 +17,6 @@ export default function Home() {
         <SectionServices />
         <SectionOffers />
         <SectionVehiclesPopular />
-        <SectionOffers />
-        <div className="mt-5"></div>
         <SectionStore />
         <SectionCategoryCar />
         <Footer />

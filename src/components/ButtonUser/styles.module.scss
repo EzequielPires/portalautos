@@ -36,7 +36,9 @@
     text-transform: uppercase;
     border-radius: 6px;
     z-index: 9999;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     svg {
       color: #333;
       transition: .3s;

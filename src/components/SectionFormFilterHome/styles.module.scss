@@ -3,10 +3,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 72px;
+  padding: 116px 0 72px 0;
+  margin-bottom: 48px;
   width: 100%;
-  height: 795px;
-  background: linear-gradient(180deg, #000000 60%, #FAFAFA 100%);
+  height: auto;
+  background: linear-gradient(180deg, #000000 10.34%, #FAFAFA 100%);
   .car_animated {
     position: absolute;
     top: 0;
@@ -30,17 +31,16 @@
     width: 100%;
     z-index: 12;
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       text-transform: uppercase;
       color: #fff;
-      font-weight: 200 !important;
+      font-weight: 600;
       width: 508px;
       text-align: center;
     }
     h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 700;
-      width: 508px;
       text-align: center;
       color: #fff;
       text-transform: uppercase;

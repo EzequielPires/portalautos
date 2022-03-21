@@ -4,6 +4,7 @@ export function useSelect() {
     const [value, setValue] = useState('0');
     const select = useRef(null);
     const [error, setError] = useState(null);
+    const [options, setOptions] = useState([]);
 
     const validate = (value) => {
         if (!value || value === '0') {
@@ -23,6 +24,8 @@ export function useSelect() {
         select,
         error,
         value,
+        options,
+        setOptions,
         setValue,
         setError,
         onBlur: () => validate(select.current?.value),

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button, Modal, Spinner } from 'react-bootstrap';
 import { AuthContext } from '../../contexts/AuthContext';
 import useForm from '../../hooks/useForm';
@@ -14,6 +14,11 @@ export function ModalAlterPassword({ modal }) {
     } = useContext(AuthContext);
     const [response, setResponse] = useState(null);
     const [loading, setLoading] = useState(null);
+    useEffect(() => {
+        old_password.setValue('');
+        password.setValue('');
+        password_repeat.setValue('');
+    }, [modal.show]);
 
     return (
         <Modal id={styles.modal} show={modal.show} onHide={modal.handleClose}>

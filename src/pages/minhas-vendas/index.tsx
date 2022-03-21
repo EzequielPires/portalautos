@@ -18,7 +18,7 @@ export default function MinhasVendas() {
                 <MenuAside />
             </header>
             <div className={styles.content}>
-                <TabContent link="/admin/vehicle/list?limit=12&sold=1" active="Vendidos"/>
+                <TabContent link="/vehicle/list?limit=12&sold=1" active="Vendidos"/>
             </div>
         </div>
     )

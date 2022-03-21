@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 
 export function CheckOptional({ value, type }) {
     const refInput = useRef(null);
-    const { addCheck, removeCheck, optional, safety, characteristics } = useContext(CarContext);
+    const { addCheck, removeCheck, car } = useContext(CarContext);
 
     const handleChange = () => {
         refInput.current.checked ? addCheck(value, type) : removeCheck(value, type);
@@ -13,7 +13,7 @@ export function CheckOptional({ value, type }) {
     useEffect(() => {
         {
             type === "characteristics" ?
-                characteristics.forEach(item => {
+                car.characteristic.value.forEach(item => {
                     if (value.id === item.id) {
                         refInput.current.checked = true;
                     }
@@ -23,7 +23,7 @@ export function CheckOptional({ value, type }) {
         }
         {
             type === "optional" ?
-                optional.forEach(item => {
+                car.optional.value.forEach(item => {
                     if (value.id === item.id) {
                         refInput.current.checked = true;
                     }
@@ -33,7 +33,7 @@ export function CheckOptional({ value, type }) {
         }
         {
             type === "safety" ?
-                safety.forEach(item => {
+                car.safety.value.forEach(item => {
                     if (value.id === item.id) {
                         refInput.current.checked = true;
                     }
@@ -41,7 +41,17 @@ export function CheckOptional({ value, type }) {
                 :
                 null
         }
-    }, [optional]);
+        {
+            type === "comfort" ?
+                car.confort.value.forEach(item => {
+                    if (value.id === item.id) {
+                        refInput.current.checked = true;
+                    }
+                })
+                :
+                null
+        }
+    }, [car.characteristic.value]);
 
     return (
         <div className={styles.checkbox}>
