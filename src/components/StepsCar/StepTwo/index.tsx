@@ -12,15 +12,7 @@ import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export function StepTwo() {
     const {
-        price,
-        mileage_traveled,
-        description,
-        statePrice,
-        setStatePrice,
-        setStateNew,
-        stateNew,
         car,
-
         step,
         setStep,
         createCar,
