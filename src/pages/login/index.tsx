@@ -15,15 +15,15 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const {
         signIn,
-        signInFacebook,
+        //signInFacebook,
         verify,
         password,
         email
     } = useContext(AuthContext);
 
     const responseFacebook = async (response) => {
-        await signInFacebook(response);
-    };
+        //await signInFacebook(response);
+    }; 
 
     const handleSignIn = async (e) => {
         e.preventDefault();
