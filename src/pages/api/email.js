@@ -17,7 +17,7 @@ export default function sendEmail(req, res) {
         to: req.body.email,
         subject: "Active email ✔",
         text: "Hello world?",
-        html: `<a href='http://localhost:3000/login/active_email?token=${req.body.token}'>Reset password</a>`,
+        html: `<a href='http://portalautos.com.br/login/active_email?token=${req.body.token}'>Reset password</a>`,
     }).then((response) => {
         res.send(response)
     })
