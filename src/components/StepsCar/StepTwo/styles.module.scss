@@ -46,9 +46,9 @@
 }
 .alert {
     font-weight: 600;
-    border-radius: 6px;
-    text-align: center;
-    width: 380px;
+    font-size: .875rem;
+    margin-top: 1rem;
+    color: #555;
 }
 .concluded {
     flex-direction: row;

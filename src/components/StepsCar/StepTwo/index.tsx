@@ -63,7 +63,7 @@ export function StepTwo() {
                             ico={faDollarSign}
                             {...car.price}
                         />
-                        <p className={styles.alert + " alert-success p-3 mt-3"}>{`Preço recomendado pela Fipe: R$ ${VMasker.toMoney(car.fipe_price.value)}`}</p>
+                        <p className={styles.alert }>{`Preço recomendado pela Fipe: R$ ${VMasker.toMoney(car.fipe_price.value)}`}</p>
                         <div className={styles.input_box}>
                             <input
                                 type="checkbox"
