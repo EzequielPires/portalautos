@@ -38,7 +38,7 @@ const types = {
         message: 'Digito inválido'
     },
     search_id: {
-        regex: /^\d{7,11}$/,
+        regex: /^\w{7,11}$/,
         mask: search_id,
         message: 'Identificador inválido'
     },

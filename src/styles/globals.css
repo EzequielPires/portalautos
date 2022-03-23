@@ -6,7 +6,9 @@ body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
 }
-
+html {
+    scroll-behavior: auto !important;
+}
 body {
     background-color: #fafafa !important;
     position: absolute;

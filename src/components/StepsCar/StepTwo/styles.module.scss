@@ -45,10 +45,16 @@
     }
 }
 .alert {
+    border-top: 1px solid #d3d3d3;
+    width: 250px;
+    padding-top: .5rem ;
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
     font-weight: 600;
-    font-size: .875rem;
+    font-size: 1.2rem;
     margin-top: 1rem;
-    color: #555;
+    color: var(--main-color);
 }
 .concluded {
     flex-direction: row;

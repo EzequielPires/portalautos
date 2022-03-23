@@ -166,9 +166,9 @@ export const mileageTraveled = (v) => {
     });
 }
 export const search_id = (v) => {
-    v = v.replace(/\D/g, "");
+    v = v.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
     if(v.length > 11) {
-        v = v.replace(/^(\d{11}).*/, "$1");
+        v = v.replace(/^(\w{11}).*/, "$1");
     }
     return v;
 }

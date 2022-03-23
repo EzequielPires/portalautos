@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import FipeSvg from "../../../assets/logo-fipe.webp"
 import { CarContext } from "../../../contexts/CarContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InputIco } from "../../InputIco";
@@ -63,7 +64,7 @@ export function StepTwo() {
                             ico={faDollarSign}
                             {...car.price}
                         />
-                        <p className={styles.alert }>{`Preço recomendado pela Fipe: R$ ${VMasker.toMoney(car.fipe_price.value)}`}</p>
+                        <p className={styles.alert }><img src={FipeSvg.src} style={{width: 48}}/>{` R$ ${VMasker.toMoney(car.fipe_price.value)}`}</p>
                         <div className={styles.input_box}>
                             <input
                                 type="checkbox"

@@ -27,7 +27,7 @@ export function Gallery({ images }) {
                         >
                             {images?.map(item => (
                                 <SwiperSlide key={item.name} id={styles.swiper_slide}>
-                                    <img src={"https://classificados.portalcatalao.com.br/veiculos/"
+                                    <img src={"https://portalautos.com.br/"
                                         + item.path} alt="" />
                                 </SwiperSlide>
                             ))}
@@ -44,7 +44,7 @@ export function Gallery({ images }) {
                         >
                             {images?.map(item => (
                                 <SwiperSlide key={item.name} id={styles.swiper_slide_thumb}>
-                                    <img src={"https://classificados.portalcatalao.com.br/veiculos/"
+                                    <img src={"https://portalautos.com.br/"
                                         + item.path} alt="" />
                                 </SwiperSlide>
                             ))}
@@ -64,7 +64,7 @@ export function Gallery({ images }) {
                         >
                             {images?.map(item => (
                                 <SwiperSlide key={item.name} id={styles.swiper_slide}>
-                                    <img src={"https://classificados.portalcatalao.com.br/veiculos/"
+                                    <img src={"https://portalautos.com.br/"
                                         + item.path} alt="" />
                                 </SwiperSlide>
                             ))}
@@ -81,7 +81,7 @@ export function Gallery({ images }) {
                         >
                             {images?.map(item => (
                                 <SwiperSlide key={item.name} id={styles.swiper_slide_thumb}>
-                                    <img src={"https://classificados.portalcatalao.com.br/veiculos/"
+                                    <img src={"https://portalautos.com.br/"
                                         + item.path} alt="" />
                                 </SwiperSlide>
                             ))}

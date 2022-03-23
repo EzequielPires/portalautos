@@ -33,26 +33,26 @@ export function TabContent({ link, active }) {
     const moreVehiclesActive = (param) => {
         setLoading(true);
         {active === "Ativos" ?
-            searchVehicles(`active=1&page=${vehicles.length / 12 + 1}`).then(res => {
+            searchVehicles(`active=1&page=${vehicles.length / 20 + 1}`).then(res => {
                 setActiveVehicles([...vehicles, ...res]);
                 setLengthResponse(res.length);
                 setLoading(false);
             })
             : null}
         {active === "Removidos" ?
-            searchVehicles(`active=0&page=${vehicles.length / 12 + 1}`).then(res => {
+            searchVehicles(`active=0&page=${vehicles.length / 20 + 1}`).then(res => {
                 setInactiveVehicles([...vehicles, ...res]);
                 setLoading(false);
             })
             : null}
         {active === "Incompletos" ?
-            searchVehicles(`complete=0&page=${vehicles.length / 12 + 1}`).then(res => {
+            searchVehicles(`complete=0&page=${vehicles.length / 20 + 1}`).then(res => {
                 setIncompleteVehicles([...vehicles, ...res]);
                 setLoading(false);
             })
             : null}
         {active === "Vendidos" ?
-            searchVehicles(`sold=1&page=${vehicles.length / 12 + 1}`).then(res => {
+            searchVehicles(`sold=1&page=${vehicles.length / 20 + 1}`).then(res => {
                 setVehiclesSold([...vehicles, ...res]);
                 setLoading(false);
             })

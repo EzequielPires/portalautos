@@ -16,11 +16,11 @@ export function NavTabs() {
 
     const onClick = (link) => {
         setActive(link);
-        {link === 'Ativos' ? setLink('/vehicle/list?limit=12&active=1') : null}
-        {link === 'Removidos' ? setLink('/vehicle/list?limit=12&active=0') : null}
-        {link === 'Incompletos' ? setLink('/vehicle/list?limit=12&complete=0') : null}
-        {link === 'Vendidos' ? setLink('/vehicle/list?limit=12&sold=1') : null}
-        {link === 'Search' ? setLink(`/vehicle/list?limit=12&identifier=${search.value}&plate=${search.value}`) : null}
+        {link === 'Ativos' ? setLink('/vehicle/list?limit=20&active=1') : null}
+        {link === 'Removidos' ? setLink('/vehicle/list?limit=20&active=0') : null}
+        {link === 'Incompletos' ? setLink('/vehicle/list?limit=20&complete=0') : null}
+        {link === 'Vendidos' ? setLink('/vehicle/list?limit=20&sold=1') : null}
+        {link === 'Search' ? setLink(`/vehicle/list?limit=21&identifier=${search.value}&plate=${search.value}`) : null}
     }
     const searchVehicle = (e) => {
         e.preventDefault();
