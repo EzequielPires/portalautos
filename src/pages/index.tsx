@@ -7,11 +7,16 @@ import {SectionStore} from "../components/SectionStore";
 import {Footer} from "../components/Footer";
 import { SectionServices } from "../components/SectionServices";
 import {Filter} from "../components/Filter";
+import { useEffect } from "react";
+import router from "next/router";
 
 export default function Home() {
+  useEffect(() => {
+    router.push('/login');
+  }, []);
   return (
     <div>
-        <NavbarFixed />
+        {/* <NavbarFixed />
         <Filter />
         <SectionFormFilterHome />
         <SectionServices />
@@ -19,7 +24,7 @@ export default function Home() {
         <SectionVehiclesPopular />
         <SectionStore />
         <SectionCategoryCar />
-        <Footer />
+        <Footer /> */}
     </div>
   )
 }

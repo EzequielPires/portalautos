@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InputIco } from "../../InputIco";
 import { TextArea } from "../../TextArea";
 import { useRouter } from "next/router";
+import VMasker from "vanilla-masker/build/vanilla-masker.min";
 
 
 import { faEllipsisH, faTachometerAlt, faDollarSign, faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -62,6 +63,7 @@ export function StepTwo() {
                             ico={faDollarSign}
                             {...car.price}
                         />
+                        <p className={styles.alert + " alert-success p-3 mt-3"}>{`Preço recomendado pela Fipe: R$ ${VMasker.toMoney(car.fipe_price.value)}`}</p>
                         <div className={styles.input_box}>
                             <input
                                 type="checkbox"

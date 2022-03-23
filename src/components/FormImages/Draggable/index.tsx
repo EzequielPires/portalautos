@@ -31,7 +31,7 @@ export function Draggable({ image, index, onClick, id, type }: DraggableType) {
                         className={styles.draggable + " draggable"}
                         data-index={index}
                         id-gallery={image.id ?? index}
-                        style={{ background: `url(${image.path ? "https://classificados.portalcatalao.com.br/veiculos/" + image.path : URL.createObjectURL(image)}) center center` }}
+                        style={{ background: `url(${image.path ? "https://portalautos.com.br/" + image.path : URL.createObjectURL(image)}) center center` }}
                         onMouseOver={(e) => dragOver(e)}
                         onMouseDown={(e) => drag(e, e.target, id)}
                     >

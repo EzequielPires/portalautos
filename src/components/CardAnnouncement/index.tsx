@@ -2,19 +2,19 @@ import Link from "next/link";
 import VMasker from "vanilla-masker/build/vanilla-masker.min";
 import styles from "./styles.module.scss";
 import NoImage from "../../assets/no-image.svg";
-import {FaMapMarkerAlt, FaRegHeart} from "react-icons/fa";
-import {CarouselCard} from "../CarouselCard";
-import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
+import { FaMapMarkerAlt, FaRegHeart } from "react-icons/fa";
+import { CarouselCard } from "../CarouselCard";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
-export function CardAnnouncement({data}) {
+export function CardAnnouncement({ data }) {
     const [isMobile, setIsMobile] = useState(false);
     const router = useRouter();
-    const {id} = router.query;
+    const { id } = router.query;
 
     useEffect(() => {
-        if(id) {
-            {id.length > 0 && id[0] === 'carros' || id[0] === 'motos' ? setIsMobile(true) : null }
+        if (id) {
+            { id.length > 0 && id[0] === 'carros' || id[0] === 'motos' ? setIsMobile(true) : null }
         }
     }, [id]);
     return (
@@ -22,7 +22,7 @@ export function CardAnnouncement({data}) {
             <div className={styles.card + ` ${isMobile ? styles.search : null}`}>
                 <div className={styles.card_header}>
                     {data.gallery && data.gallery.images.length > 0
-                        ? <CarouselCard array={data.gallery.images} />: <img src={NoImage.src} alt="" />}
+                        ? <CarouselCard array={data.gallery.images} /> : <img src={NoImage.src} alt="" />}
                     {data.new ? <span className={styles.new}><span>0Km</span></span> : null}
                 </div>
                 <div className={styles.card_body}>

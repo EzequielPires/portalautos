@@ -106,7 +106,11 @@ export function CarProvider({ children }) {
         car.version.setOptions([]);
         car.color.setOptions([]);
         const res = await getListVehicle.version('car', car.brand.value, car.model.value, car.year_model.value).then((res: any) => res);
-        res.success && res.data.length > 0 ? car.version.setOptions(res.data) : car.year_manufacture.setError(`Nenhuma versão encontrada.`);
+        let array = [];
+        res.data?.forEach(item => {
+            array.push({...item.version, price: item.price});
+        });
+        car.version.setOptions(array);
         car.year_manufacture.setValue(value);
         car.year_manufacture.validate(value);
     }
@@ -114,6 +118,12 @@ export function CarProvider({ children }) {
     const getColor = async (value) => {
         car.version.setValue(value);
         car.version.validate(value);
+        car.version.options?.forEach(item => {
+            console.log(`${item.id} ${value}`);
+            if(item.id === value) {
+                car.fipe_price.setValue(item.price);
+            }
+        });
         const res = await getListVehicle.details('car');
         res.success ? car.color.setOptions(res.data.colors) : console.log(res);
     }

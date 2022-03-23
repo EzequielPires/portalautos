@@ -12,6 +12,7 @@ export class VehicleFactory {
         car.mileage_traveled = useForm('mileage_traveled');
         car.description = useForm('description');
         car.plate = useForm('plate');
+        car.fipe_price = useForm('price');
         
         car.brand = useSelect();
         car.model = useSelect();

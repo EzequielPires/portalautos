@@ -3,6 +3,7 @@ import { Vehicle } from "./Vehicle";
 
 export class Car extends Vehicle {
     doors?: any;
+    fipe_price?: any;
     toFormDataFromUseFormCar() {
         const data: any = new FormData();
         data.append('car[version]', this.version.value);

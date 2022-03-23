@@ -2,14 +2,12 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { parseCookies } from "nookies";
 import { useContext, useEffect } from "react";
-import { Loading } from "../../components/Loading";
 import { MenuAside } from "../../components/MenuAside";
 import { Navbar } from "../../components/Navbar";
 import { NavTabs } from "../../components/NavTabs";
 import { CarContext } from "../../contexts/CarContext";
 
 import styles from "./styles.module.scss";
-
 
 export default function MeusAnuncios() {
     const {clearCar} = useContext(CarContext);

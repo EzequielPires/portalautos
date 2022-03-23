@@ -13,7 +13,6 @@ export function NavTabs() {
     const search = useForm('search_id');
     const [active, setActive] = useState('Ativos');
     const [link, setLink] = useState('/vehicle/list?limit=16&active=1');
-    //const { searchVehiclesIdentified } = useContext(AnnouncementContext);
 
     const onClick = (link) => {
         setActive(link);

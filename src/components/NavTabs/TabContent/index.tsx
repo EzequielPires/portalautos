@@ -51,6 +51,12 @@ export function TabContent({ link, active }) {
                 setLoading(false);
             })
             : null}
+        {active === "Vendidos" ?
+            searchVehicles(`sold=1&page=${vehicles.length / 12 + 1}`).then(res => {
+                setVehiclesSold([...vehicles, ...res]);
+                setLoading(false);
+            })
+            : null}
     }
 
     useEffect(() => {

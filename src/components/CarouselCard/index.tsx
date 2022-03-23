@@ -10,14 +10,14 @@ export function CarouselCard({ array }) {
                         {array?.map(item => (
                             <Carousel.Item key={item.name}>
                                 <img
-                                    src={"https://classificados.portalcatalao.com.br/veiculos/"
+                                    src={"https://portalautos.com.br/"
                                         + item.path}
                                     alt="First slide"
                                 />
                             </Carousel.Item>
                         ))}
                     </Carousel>
-                    : <img src={"https://classificados.portalcatalao.com.br/veiculos/" + array[0].path} alt="First slide" />
+                    : <img src={"https://portalautos.com.br/" + array[0].path} alt="First slide" />
             }
         </>
 
