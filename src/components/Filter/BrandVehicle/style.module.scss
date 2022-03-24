@@ -59,8 +59,16 @@
       box-shadow: 0 0 16px rgba(0, 0, 0, .25);
     }
     span {
-      font-size: .75rem;
+      text-transform: uppercase;
+      font-size: .7rem;
+      font-weight: 600;
       color: #555;
+    }
+  }
+  .image {
+    width: 48px;
+    img {
+      width: 100%;
     }
   }
 }

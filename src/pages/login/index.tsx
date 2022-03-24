@@ -15,14 +15,14 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const {
         signIn,
-        //signInFacebook,
+        signInFacebook,
         verify,
         password,
         email
     } = useContext(AuthContext);
 
     const responseFacebook = async (response) => {
-        //await signInFacebook(response);
+        await signInFacebook(response);
     }; 
 
     const handleSignIn = async (e) => {
@@ -83,7 +83,7 @@ export default function Login() {
                         </button>
                         <span className="my-4">ou</span>
                         <FacebookLogin
-                                appId="411944480459855"
+                                appId="279554237662721"
                                 autoLoad={false}
                                 callback={responseFacebook}
                                 render={renderProps => (

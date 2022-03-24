@@ -1,75 +1,128 @@
-import Link from "next/link";
 import router from "next/router"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {faChevronCircleRight, faChevronRight, faEnvelope, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
-
-import Volkswagen from "../../../assets/volkswagen .svg";
-import Chevrolet from "../../../assets/chevrolet.svg";
-import Fiat from "../../../assets/fiat.svg";
-import Ford from "../../../assets/ford.svg";
-import Hyundai from "../../../assets/hyundai.svg";
-import Mitsubishi from "../../../assets/mitsubishi.svg";
-import Honda from "../../../assets/honda.svg";
-import Toyota from "../../../assets/toyota.svg";
-import Renault from "../../../assets/renault.svg";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./style.module.scss";
-import {ButtonMore} from "../../ButtonMore";
-import {useContext} from "react";
-import {FilterContext} from "../../../contexts/FilterContext";
-import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import { ButtonMore } from "../../ButtonMore";
+import { useContext } from "react";
+import { FilterContext } from "../../../contexts/FilterContext";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { Select } from "../Select";
 
 const brands = [
     {
-        id: 1,
-        name: "Volkswagen",
-        img: Volkswagen.src
+        "id": 51,
+        "id_string": "vw-volkswagen",
+        "name": "volkswagen",
+        "ico": {
+            "id": 22021181759,
+            "name": "cf82e8becdd07ebeded09c5f039f80ef.png",
+            "path": "images/brands/cf82e8becdd07ebeded09c5f039f80ef.png",
+            "extension": "png",
+            "size": 0
+        }
     },
     {
-        id: 2,
-        name: "Chevrolet",
-        img: Chevrolet.src
+        "id": 15,
+        "id_string": "fiat",
+        "name": "fiat",
+        "ico": {
+            "id": 22021146921,
+            "name": "44c23b303a5457e8296a1dadf5515f77.png",
+            "path": "images/brands/44c23b303a5457e8296a1dadf5515f77.png",
+            "extension": "png",
+            "size": 0
+        }
     },
     {
-        id: 3,
-        name: "Fiat",
-        img: Fiat.src
+        "id": 16,
+        "id_string": "ford",
+        "name": "ford",
+        "ico": {
+            "id": 22021184011,
+            "name": "b9126b35d956daa88d22a7f595b03785.png",
+            "path": "images/brands/b9126b35d956daa88d22a7f595b03785.png",
+            "extension": "png",
+            "size": 0
+        }
     },
     {
-        id: 4,
-        name: "Ford",
-        img: Ford.src
+        "id": 17,
+        "id_string": "gm-chevrolet",
+        "name": "chevrolet",
+        "ico": {
+            "id": 22021143626,
+            "name": "27228908ee3065e353245184d47810af.png",
+            "path": "images/brands/27228908ee3065e353245184d47810af.png",
+            "extension": "png",
+            "size": 0
+        }
     },
     {
-        id: 5,
-        name: "Hyundai",
-        img: Hyundai.src
+        "id": 20,
+        "id_string": "hyundai",
+        "name": "hyundai",
+        "ico": {
+            "id": 22021170452,
+            "name": "4e8baf946f606a4bfe201f66fa9066e3.png",
+            "path": "images/brands/4e8baf946f606a4bfe201f66fa9066e3.png",
+            "extension": "png",
+            "size": 0
+        }
     },
     {
-        id: 6,
-        name: "Mitsubishi",
-        img: Mitsubishi.src
+        "id": 36,
+        "id_string": "mitsubishi",
+        "name": "mitsubishi",
+        "ico": {
+            "id": 22021116257,
+            "name": "0a0bc53e8bdfa65d7cd1f6795ed78058.png",
+            "path": "images/brands/0a0bc53e8bdfa65d7cd1f6795ed78058.png",
+            "extension": "png",
+            "size": 0
+        }
     },
     {
-        id: 7,
-        name: "Honda",
-        img: Honda.src
+        "id": 19,
+        "id_string": "honda",
+        "name": "honda",
+        "ico": {
+            "id": 22021156254,
+            "name": "7dcdd1ad1b2884e536f443bb592fa10e.png",
+            "path": "images/brands/7dcdd1ad1b2884e536f443bb592fa10e.png",
+            "extension": "png",
+            "size": 0
+        }
     },
     {
-        id: 8,
-        name: "Toyota",
-        img: Toyota.src
+        "id": 48,
+        "id_string": "toyota",
+        "name": "toyota",
+        "ico": {
+            "id": 22021167528,
+            "name": "fe58d8879ca3916f067bc0fbd242f9ec.png",
+            "path": "images/brands/fe58d8879ca3916f067bc0fbd242f9ec.png",
+            "extension": "png",
+            "size": 0
+        }
     },
     {
-        id: 9,
-        name: "Renault",
-        img: Renault.src
+        "id": 42,
+        "id_string": "renault",
+        "name": "renault",
+        "ico": {
+            "id": 22021155824,
+            "name": "ea3a321b46e8b42a1a2e6ca3b9c5e737.png",
+            "path": "images/brands/ea3a321b46e8b42a1a2e6ca3b9c5e737.png",
+            "extension": "png",
+            "size": 0
+        }
     },
 ]
 
 export function BrandVehicle() {
-    const {brand, setBrand, model, setModel, version, setVersion, setActive} = useContext(FilterContext);
+    const { brand, setBrand, model, version, setActive } = useContext(FilterContext);
 
     return (
         <div className={styles.brand_vehicle}>
@@ -79,10 +132,10 @@ export function BrandVehicle() {
                     {brands?.map(item => (
                         <button key={item.id} className={styles.card} onClick={() => {
                             router.replace(`${router.asPath}/${item.name.toLowerCase()}`);
-                            setBrand(item)
+                            setBrand(item);
                         }}>
-                            <div className={styles.imgage}>
-                                <img src={item.img} alt=""/>
+                            <div className={styles.image}>
+                                <img src={`https://portalautos.com.br/${item.ico.path}`} alt="" />
                             </div>
                             <span>{item.name}</span>
                         </button>
@@ -96,45 +149,21 @@ export function BrandVehicle() {
                             router.replace(`/${router.query.id[0]}`);
                         }}>
                             <span className="d-flex align-items-center gap-2">
-                                <div className={styles.imgage}>
-                                <img src={brand.img} alt=""/>
-                            </div>
+                                <div className={styles.image}>
+                                    <img src={`https://portalautos.com.br/${brand.ico.path}`} alt="" />
+                                </div>
                                 {brand.name}
                             </span>
-                            <FontAwesomeIcon icon={faTrashAlt as IconProp}/>
+                            <FontAwesomeIcon icon={faTrashAlt as IconProp} />
                         </button>
-                        <button className={styles.select} onClick={() => {!model ? setActive(true) : setModel(null)}}>
-                            {model ?
-                                <>
-                                    {model.name}
-                                    <FontAwesomeIcon icon={faTrashAlt as IconProp}/>
-                                </>
-                                :
-                                <>
-                                    <span>Todos os modelos</span>
-                                    <FontAwesomeIcon icon={faChevronRight as IconProp}/>
-                                </>
-                            }
-                        </button>
-                        <button className={styles.select} onClick={() => {!version ? setActive(true) : setVersion(null)}}>
-                            {version ?
-                                <>
-                                    {version.name}
-                                    <FontAwesomeIcon icon={faTrashAlt as IconProp}/>
-                                </>
-                                :
-                                <>
-                                    <span>Todas as versões</span>
-                                    <FontAwesomeIcon icon={faChevronRight as IconProp}/>
-                                </>
-                            }
-                        </button>
+                        <Select placeholder={"Todas os modelos"} label={"Modelos"} {...model} />
+                        <Select placeholder={"Todas as versões"} label={"Versões"} {...version} />
                     </div>
                 </div>
             }
             {!brand ?
                 <div className="d-flex justify-content-end mt-3">
-                    <ButtonMore/>
+                    <ButtonMore />
                 </div>
                 : null
             }

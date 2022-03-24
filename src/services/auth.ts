@@ -23,10 +23,10 @@ export const signInRequest = async (email, password) => {
 }
 export async function signInRequestFacebook({ accessToken }: SignInRequestDataFacebook) {
   const data = new FormData();
-  console.log(accessToken);
   data.append('access_token', accessToken);
-  const user = await apiAuth.post('/user/facebook/connect', data)
+  const user = await api.post('/facebook/connect', data)
     .then(function (response: any) {
+      console.log(response);
       return response.data;
     })
     .catch(function (error) {

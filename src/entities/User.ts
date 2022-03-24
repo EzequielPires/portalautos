@@ -32,9 +32,9 @@ export class User {
         data.cpf && this.cpf.setValue(data.cpf);
         data.description && this.description.setValue(data.description);
         data.bird_at && this.bird_at.setValue(data.bird_at);
-        data.address.zipcode && this.address.zipcode.setValue(data.address.zipcode);
-        data.address.city && this.address.city.setValue(data.address.city);
-        data.address.state && this.address.state.setValue(data.address.state);
+        data.address?.zipcode && this.address.zipcode.setValue(data.address.zipcode);
+        data.address?.city && this.address.city.setValue(data.address.city);
+        data.address?.state && this.address.state.setValue(data.address.state);
         return this;
     }
     fromObjectClean() {

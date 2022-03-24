@@ -1,5 +1,6 @@
-import {createContext, useState} from "react";
-import {useSelect} from "../hooks/useSelect";
+import { createContext, useCallback, useState } from "react";
+import { getListVehicle } from "../helpers/getListVehicle";
+import { useSelect } from "../hooks/useSelect";
 
 type Filter = {
     active: boolean;
@@ -9,20 +10,20 @@ type Filter = {
     brand: any,
     setBrand: any,
     model: any,
-    setModel: any,
     version: any,
-    setVersion: any,
 }
 
 export const FilterContext = createContext({} as Filter);
 
-export function FilterProvider({children}) {
+export function FilterProvider({ children }) {
     const [activeFilter, setActiveFilter] = useState(false);
     const [active, setActive] = useState(false);
 
     const [brand, setBrand] = useState(null);
-    const [model, setModel] = useState(null);
-    const [version, setVersion] = useState(null);
+    const model = useSelect();
+    const version = useSelect();
+
+    
 
     return (
         <FilterContext.Provider value={{
@@ -33,9 +34,7 @@ export function FilterProvider({children}) {
             brand,
             setBrand,
             model,
-            setModel,
             version,
-            setVersion
         }}>
             {children}
         </FilterContext.Provider>

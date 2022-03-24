@@ -6,13 +6,14 @@ import useForm from "../hooks/useForm";
 import { User } from "../Models/User";
 import { UserRepository } from "../repositories/UserRepository";
 import { api } from "../services/api";
-import { recoverUserInformation, signInRequest } from "../services/auth";
+import { recoverUserInformation, signInRequest, signInRequestFacebook } from "../services/auth";
 
 type Auth = {
     user: User;
     email: any;
     password: any;
     signIn: () => Promise<void | boolean>;
+    signInFacebook: ({accessToken}) => Promise<void | boolean>;
     signOut: () => void;
     verify: () => void;
     old_password: any;
@@ -64,6 +65,23 @@ export function AuthProvider({ children }) {
             const user = await userRepository.findOne();
             setUserCookies(JSON.stringify(user));
             { user ? setUser(user) : setUser(null) }
+            router.push('/meus-anuncios');
+            return true;
+        }
+    }
+
+    async function signInFacebook({ accessToken }) {
+        const { token, user } = await signInRequestFacebook({
+            accessToken
+        })
+        if (token === null) {
+            return false;
+        } else {
+            verify();
+            setUser(user);
+            setTokenCookies(token);
+            setUserCookies(JSON.stringify(user));
+            api.defaults.headers['Authorization'] = `Bearer ${token}`;
             router.push('/meus-anuncios');
             return true;
         }
@@ -151,6 +169,7 @@ export function AuthProvider({ children }) {
             email,
             password,
             signIn,
+            signInFacebook,
             signOut,
             verify,
             old_password,
