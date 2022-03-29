@@ -22,12 +22,11 @@ type Filter = {
 }
 
 export function Filter({ show = false }) {
-    const { activeFilter, setActiveFilter } = useContext(FilterContext);
+    const { activeFilter, setActiveFilter, filter } = useContext(FilterContext);
     const router = useRouter();
     const path = router.asPath;
     useEffect(() => {
         setActiveFilter(show);
-        console.log(path);
     }, [])
     return (
         <nav className={styles.filter + ` ${activeFilter && styles.active_filter} ${path === "/" ? "d-md-none" : null}`}>
@@ -40,26 +39,42 @@ export function Filter({ show = false }) {
                 <hr />
                 <PriceRange />
                 <hr />
-                <YearVehicle />
-                <hr />
+                {/* <YearVehicle />
+                <hr /> */}
                 <MileageRange />
                 <hr />
                 <StateVehicle />
                 <hr />
                 <ColorsVehicle />
                 <hr />
-                <OptionalsVehicle />
+                {<OptionalsVehicle />}
                 <hr />
-                <GearshiftVehicle />
-                <hr />
-                <FuelVehicle />
-                <hr />
+                {filter.gearshifts.options.length > 0 ?
+                    <>
+                        <GearshiftVehicle />
+                        <hr />
+                    </>
+                    : null}
+                {filter.fuels.options.length > 0 ?
+                    <>
+                        <FuelVehicle />
+                        <hr />
+                    </>
+                    : null}
                 <PlateVehicle />
                 <hr />
-                <BodyworkVehicle />
-                <hr />
-                <CharacteristicsVehicle />
-                <hr />
+                {filter.categories.options.length > 0 ?
+                    <>
+                        <BodyworkVehicle />
+                        <hr />
+                    </>
+                    : null}
+                {filter.characteristics.options.length > 0 ?
+                    <>
+                        <CharacteristicsVehicle />
+                        <hr />
+                    </>
+                    : null}
             </div>
             <div className={styles.btn_filter + " d-flex justify-content-center d-md-none"}>
                 <button onClick={() => setActiveFilter(!activeFilter)}>FILTRAR</button>

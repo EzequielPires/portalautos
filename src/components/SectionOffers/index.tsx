@@ -28,8 +28,6 @@ export function SectionOffers() {
                             spaceBetween={24}
                             slidesPerView="auto"
                             navigation
-                            onSlideChange={() => console.log('slide change')}
-                            onSwiper={(swiper) => console.log(swiper)}
                         >
                             <SwiperSlide id={styles.swiper_slide}>
                                 <SkeletonCardAnnouncement />

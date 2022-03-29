@@ -6,8 +6,7 @@
   }
   .content {
     position: relative;
-    margin-top: 72px;
-    height: calc(100vh - 72px);
+    height: calc(100vh - 88px);
     display: flex;
     .title {
       margin-top: 1.5rem;
@@ -58,7 +57,8 @@
       }
     }
     .list {
-      margin-top: 2rem;
+      margin: 2rem 0;
+      padding-bottom: 2rem;
     }
   }
 }

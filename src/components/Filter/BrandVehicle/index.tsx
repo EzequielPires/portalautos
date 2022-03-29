@@ -1,14 +1,9 @@
 import router from "next/router"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-
-import styles from "./style.module.scss";
 import { ButtonMore } from "../../ButtonMore";
 import { useContext } from "react";
 import { FilterContext } from "../../../contexts/FilterContext";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Select } from "../Select";
+import styles from "./style.module.scss";
 
 const brands = [
     {
@@ -36,7 +31,7 @@ const brands = [
         }
     },
     {
-        "id": 16,
+        "id": 22,
         "id_string": "ford",
         "name": "ford",
         "ico": {
@@ -122,17 +117,17 @@ const brands = [
 ]
 
 export function BrandVehicle() {
-    const { brand, setBrand, model, version, setActive } = useContext(FilterContext);
+    const { brand, filter, run } = useContext(FilterContext);
 
     return (
         <div className={styles.brand_vehicle}>
             <span className={styles.title}>Marca do veículo</span>
-            {!brand ?
+            {!(filter.brands.value != '0') ?
                 <div className="d-flex flex-wrap gap-4">
                     {brands?.map(item => (
                         <button key={item.id} className={styles.card} onClick={() => {
-                            router.replace(`${router.asPath}/${item.name.toLowerCase()}`);
-                            setBrand(item);
+                            router.replace(`${router.asPath}/${item.id_string.toLowerCase()}`);
+                            filter.brands.onChange(item.id_string);
                         }}>
                             <div className={styles.image}>
                                 <img src={`https://portalautos.com.br/${item.ico.path}`} alt="" />
@@ -144,20 +139,9 @@ export function BrandVehicle() {
                 :
                 <div className="d-flex align-items-center flex-column gap-2">
                     <div className="d-flex w-100 flex-column">
-                        <button className={styles.select} onClick={() => {
-                            setBrand(null);
-                            router.replace(`/${router.query.id[0]}`);
-                        }}>
-                            <span className="d-flex align-items-center gap-2">
-                                <div className={styles.image}>
-                                    <img src={`https://portalautos.com.br/${brand.ico.path}`} alt="" />
-                                </div>
-                                {brand.name}
-                            </span>
-                            <FontAwesomeIcon icon={faTrashAlt as IconProp} />
-                        </button>
-                        <Select placeholder={"Todas os modelos"} label={"Modelos"} {...model} />
-                        <Select placeholder={"Todas as versões"} label={"Versões"} {...version} />
+                        <Select placeholder={"Todas as marcas"} label={"Marcas"} filter={filter} index={1} {...filter.brands} />
+                        <Select placeholder={"Todas os modelos"} label={"Modelos"} filter={filter} index={2} {...filter.models} />
+                        <Select placeholder={"Todas as versões"} label={"Versões"} filter={filter} index={3} {...filter.versions} />
                     </div>
                 </div>
             }

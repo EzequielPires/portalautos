@@ -65,7 +65,6 @@ export function SectionStore() {
                     spaceBetween={24}
                     slidesPerView="auto"
                     navigation
-                    onSwiper={(swiper) => console.log(swiper)}
                 >
                     {data?.map(item => (
                             <SwiperSlide id={styles.swiper_slide} key={item.id}>

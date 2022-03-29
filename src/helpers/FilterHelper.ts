@@ -1,5 +1,4 @@
-import { useFetch } from "../hooks/useFetch";
-import { useSelect } from "../hooks/useSelect";
+import { api } from "../services/api";
 
 export class FilterHelper {
     brands: any;
@@ -21,14 +20,23 @@ export class FilterHelper {
     itemsPerPage: any;
     total: any;
     logged: any;
-    
-    public static run() {
-        const {data} = useFetch(``);
+
+    async run(id) {
+        const res = await api.get(this.buildLink(id)).then((res: any) => res.data);
+        return res.data;
     }
-    initialize(): FilterHelper {
-        this.brands = useSelect();
-        this.models = useSelect();
-        this.versions = useSelect();
-        return this;
+    buildLink(id): string {
+        let link = "ad/filter?type=car&total=1";
+        id[1] ? link = link + `&brand=${id[1]}` : null;
+        id[2] ? link = link + `&model=${id[2]}` : null;
+        id[3] ? link = link + `&version=${id[3]}` : null;
+        return link;
+    }
+    verifyItemIdString(value, array) {
+        let selected = "0";
+        array.forEach(item => {
+            item.id_string === value ? selected = item.id_string : null;
+        });
+        return selected;
     }
 }

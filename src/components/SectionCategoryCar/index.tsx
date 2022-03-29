@@ -83,8 +83,6 @@ export function SectionCategoryCar() {
                     loop={true}
                     loopFillGroupWithBlank={true}
                     navigation
-                    onSlideChange={() => console.log('slide change')}
-                    onSwiper={(swiper) => console.log(swiper)}
                 >
                     {data?.map(item => (
                         <SwiperSlide id={styles.swiper_slide} key={item.name}>
