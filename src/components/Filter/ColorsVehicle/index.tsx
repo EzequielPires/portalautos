@@ -12,7 +12,7 @@ export function ColorsVehicle() {
             <span className={styles.title}>Cores</span>
             <div className="d-flex gap-2 flex-column">
             {filter.colors.options?.map(item => (
-                    <Checkbox key={item.id} id={item.id} label={item.name} {...filter.colors} />
+                    <Checkbox key={item.id} id={item.id} label={item.name} type="color" {...filter.colors} />
                 ))}
             </div>
             <div className="d-flex justify-content-end mt-3">

@@ -122,12 +122,12 @@ export function BrandVehicle() {
     return (
         <div className={styles.brand_vehicle}>
             <span className={styles.title}>Marca do veículo</span>
-            {!(filter.brands.value != '0') ?
+            {filter.brands.value === '0' ?
                 <div className="d-flex flex-wrap gap-4">
                     {brands?.map(item => (
                         <button key={item.id} className={styles.card} onClick={() => {
-                            router.replace(`${router.asPath}/${item.id_string.toLowerCase()}`);
-                            filter.brands.onChange(item.id_string);
+                            let [link,filter,] = router.asPath.split("?");
+                            router.replace(`${link}/${item.id_string.toLowerCase()}${filter ? "?" + filter : ''}`);
                         }}>
                             <div className={styles.image}>
                                 <img src={`https://portalautos.com.br/${item.ico.path}`} alt="" />

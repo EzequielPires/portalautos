@@ -16,7 +16,8 @@ export default function Search() {
     const id = router.query.id || [];
     const teste = useCallback(() => {
         if (id && id.length > 0) {
-            run(id);
+            const {filter: link} = router.query;
+            run(id, link);
         }
     }, [id]);
     useEffect(() => {

@@ -12,7 +12,7 @@ import styles from './styles.module.scss';
 export function NavTabs() {
     const search = useForm('search_id');
     const [active, setActive] = useState('Ativos');
-    const [link, setLink] = useState('/vehicle/list?limit=16&active=1');
+    const [link, setLink] = useState('/vehicle/list?limit=20&active=1');
 
     const onClick = (link) => {
         setActive(link);

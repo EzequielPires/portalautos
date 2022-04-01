@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import Logo from "../../assets/logo.svg";
 import styles from "./styles.module.scss";
+import { FaBullhorn, FaHandsHelping, FaNetworkWired, FaQuestion, FaSignOutAlt, FaUserEdit, FaUsers } from "react-icons/fa";
 
 export function MenuAside() {
     const { user, signOut } = useContext(AuthContext);
@@ -44,7 +45,7 @@ export function MenuAside() {
                     <Link href="/meus-anuncios">
                         <a className={routeActive === "meus-anuncios" ? styles.active : null}>
                             <span>
-                                <FontAwesomeIcon icon={faBullhorn as IconProp} />
+                                <FaBullhorn />
                             </span>
                             Meus anúncios
                         </a>
@@ -54,9 +55,29 @@ export function MenuAside() {
                     <Link href="/minhas-vendas">
                         <a className={routeActive === "minhas-vendas" ? styles.active : null}>
                             <span>
-                                <FontAwesomeIcon icon={faHandshake as IconProp} />
+                                <FaHandsHelping />
                             </span>
                             Minhas vendas
+                        </a>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/leads">
+                        <a className={routeActive === "leads" ? styles.active : null}>
+                            <span>
+                                <FaUsers />
+                            </span>
+                            Leads
+                        </a>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/integracoes">
+                        <a className={routeActive === "integracoes" ? styles.active : null}>
+                            <span>
+                                <FaNetworkWired />
+                            </span>
+                            Integrações
                         </a>
                     </Link>
                 </li>
@@ -64,7 +85,7 @@ export function MenuAside() {
                     <Link href="/editar-perfil">
                         <a className={routeActive === "editar-perfil" ? styles.active : null}>
                             <span>
-                                <FontAwesomeIcon icon={faUserEdit as IconProp} />
+                                <FaUserEdit />
                             </span>
                             Editar perfil
                         </a>
@@ -74,7 +95,7 @@ export function MenuAside() {
                     <Link href="/ajuda">
                         <a>
                             <span>
-                                <FontAwesomeIcon icon={faQuestion as IconProp} />
+                                <FaQuestion />
                             </span>
                             Ajuda
                         </a>
@@ -84,7 +105,7 @@ export function MenuAside() {
                     <Link href="/login">
                         <a>
                             <span>
-                                <FontAwesomeIcon icon={faSignOutAlt as IconProp} />
+                                <FaSignOutAlt />
                             </span>
                             Sair da conta
                         </a>

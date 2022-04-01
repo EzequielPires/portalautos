@@ -35,7 +35,7 @@
         padding: 0 6px;
         font-weight: 600;
         font-size: 1rem;
-        color: #d21b60;
+        color: var(--main-color);
         z-index: 0 !important;
     }
     .close {
@@ -139,7 +139,7 @@
                 border-bottom: none;
             }
             &:hover {
-                background: #fff3f7;
+                background: var(--light);
                 color: var(--main-color);
             }
         }

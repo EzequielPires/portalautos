@@ -18,13 +18,15 @@ body {
 }
 
 :root {
-    --main-color: #D21B60;
+    --main-color: #3446BD;
+    --light: #e7eaff;
     --yellow-color: #ebb61f;
     --dark-color: #1d1d1d;
-    --red-color: #F3123C;
+    --red-color: #e41212;
+    --red-light: #fdd5d5;
     --green-color: #00AE1C;
     --success: #00ae1c69;
-    --linear-gradient: linear-gradient(272.56deg, #F3123C 0%, #D21B60 100%);
+    --linear-gradient: #3446BD;
 }
 
 a {
@@ -102,7 +104,9 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
     background: rgba(221, 221, 221, 0.466);
     transition: 0.3s;
 }
-
+.modal {
+    display: flex !important;
+}
 .modal-dialog {
     width: 720px !important;
     max-width: 100% !important;

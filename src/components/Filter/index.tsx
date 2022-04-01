@@ -47,8 +47,12 @@ export function Filter({ show = false }) {
                 <hr />
                 <ColorsVehicle />
                 <hr />
-                {<OptionalsVehicle />}
-                <hr />
+                {filter.optional.options?.length > 0 ?
+                    <>
+                        {<OptionalsVehicle />}
+                        <hr />
+                    </>
+                    : null}
                 {filter.gearshifts.options.length > 0 ?
                     <>
                         <GearshiftVehicle />

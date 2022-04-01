@@ -1,10 +1,13 @@
 import styles from "./styles.module.scss";
 import VMasker from "vanilla-masker/build/vanilla-masker.min";
-import {useRef, useState} from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
+import { FilterContext } from "../../../contexts/FilterContext";
 
 export function MileageRange() {
-    const [min, setMin] = useState('260000');
-    const [max, setMax] = useState('750000');
+    const route = useRouter();
+    const { filter } = useContext(FilterContext);
+    const { filter: link } = route.query;
     const [minInput, setMinInput] = useState('260.000 Km');
     const [maxInput, setMaxInput] = useState('750.000 Km');
     const renge_first = useRef(null);
@@ -13,7 +16,31 @@ export function MileageRange() {
     const input02 = useRef(null);
     const range = useRef(null);
 
-    const handleOnChange = (e) => {
+    const handleRange = useCallback(() => {
+        setMinInput(VMasker.toMoney(renge_first.current.value, {
+            precision: 0,
+            delimiter: '.',
+        }) + ' Km');
+        setMaxInput(VMasker.toMoney(renge_last.current.value, {
+            precision: 0,
+            delimiter: '.',
+        }) + ' Km')
+        range.current.style.left = ((parseInt(renge_first.current.value) / parseInt(renge_first.current.max)) * 100) + "%";
+        range.current.style.right = 100 - (parseInt(renge_last.current.value) / parseInt(renge_last.current.max)) * 100 + "%";
+    }, [filter.mileage_traveled_min.value, filter.mileage_traveled_max.value])
+
+    useEffect(() => {
+        handleRange();
+    }, [filter.mileage_traveled_min.value, filter.mileage_traveled_max.value]);
+
+    useEffect(() => {
+        if (filter.mileage_traveled_min.value === '' && filter.mileage_traveled_max.value === '') {
+            filter.mileage_traveled_min.setValue('0');
+            filter.mileage_traveled_max.setValue('999999');
+        }
+    }, [filter]);
+
+    /* const handleOnChange = (e) => {
         if ((renge_last.current.value - renge_first.current.value) < 1000) {
             if (e.target.classList.contains("range-min")) {
                 setMin(parseInt(renge_last.current.value) - 1000 + '');
@@ -35,6 +62,24 @@ export function MileageRange() {
             range.current.style.left = ((parseInt(renge_first.current.value) / parseInt(renge_first.current.max)) * 100) + "%";
             range.current.style.right = 100 - (parseInt(renge_last.current.value) / parseInt(renge_last.current.max)) * 100 + "%";
         }
+    } */
+
+    const handleOnChange = (e) => {
+        if ((renge_last.current.value - renge_first.current.value) < 1000) {
+            if (e.target.classList.contains("range-min")) {
+                filter.mileage_traveled_min.setValue(parseInt(renge_last.current.value) - 1000 + '');
+            } else {
+                filter.mileage_traveled_max.setValue(parseInt(renge_first.current.value) + 1000 + '');
+            }
+        } else {
+            filter.mileage_traveled_min.setValue(renge_first.current.value);
+            filter.mileage_traveled_max.setValue(renge_last.current.value);
+        }
+    }
+
+    const handleLink = () => {
+        let aopi = route.asPath.split('?');
+        route.replace(`${aopi[0]}${filter.buildQuery("mileage_traveled", [renge_first.current.value, renge_last.current.value], link)}`);
     }
 
     return (
@@ -71,19 +116,21 @@ export function MileageRange() {
                         ref={renge_first}
                         type="range"
                         className={styles.input_range + " range-min"}
-                        min="5000"
+                        min="0"
                         max="999999"
-                        value={min}
+                        value={filter.mileage_traveled_min.value}
                         onChange={handleOnChange}
-                        step="100"/>
+                        onMouseUp={() => handleLink()}
+                        step="100" />
                     <input
                         ref={renge_last}
                         type="range"
                         className={styles.input_range + " range-max"}
                         min="0" max="999999"
-                        value={max}
+                        value={filter.mileage_traveled_max.value}
                         onChange={handleOnChange}
-                        step="100"/>
+                        onMouseUp={() => handleLink()}
+                        step="100" />
                 </div>
             </div>
         </div>

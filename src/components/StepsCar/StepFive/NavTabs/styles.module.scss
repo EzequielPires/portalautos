@@ -20,7 +20,7 @@
             z-index: 10;
             transition: .3s;
             &.active, &:hover {
-                background: #F2E6EB;
+                background: var(--light);
                 font-weight: 600;
                 border-bottom: 2px solid var(--main-color);
                 color: var(--main-color);

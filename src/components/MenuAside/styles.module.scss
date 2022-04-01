@@ -101,7 +101,7 @@
                 &.active {
                     color: var(--main-color);
                     font-weight: 700;
-                    background: #f2e6eb;
+                    background: var(--light);
                     svg {
                         color: var(--main-color);
                     }

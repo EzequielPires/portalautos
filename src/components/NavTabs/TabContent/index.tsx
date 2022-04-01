@@ -33,26 +33,26 @@ export function TabContent({ link, active }) {
     const moreVehiclesActive = (param) => {
         setLoading(true);
         {active === "Ativos" ?
-            searchVehicles(`active=1&page=${vehicles.length / 20 + 1}`).then(res => {
+            searchVehicles(`active=1&page=${vehicles.length / 20 + 1}&limit=20`).then(res => {
                 setActiveVehicles([...vehicles, ...res]);
                 setLengthResponse(res.length);
                 setLoading(false);
             })
             : null}
         {active === "Removidos" ?
-            searchVehicles(`active=0&page=${vehicles.length / 20 + 1}`).then(res => {
+            searchVehicles(`active=0&page=${vehicles.length / 20 + 1}&limit=20`).then(res => {
                 setInactiveVehicles([...vehicles, ...res]);
                 setLoading(false);
             })
             : null}
         {active === "Incompletos" ?
-            searchVehicles(`complete=0&page=${vehicles.length / 20 + 1}`).then(res => {
+            searchVehicles(`complete=0&page=${vehicles.length / 20 + 1}&limit=20`).then(res => {
                 setIncompleteVehicles([...vehicles, ...res]);
                 setLoading(false);
             })
             : null}
         {active === "Vendidos" ?
-            searchVehicles(`sold=1&page=${vehicles.length / 20 + 1}`).then(res => {
+            searchVehicles(`sold=1&page=${vehicles.length / 20 + 1}&limit=20`).then(res => {
                 setVehiclesSold([...vehicles, ...res]);
                 setLoading(false);
             })
@@ -102,7 +102,7 @@ export function TabContent({ link, active }) {
 
                     </ul>
             }
-            {(vehicles.length % 12) === 0 && vehicles.length >= 12 && lengthResponse > 0?
+            {(vehicles.length % 20) === 0 && vehicles.length >= 20 && lengthResponse > 0 ?
                 <div className="d-flex justify-content-center w-100">
                     <button className={styles.button_more} onClick={() => moreVehiclesActive('active=1')}>
                         Ver mais

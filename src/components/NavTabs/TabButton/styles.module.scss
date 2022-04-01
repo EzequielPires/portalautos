@@ -7,7 +7,7 @@
     color: #999;
     transition: .4s;
     &:hover {
-        background: #F2E6EB;
+        background: var(--light);
         color: var(--main-color);
     }
 }
@@ -20,7 +20,7 @@
     font-weight: 600;
     color: var(--main-color);
     border-bottom: 2px solid var(--main-color);
-    background: #F2E6EB;
+    background: var(--light);
 }
 
 @media (max-width: 575px) {

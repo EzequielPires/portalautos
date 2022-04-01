@@ -1,10 +1,13 @@
 import styles from "./styles.module.scss";
 import VMasker from "vanilla-masker/build/vanilla-masker.min";
-import {useRef, useState} from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
+import { FilterContext } from "../../../contexts/FilterContext";
 
 export function PriceRange() {
-    const [min, setMin] = useState('260000');
-    const [max, setMax] = useState('750000');
+    const route = useRouter();
+    const { filter } = useContext(FilterContext);
+    const { filter: link } = route.query;
     const [minInput, setMinInput] = useState('R$ 260.000,00');
     const [maxInput, setMaxInput] = useState('R$ 750.000,00');
     const renge_first = useRef(null);
@@ -13,22 +16,41 @@ export function PriceRange() {
     const input02 = useRef(null);
     const range = useRef(null);
 
+
+    const handleRange = useCallback(() => {
+        setMinInput('R$ ' + VMasker.toMoney(renge_first.current.value + '00'));
+        setMaxInput('R$ ' + VMasker.toMoney(renge_last.current.value + '00'));
+        range.current.style.left = ((parseInt(renge_first.current.value) / parseInt(renge_first.current.max)) * 100) + "%";
+        range.current.style.right = 100 - (parseInt(renge_last.current.value) / parseInt(renge_last.current.max)) * 100 + "%";
+    }, [filter.price_min.value, filter.price_max.value])
+    
+    useEffect(() => {
+        if (filter.price_min.value === '' && filter.price_max.value === '') {
+            filter.price_min.setValue('5000');
+            filter.price_max.setValue('999999');
+        }
+    }, []);
+
+    useEffect(() => {
+        handleRange();
+    }, [filter.price_min.value, filter.price_max.value]);
+
     const handleOnChange = (e) => {
         if ((renge_last.current.value - renge_first.current.value) < 1000) {
             if (e.target.classList.contains("range-min")) {
-                setMin(parseInt(renge_last.current.value) - 1000 + '');
+                filter.price_min.setValue(parseInt(renge_last.current.value) - 1000 + '');
             } else {
-                console.log(min + 1000)
-                setMax(parseInt(renge_first.current.value) + 1000 + '');
+                filter.price_max.setValue(parseInt(renge_first.current.value) + 1000 + '');
             }
         } else {
-            setMin(renge_first.current.value);
-            setMax(renge_last.current.value);
-            setMinInput('R$ ' + VMasker.toMoney(renge_first.current.value + '00'));
-            setMaxInput('R$ ' + VMasker.toMoney(renge_last.current.value + '00'));
-            range.current.style.left = ((parseInt(renge_first.current.value) / parseInt(renge_first.current.max)) * 100) + "%";
-            range.current.style.right = 100 - (parseInt(renge_last.current.value) / parseInt(renge_last.current.max)) * 100 + "%";
+            filter.price_min.setValue(renge_first.current.value);
+            filter.price_max.setValue(renge_last.current.value);
         }
+    }
+
+    const handleLink = () => {
+        let aopi = route.asPath.split('?');
+        route.replace(`${aopi[0]}${filter.buildQuery("price", [renge_first.current.value, renge_last.current.value], link)}`);
     }
 
     return (
@@ -68,17 +90,19 @@ export function PriceRange() {
                         className={styles.input_range + " range-min"}
                         min="5000"
                         max="999999"
-                        value={min}
+                        value={filter.price_min.value}
                         onChange={handleOnChange}
-                        step="100"/>
+                        onMouseUp={() => handleLink()}
+                        step="100" />
                     <input
                         ref={renge_last}
                         type="range"
                         className={styles.input_range + " range-max"}
                         min="0" max="999999"
-                        value={max}
+                        value={filter.price_max.value}
                         onChange={handleOnChange}
-                        step="100"/>
+                        onMouseUp={() => handleLink()}
+                        step="100" />
                 </div>
             </div>
         </div>

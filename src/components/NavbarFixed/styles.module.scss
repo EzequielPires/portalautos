@@ -18,6 +18,8 @@
         a {
             color: #333 !important;
         }
+        .logo {
+        }
         .brand {
             display: none;
         }
@@ -57,7 +59,7 @@
         }
     }
 }
-@media (max-width: 720px) {
+@media (max-width: 992px) {
     .header {
         .list_links {
             display: none !important;

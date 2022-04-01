@@ -36,7 +36,8 @@ export function Body({ options, title, placeholder, show, setShow, onChange }) {
                         <li key={item.id}>
                             <button onClick={() => {
                                 onChange(item.id_string);
-                                router.replace(`${router.asPath}/${item.id_string.toLowerCase()}`);
+                                let [link,filter,] = router.asPath.split("?");
+                                router.replace(`${link}/${item.id_string.toLowerCase()}${filter ? "?" + filter : ''}`);
                                 setShow();
                             }}>
                                 {item.name}

@@ -5,8 +5,8 @@
   width: 336px;
   min-width: 320px;
   background: #fff !important;
-  height: calc(100vh - 72px);
-  overflow: auto;
+  height: calc(100vh - 88px);
+  overflow: hidden;
   border-right: 1px solid #efefef;
   z-index: 9998;
   overflow-x: hidden;
@@ -15,7 +15,7 @@
     width: 336px;
     min-width: 320px;
     background: #fff !important;
-    height: calc(100vh - 72px);
+    height: 100%;
     overflow: auto;
   }
   hr {

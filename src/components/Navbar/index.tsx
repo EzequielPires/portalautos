@@ -7,6 +7,7 @@ import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import { FaNetworkWired } from "react-icons/fa";
 
 export function Navbar() {
     const router = useRouter();
@@ -47,7 +48,12 @@ export function Navbar() {
                         <h4>AJUDA</h4>
                     </div> : null
                 }
-
+                {routeActive === "integracoes" ?
+                    <div className={styles.title}>
+                        <FaNetworkWired />
+                        <h4>Integrações</h4>
+                    </div> : null
+                }
                 <ButtonUser />
             </nav>
         </header>

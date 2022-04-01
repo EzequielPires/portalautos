@@ -12,7 +12,7 @@ export function CharacteristicsVehicle() {
             <span className={styles.title}>Características</span>
             <div className="d-flex gap-2 flex-column">
                 {filter.characteristics.options?.map(item => (
-                    <Checkbox key={item.id} id={item.id} label={item.name} {...filter.characteristics} />
+                    <Checkbox key={item.id} id={item.id} label={item.name} type="characteristics" {...filter.characteristics} />
                 ))}
             </div>
             <div className="d-flex justify-content-end mt-3">

@@ -9,10 +9,12 @@ import Logo from "../../assets/logo.svg";
 
 import styles from "./styles.module.scss";
 import Head from "next/head";
+import { AlertContext } from '../../contexts/AlertContext';
 
 export default function Login() {
     const [error, setError] = useState<void | boolean>(true);
     const [loading, setLoading] = useState(false);
+    const {alertShow} = useContext(AlertContext);
     const {
         signIn,
         signInFacebook,
@@ -30,9 +32,9 @@ export default function Login() {
         setLoading(true);
         if (password.validate() && email.validate()) {
             let response = await signIn();
-            setError(response);
             if (response === false) {
                 setLoading(false);
+                alertShow("danger", "Falha no login, tente novamente.");
             }
         } else {
             setLoading(false);

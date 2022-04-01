@@ -23,7 +23,9 @@ import { UserProvider } from '../contexts/UserContext';
 import { GalleryProvider } from '../contexts/GalleryContext';
 import { CarProvider } from '../contexts/CarContext';
 import { ModalAction } from '../components/ModalAction';
-import {FilterProvider} from "../contexts/FilterContext";
+import { FilterProvider } from "../contexts/FilterContext";
+import { AlertProvider } from '../contexts/AlertContext';
+import { Alert } from '../components/Alert';
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
@@ -38,7 +40,10 @@ function MyApp({ Component, pageProps }) {
                   <CarProvider>
                     <MotorcycleProvider>
                       <AuthProvider>
-                        <Component {...pageProps} />
+                        <AlertProvider>
+                          <Component {...pageProps} />
+                          <Alert />
+                        </AlertProvider>
                         <ModalAction />
                       </AuthProvider>
                     </MotorcycleProvider>
