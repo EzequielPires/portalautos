@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { Button, Modal, Spinner } from 'react-bootstrap';
+import { AlertContext } from '../../contexts/AlertContext';
 import { AuthContext } from '../../contexts/AuthContext';
 import useForm from '../../hooks/useForm';
 import { Input } from '../Form/Input';
@@ -12,8 +13,24 @@ export function ModalAlterPassword({ modal }) {
         password_repeat,
         alterPassword
     } = useContext(AuthContext);
+    const { alertShow } = useContext(AlertContext);
     const [response, setResponse] = useState(null);
     const [loading, setLoading] = useState(null);
+
+    const alterPasswordUser = async () => {
+        setLoading(true);
+        let res = await alterPassword().then((res) => {
+            setLoading(false);
+            return res;
+        });
+        if (res) {
+            alertShow("success", "Senha alterada com sucesso.");
+        } else {
+            alertShow("danger", "Erro ao alterar senha, tente novamente.");
+        }
+        setResponse(res);
+    }
+
     useEffect(() => {
         old_password.setValue('');
         password.setValue('');
@@ -47,21 +64,12 @@ export function ModalAlterPassword({ modal }) {
                     placeholder=''
                     {...password_repeat}
                 />
-                {response === true ? <div className="alert alert-success mt-4">Senha alterada com sucesso!</div> : null}
-                {response === false ? <div className="alert alert-danger mt-4">Erro ao alterar a senha!</div> : null}
             </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={modal.handleClose}>
+            <Modal.Footer id={styles.modal_footer}>
+                <button onClick={modal.handleClose}>
                     Cancelar
-                </Button>
-                <Button variant="primary" onClick={async () => {
-                    setLoading(true);
-                    let res = await alterPassword().then((res) => {
-                        setLoading(false);
-                        return res;
-                    });
-                    setResponse(res);
-                }}>
+                </button>
+                <button onClick={alterPasswordUser}>
                     {loading ?
                         <Spinner
                             className="mx-2"
@@ -74,7 +82,7 @@ export function ModalAlterPassword({ modal }) {
                         : null
                     }
                     Continuar
-                </Button>
+                </button>
             </Modal.Footer>
         </Modal>
     );
