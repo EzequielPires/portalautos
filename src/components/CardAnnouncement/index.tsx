@@ -18,7 +18,7 @@ export function CardAnnouncement({ data }) {
         }
     }, [id]);
     return (
-        <Link href={`/comprar/${data.identifier}`}>
+        <Link href={`/comprar/${data.version.model.brand.id_string}/${data.version.model.id_string}/${data.version.id_string}/${data.identifier}`}>
             <div className={styles.card + ` ${isMobile ? styles.search : null}`}>
                 <div className={styles.card_header}>
                     {data.gallery && data.gallery.images.length > 0

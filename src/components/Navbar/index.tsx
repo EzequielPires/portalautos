@@ -54,6 +54,11 @@ export function Navbar() {
                         <h4>Integrações</h4>
                     </div> : null
                 }
+                {routeActive === "minha-loja" ?
+                    <div className={styles.title}>
+                        <h4>Minha loja</h4>
+                    </div> : null
+                }
                 <ButtonUser />
             </nav>
         </header>

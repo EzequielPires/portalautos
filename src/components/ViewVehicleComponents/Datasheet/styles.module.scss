@@ -32,23 +32,6 @@
       background-position: center center;
     }
   }
-  .item {
-    width: 190px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 190px;
-    span {
-      font-weight: 500;
-      font-size: .875rem;
-      color: #999999;
-    }
-    strong {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #555;
-    }
-  }
 }
 
 @media (max-width: 720px) {

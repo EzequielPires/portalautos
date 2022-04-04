@@ -21,7 +21,7 @@ import { useFetch } from "../../hooks/useFetch";
 export default function Comprar() {
     const router = useRouter();
     const id = router.query.id || [];
-    const { data, error } = useFetch(id ? `/ad/${id}/view` : null);
+    const { data, error } = useFetch(id ? `/ad/${id[id.length - 1]}/view` : null);
     const [vehicle, setVehicle] = useState(null);
 
     useEffect(() => {
@@ -85,17 +85,14 @@ export default function Comprar() {
 
                                     </div>
                                     <hr />
-                                    <Datasheet />
+                                    <Datasheet vehicle={vehicle} />
                                     <hr />
                                     <div className="d-flex flex-column">
                                         <span className={styles.title_section}>Sobre o veículo</span>
-                                        <p className={styles.description}>A Volkswagen Amarok 2022 tem direção leve e
-                                            precisa, além de suspensão com ajuste bem mesclado entre conforto e
-                                            estabilidade. O câmbio automático de oito marchas – da Aisin – continua com
-                                            mudanças suaves e em dia com as prestações apresentadas pelo 2.0 TDI.</p>
+                                        <p className={styles.description}>{vehicle.description}</p>
                                     </div>
                                     <hr />
-                                    <VehicleItems />
+                                    <VehicleItems vehicle={vehicle} />
                                 </div>
                                 <SectionFinancing />
                             </div>

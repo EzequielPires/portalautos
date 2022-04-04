@@ -1,8 +1,22 @@
 import styles from "./styles.module.scss";
 import {Accordion} from "react-bootstrap";
 import {FaCheck} from "react-icons/fa";
+import { useEffect } from "react";
+import { Item } from "./Item";
 
-export function Datasheet() {
+export function Datasheet({vehicle}) {
+    useEffect(() => {
+        console.log(vehicle);
+    }, [vehicle])
+    const verifyExist = (name) => {
+        let exist = false;
+        vehicle?.characteristics.forEach(item => {
+            if(name === item.id_string || name === item.name) {
+                exist = true;
+            }
+        });
+        return exist;
+    }
     return (
         <Accordion.Item eventKey="1" className={styles.datasheet}>
             <Accordion.Header>
@@ -10,76 +24,23 @@ export function Datasheet() {
             </Accordion.Header>
             <Accordion.Body className="d-flex flex-wrap gap-3">
                 <div className="d-flex flex-wrap gap-3">
-                    <div className={styles.item}>
-                        <span>Carroceria</span>
-                        <strong>Picape</strong>
-                    </div>
-                    <div className={styles.item}>
-                        <span>Estilo</span>
-                        <strong>Picape</strong>
-                    </div>
-                    <div className={styles.item}>
-                        <span>Combustível</span>
-                        <strong>Diesel</strong>
-                    </div>
-                    <div className={styles.item}>
-                        <span>Sistema de combustível</span>
-                        <strong>Injeção eletrônica</strong>
-                    </div>
-                </div>
-                <div className="d-flex flex-wrap gap-3">
-                    <div className={styles.item}>
-                        <span>Câmbio de marchas</span>
-                        <strong>Manual</strong>
-                    </div>
-                    <div className={styles.item}>
-                        <span>Quant. de portas</span>
-                        <strong>4</strong>
-                    </div>
-                    <div className={styles.item}>
-                        <span>Final de placa</span>
-                        <strong>0</strong>
-                    </div>
-                    <div className={styles.item}>
-                        <span>Cor</span>
-                        <strong>Preto</strong>
-                    </div>
-                </div>
-                <div className="d-flex flex-wrap gap-3">
-                    <div className={styles.item}>
-                        <span>Único dono</span>
-                        <strong>Sim</strong>
-                    </div>
-                    <div className={styles.item}>
-                        <span>Aceita troca</span>
-                        <strong>Sim</strong>
-                    </div>
-                    <div className={styles.item}>
-                        <span>Condição</span>
-                        <strong>Novo</strong>
-                    </div>
-                    <div className={styles.item}>
-                        <span>Alienado</span>
-                        <strong>Sim</strong>
-                    </div>
-                </div>
-                <div className="d-flex flex-wrap gap-3">
-                    <div className={styles.item}>
-                        <span>IPVA pago</span>
-                        <strong>Sim</strong>
-                    </div>
-                    <div className={styles.item}>
-                        <span>Licenciado</span>
-                        <strong>Sim</strong>
-                    </div>
-                    <div className={styles.item}>
-                        <span>Garantia de fábrica</span>
-                        <strong>Sim</strong>
-                    </div>
-                    <div className={styles.item}>
-                        <span>Revisões feitas</span>
-                        <strong>Sim</strong>
-                    </div>
+                    {vehicle?.category && <Item title="Categoria" name={vehicle.category.name}/>}
+                    {vehicle?.style && <Item title="Estilo" name={vehicle.style.name}/>}
+                    {vehicle?.fuel && <Item title="Combustível" name={vehicle.fuel.name}/>}
+                    {vehicle?.fuel_system && <Item title="Sistema de combustível" name={vehicle.fuel_system.name}/>}
+                    {vehicle?.gear_shift && <Item title="Câmbio de marchas" name={vehicle.gear_shift.name}/>}
+                    {vehicle?.number_doors && <Item title="Quant. de portas" name={vehicle.number_doors}/>}
+                    {vehicle?.plate && <Item title="Final de placa" name={vehicle.plate}/>}
+                    {vehicle?.color && <Item title="Cor" name={vehicle.color.name}/>}
+                    {vehicle && <Item title="Condição" name={vehicle.new ? 'Novo' : 'Usado'}/>}
+                    {verifyExist('alienado') && <Item title="Alienado" name={'Sim'}/>}
+                    {verifyExist('unico-dono') && <Item title="Único dono" name={'Sim'}/>}
+                    {verifyExist('ipva-pago') && <Item title="IPVA pago" name={'Sim'}/>}
+                    {verifyExist('licenciado') && <Item title="Licenciado" name={'Sim'}/>}
+                    {verifyExist('Aceita Troca') && <Item title="Aceita Troca" name={'Sim'}/>}
+                    {verifyExist('garantia-de-fabrica') && <Item title="Garantia de fábrica" name={'Sim'}/>}
+                    {verifyExist('todas-as-revisoes-feitas-pela-agenda-do-veiculo') && <Item title="Revisões pela agenda" name={'Sim'}/>}
+                    {verifyExist('todas-as-revisoes-feitas-pela-concessionaria') && <Item title="Revisões pela concessionária" name={'Sim'}/>}
                 </div>
             </Accordion.Body>
         </Accordion.Item>
