@@ -20,11 +20,10 @@ import { useFetchDefault } from "../../hooks/useFetchDefault";
 import ImgDefault from "../../assets/image-default.png";
 import { Error } from "../../components/Error";
 import Head from "next/head";
+import { Loading } from "../../components/Loading";
 
-export default function Comprar() {
+export default function Comprar({id}) {
     const [url, setUrl] = useState('');
-    const router = useRouter();
-    const id = router.query.id || [];
     const [vehicle, setVehicle] = useState(null);
     const [title, setTitle] = useState('');
     const { fetch, error, isLoading, value } = useFetchDefault();
@@ -34,14 +33,13 @@ export default function Comprar() {
     useEffect(() => {
         if (value) {
             setVehicle(value.data);
-            console.log(value.data.identifier)
+            console.log(value.data)
         }
         
     }, [value]);
 
     useEffect(() => {
         if (id.length > 0) handleVehicle();
-        setTitle(generateTitle(id));
     }, [id]);
     
     useEffect(() => {
@@ -52,29 +50,25 @@ export default function Comprar() {
         return <Error />
     }
 
-    const generateTitle = (array) => {
-        let link = '';
-        array.forEach((item, index) => {
-            if(index < array.length) {
-                link = link + item + ' - ';
-            } else {
-                link = link + item;
-            }
-        })
+    const generateTitle = () => {
+        let link = `${id[0]} - ${id[1]} - ${id[2]} - ${id[3]}`;
         return link.toUpperCase();
     }
+
+    /* if(!vehicle && !error) {
+        return <Loading />
+    } */
     return (
         <Accordion alwaysOpen className={styles.comprar + " comprar"}>
             <Head>
-                <title>{title}</title>
+                <title>{generateTitle()}</title>
                 <meta name="author" content="Portal Catalão Internet Service" />
-                <meta name="title" content={title} />
+                <meta name="title" content={generateTitle()} />
                 <meta name="description" content="Se você está procurando o carro ou moto perfeito para a sua vida e não quer pagar rios de dinheiro por isso, nós podemos te ajudar! O PortalAutos oferece a você uma forma de encontrar o seu veículo ideal de forma rápida, fácil e segura." />
-                <link rel="canonical" href={`/comprar/`} />
-                <meta property="og:title" content={title} />
+                <meta property="og:title" content={generateTitle()} />
                 <meta property="og:type" content="website" />
                 <meta property="og:description" content="Se você está procurando o carro ou moto perfeito para a sua vida e não quer pagar rios de dinheiro por isso, nós podemos te ajudar! O PortalAutos oferece a você uma forma de encontrar o seu veículo ideal de forma rápida, fácil e segura." />
-                <meta property="og:image" content={`https://portalautos.com.br/${ImgDefault.src}`} />
+                <meta property="og:image" content={`https://portalautos.com.br/${vehicle && vehicle.gallery.images[0].path}`} />
                 <meta property="og:url" content={url} />
             </Head>
             <NavbarFixed />
@@ -162,3 +156,10 @@ export default function Comprar() {
         </Accordion>
     );
 }
+
+export async function getServerSideProps({params}) {
+    const id = params.id;
+    return {
+      props: {id}, // will be passed to the page component as props
+    }
+  }
