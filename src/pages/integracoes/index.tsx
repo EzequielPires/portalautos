@@ -1,4 +1,4 @@
-/* import Head from "next/head";
+import Head from "next/head";
 import { useContext, useEffect, useState } from "react";
 import { InputSearch } from "../../components/InputSearch";
 import { MenuAside } from "../../components/MenuAside";
@@ -133,7 +133,7 @@ export default function Integracoes() {
                         </div>
                     </div>
                     {data?.data.vehicles?.map(item => (
-                        <Row item={item} />
+                        <Row key={item.id} item={item} />
                     ))}
                 </div>
                 <Modal id={styles.modal} show={show} onHide={handleClose}>
@@ -164,10 +164,4 @@ export default function Integracoes() {
             </div>
         </div>
     );
-} */
-
-export default function Integracoes() {
-    return (
-        <div></div>
-    )
 }

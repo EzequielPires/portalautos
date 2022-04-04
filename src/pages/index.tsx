@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     Router.push('/login')
   }, []);
-  
+
   return (
     <div>
         {/* <NavbarFixed />
