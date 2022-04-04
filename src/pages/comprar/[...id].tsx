@@ -26,30 +26,18 @@ import { api } from "../../services/api";
 export default function Comprar({id, data}) {
     const [url, setUrl] = useState('');
     const [vehicle, setVehicle] = useState(null);
-    const [title, setTitle] = useState('');
-    const { fetch, error, isLoading, value } = useFetchDefault();
-
-    const handleVehicle = async () => await fetch(`/ad/${id[id.length - 1]}/view`);
 
     useEffect(() => {
-        if (data) {
-            setVehicle(data.data);
-            console.log(data.data)
-        }
-        
+        if (data) setVehicle(data.data);
     }, [data]);
-
-    useEffect(() => {
-        if (id.length > 0) handleVehicle();
-    }, [id]);
     
     useEffect(() => {
         setUrl(location.href);
     }, [id]);
 
-    if (error) {
+    /* if (error) {
         return <Error />
-    }
+    } */
 
     const generateTitle = () => {
         let link = `${id[0]} - ${id[1]} - ${id[2]} - ${id[3]}`;
