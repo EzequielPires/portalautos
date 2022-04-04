@@ -54,7 +54,7 @@ export default function Comprar({id, data}) {
                 <meta property="og:title" content={generateTitle()} />
                 <meta property="og:type" content="website" />
                 <meta property="og:description" content="Se você está procurando o carro ou moto perfeito para a sua vida e não quer pagar rios de dinheiro por isso, nós podemos te ajudar! O PortalAutos oferece a você uma forma de encontrar o seu veículo ideal de forma rápida, fácil e segura." />
-                <meta property="og:image" content={`https://portalautos.com.br/${vehicle && vehicle.gallery.images[0].path}`} />
+                <meta property="og:image" content={`https://portalautos.com.br/${data.data.gallery.images[0].path}`} />
                 <meta property="og:url" content={url} />
             </Head>
             <NavbarFixed />
