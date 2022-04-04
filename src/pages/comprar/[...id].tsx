@@ -55,10 +55,7 @@ export default function Comprar({id, data}) {
         let link = `${id[0]} - ${id[1]} - ${id[2]} - ${id[3]}`;
         return link.toUpperCase();
     }
-
-    /* if(!vehicle && !error) {
-        return <Loading />
-    } */
+    if (!data) return <Loading />
     return (
         <Accordion alwaysOpen className={styles.comprar + " comprar"}>
             <Head>
