@@ -63,18 +63,10 @@ export default function Comprar() {
         })
         return link.toUpperCase();
     }
-    if(isLoading && !error && !vehicle) {
-        return (
-            <p>Loading</p>
-        )
-    }
-
     return (
         <Accordion alwaysOpen className={styles.comprar + " comprar"}>
             <Head>
                 <title>{title}</title>
-                <title>{`${title} | PortalAutos`}</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <meta name="author" content="Portal Catalão Internet Service" />
                 <meta name="title" content={title} />
                 <meta name="description" content="Se você está procurando o carro ou moto perfeito para a sua vida e não quer pagar rios de dinheiro por isso, nós podemos te ajudar! O PortalAutos oferece a você uma forma de encontrar o seu veículo ideal de forma rápida, fácil e segura." />
