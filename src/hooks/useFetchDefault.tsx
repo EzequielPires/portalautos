@@ -8,13 +8,15 @@ export function useFetchDefault() {
 
     const fetch = useCallback(async (url) => {
         setIsLoading(true);
-        await api.get(url).then(res => {
-            setIsLoading(false)
+        const res = await api.get(url).then(res => {
+            setIsLoading(false);
             setValue(res.data);
+            return res.data;
         }).catch(() => {
+            setIsLoading(false);
             setError(true);
         })
-        return value;
+        return res;
     }, []);
 
     return {

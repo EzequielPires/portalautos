@@ -16,39 +16,53 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { VehicleItems } from "../../components/ViewVehicleComponents/VehicleItems";
 import { Accordion } from "react-bootstrap";
 import { Datasheet } from "../../components/ViewVehicleComponents/Datasheet";
-import { useFetch } from "../../hooks/useFetch";
 import { useFetchDefault } from "../../hooks/useFetchDefault";
+import ImgDefault from "../../assets/image-default.png";
+import { Error } from "../../components/Error";
+import Head from "next/head";
 
 export default function Comprar() {
     const router = useRouter();
     const id = router.query.id || [];
     const [vehicle, setVehicle] = useState(null);
-    const {fetch, error, isLoading, value} = useFetchDefault();
+    const [title, setTitle] = useState('');
+    const { fetch, error, isLoading, value } = useFetchDefault();
 
     const handleVehicle = async () => await fetch(`/ad/${id[id.length - 1]}/view`);
 
     useEffect(() => {
-        if(value) setVehicle(value.data);
+        if (value) setVehicle(value.data);
     }, [value]);
 
     useEffect(() => {
-        if(id.length > 0) handleVehicle();
+        if (id.length > 0) {
+            handleVehicle();
+            setTitle(generateTitle(id));
+        }
     }, [id]);
 
-    if(isLoading) {
-        return(
-            <p>IsLoading</p>
-        )
+    if (error) {
+        return <Error />
     }
-
-    if(error) {
-        return <div>
-            <p>Error</p>
-        </div>
+    const generateTitle = (array) => {
+        let link = '';
+        array.forEach((item, index) => {
+            if(index < array.length) {
+                link = link + item + ' - ';
+            } else {
+                link = link + item;
+            }
+        })
+        return link.toUpperCase();
     }
 
     return (
         <Accordion alwaysOpen className={styles.comprar + " comprar"}>
+            <Head>
+                <title>{title}</title>
+                <meta name="description" content="Se você está procurando o carro ou moto perfeito para a sua vida e não quer pagar rios de dinheiro por isso, nós podemos te ajudar! O PortalAutos oferece a você uma forma de encontrar o seu veículo ideal de forma rápida, fácil e segura." />
+                <meta property="og:image" content={`https://portalcatalao.com.br/${ImgDefault.src}`} />
+            </Head>
             <NavbarFixed />
             {vehicle ?
                 <>
@@ -127,7 +141,9 @@ export default function Comprar() {
                         </button>
                     </div>
                 </>
-                : <div style={{ height: "100vh" }}></div>}
+                : <div style={{ height: "100vh" }}>
+
+                </div>}
             <Footer />
         </Accordion>
     );

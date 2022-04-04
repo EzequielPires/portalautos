@@ -24,11 +24,13 @@ export class FilterHelper {
     vehicles: any;
     page: any;
     itemsPerPage: any;
+    vehicleGet: any;
     total: any;
     logged: any;
 
     async run(id, query) {
-        const res = await api.get(this.buildLink(id, query)).then((res: any) => res.data);
+        //const res = await api.get(this.buildLink(id, query)).then((res: any) => res.data);
+        const res:any = await this.vehicleGet.fetch(this.buildLink(id, query));
         return res.data;
     }
     buildLink(id, query): string {

@@ -127,7 +127,7 @@ export function BrandVehicle() {
                     {brands?.map(item => (
                         <button key={item.id} className={styles.card} onClick={() => {
                             let [link,filter,] = router.asPath.split("?");
-                            router.replace(`${link}/${item.id_string.toLowerCase()}${filter ? "?" + filter : ''}`);
+                            router.replace(`/carros/${item.id_string.toLowerCase()}${filter ? "?" + filter : ''}`);
                         }}>
                             <div className={styles.image}>
                                 <img src={`https://portalautos.com.br/${item.ico.path}`} alt="" />

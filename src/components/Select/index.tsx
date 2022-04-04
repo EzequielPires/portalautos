@@ -64,10 +64,14 @@ export function Select({ label, options, onChange, value, error, validate, place
             <button className={show ? styles.show : null} onClick={handleShow}>
                 <label className={styles.label}>{label}</label>
                 <span className={selected === placeholder || selected === 'Selecione uma opção' ? styles.placeholder : null}>{selected}</span>
-                <FaChevronDown />
-            </button>
-            <button className={styles.close} onClick={() => onChange('0')}>
-                <MdClose />
+                <div className="d-flex align-items-center">
+                    {value != '0' &&
+                        <button className={styles.close} onClick={() => onChange('0')}>
+                            <MdClose />
+                        </button>
+                    }
+                    <FaChevronDown />
+                </div>
             </button>
             {show && options.length > 0 ?
                 <ul className={styles.body}>

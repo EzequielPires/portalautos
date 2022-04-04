@@ -1,4 +1,5 @@
 import { FilterHelper } from "../helpers/FilterHelper";
+import { useFetchDefault } from "../hooks/useFetchDefault";
 import useForm from "../hooks/useForm";
 import { useMultiCheckbox } from "../hooks/useMultiCheckbox";
 import { useSelect } from "../hooks/useSelect";
@@ -21,6 +22,7 @@ export class FilterFactory {
         filter.gearshifts = useMultiCheckbox();
         filter.characteristics = useMultiCheckbox();
         filter.vehicles = useMultiCheckbox();
+        filter.vehicleGet = useFetchDefault();
         return filter;
     }
 }
