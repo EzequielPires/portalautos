@@ -52,7 +52,7 @@ export default function Login() {
                 <meta name="robots" content="noindex" />
                 <meta name="author" content="Portal Catalão Internet Service" />
             </Head>
-            <div className={styles.left}>
+            {/* <div className={styles.left}>
                 <form onSubmit={handleSignIn}>
                     <Link href={'/'}>
                         <a className={styles.logo}>
@@ -105,7 +105,7 @@ export default function Login() {
                 <p>SEJA BEM-VINDO</p>
                 <p>A PLATAFORMA DE DIVULGAÇÃO DE VEÍCULOS MAIS COMPLETA DA REGIÃO.</p>
                 <button>SAIBA MAIS</button>
-            </div>
+            </div> */}
         </div>
     )
 }
