@@ -44,6 +44,7 @@ export default function Comprar() {
     if (error) {
         return <Error />
     }
+    
     const generateTitle = (array) => {
         let link = '';
         array.forEach((item, index) => {
