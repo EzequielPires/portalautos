@@ -17,19 +17,30 @@ import { VehicleItems } from "../../components/ViewVehicleComponents/VehicleItem
 import { Accordion } from "react-bootstrap";
 import { Datasheet } from "../../components/ViewVehicleComponents/Datasheet";
 import { useFetch } from "../../hooks/useFetch";
+import { useFetchDefault } from "../../hooks/useFetchDefault";
 
 export default function Comprar() {
     const router = useRouter();
     const id = router.query.id || [];
-    const { data, error } = useFetch(id ? `/ad/${id[id.length - 1]}/view` : null);
     const [vehicle, setVehicle] = useState(null);
+    const {fetch, error, isLoading, value} = useFetchDefault();
+
+    const handleVehicle = async () => await fetch(`/ad/${id[id.length - 1]}/view`);
 
     useEffect(() => {
-        if (data) {
-            setVehicle(data.data);
-        }
+        if(value) setVehicle(value.data);
+    }, [value]);
 
-    }, [id, data]);
+    useEffect(() => {
+        if(id.length > 0) handleVehicle();
+    }, [id]);
+
+    if(isLoading) {
+        return(
+            <p>IsLoading</p>
+        )
+    }
+
     if(error) {
         return <div>
             <p>Error</p>
