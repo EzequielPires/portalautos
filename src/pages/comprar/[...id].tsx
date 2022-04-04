@@ -22,6 +22,7 @@ import { Error } from "../../components/Error";
 import Head from "next/head";
 
 export default function Comprar() {
+    const [url, setUrl] = useState('');
     const router = useRouter();
     const id = router.query.id || [];
     const [vehicle, setVehicle] = useState(null);
@@ -31,20 +32,26 @@ export default function Comprar() {
     const handleVehicle = async () => await fetch(`/ad/${id[id.length - 1]}/view`);
 
     useEffect(() => {
-        if (value) setVehicle(value.data);
+        if (value) {
+            setVehicle(value.data);
+            console.log(value.data.identifier)
+        }
+        
     }, [value]);
 
     useEffect(() => {
-        if (id.length > 0) {
-            handleVehicle();
-            setTitle(generateTitle(id));
-        }
+        if (id.length > 0) handleVehicle();
+        setTitle(generateTitle(id));
+    }, [id]);
+    
+    useEffect(() => {
+        setUrl(location.href);
     }, [id]);
 
     if (error) {
         return <Error />
     }
-    
+
     const generateTitle = (array) => {
         let link = '';
         array.forEach((item, index) => {
@@ -56,13 +63,27 @@ export default function Comprar() {
         })
         return link.toUpperCase();
     }
+    if(isLoading && !error && !vehicle) {
+        return (
+            <p>Loading</p>
+        )
+    }
 
     return (
         <Accordion alwaysOpen className={styles.comprar + " comprar"}>
             <Head>
                 <title>{title}</title>
+                <title>{`${title} | PortalAutos`}</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <meta name="author" content="Portal Catalão Internet Service" />
+                <meta name="title" content={title} />
                 <meta name="description" content="Se você está procurando o carro ou moto perfeito para a sua vida e não quer pagar rios de dinheiro por isso, nós podemos te ajudar! O PortalAutos oferece a você uma forma de encontrar o seu veículo ideal de forma rápida, fácil e segura." />
-                <meta property="og:image" content={`https://portalcatalao.com.br/${ImgDefault.src}`} />
+                <link rel="canonical" href={`/comprar/`} />
+                <meta property="og:title" content={title} />
+                <meta property="og:type" content="website" />
+                <meta property="og:description" content="Se você está procurando o carro ou moto perfeito para a sua vida e não quer pagar rios de dinheiro por isso, nós podemos te ajudar! O PortalAutos oferece a você uma forma de encontrar o seu veículo ideal de forma rápida, fácil e segura." />
+                <meta property="og:image" content={`https://portalautos.com.br/${ImgDefault.src}`} />
+                <meta property="og:url" content={url} />
             </Head>
             <NavbarFixed />
             {vehicle ?
