@@ -21,8 +21,9 @@ import ImgDefault from "../../assets/image-default.png";
 import { Error } from "../../components/Error";
 import Head from "next/head";
 import { Loading } from "../../components/Loading";
+import { api } from "../../services/api";
 
-export default function Comprar({id}) {
+export default function Comprar({id, data}) {
     const [url, setUrl] = useState('');
     const [vehicle, setVehicle] = useState(null);
     const [title, setTitle] = useState('');
@@ -31,12 +32,12 @@ export default function Comprar({id}) {
     const handleVehicle = async () => await fetch(`/ad/${id[id.length - 1]}/view`);
 
     useEffect(() => {
-        if (value) {
-            setVehicle(value.data);
-            console.log(value.data)
+        if (data) {
+            setVehicle(data.data);
+            console.log(data.data)
         }
         
-    }, [value]);
+    }, [data]);
 
     useEffect(() => {
         if (id.length > 0) handleVehicle();
@@ -159,7 +160,8 @@ export default function Comprar({id}) {
 
 export async function getServerSideProps({params}) {
     const id = params.id;
+    const data = await api.get(`/ad/${id[id.length - 1]}/view`).then((res) => res.data); 
     return {
-      props: {id}, // will be passed to the page component as props
+      props: {id, data}, // will be passed to the page component as props
     }
   }
