@@ -30,6 +30,11 @@ export default function Comprar() {
         }
 
     }, [id, data]);
+    if(error) {
+        return <div>
+            <p>Error</p>
+        </div>
+    }
 
     return (
         <Accordion alwaysOpen className={styles.comprar + " comprar"}>

@@ -10,8 +10,8 @@ export function StateVehicle() {
         <div className={styles.state_vehicle}>
             <span className={styles.title}>Carros</span>
             <div className="d-flex gap-5">
-                <Checkbox id="new" label="Novos" {...vehicleNew}/>
-                <Checkbox id="used" label="Usados" {...vehicleUsed}/>
+                {/* <Checkbox id="new" label="Novos" {...vehicleNew}/>
+                <Checkbox id="used" label="Usados" {...vehicleUsed}/> */}
             </div>
         </div>
     )

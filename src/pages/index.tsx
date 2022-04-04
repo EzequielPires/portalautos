@@ -24,7 +24,7 @@ export default function Home() {
         <SectionVehiclesPopular />
         <SectionStore />
         <SectionCategoryCar />
-        <Footer / >*/}
+        <Footer /> */}
     </div>
   )
 }
