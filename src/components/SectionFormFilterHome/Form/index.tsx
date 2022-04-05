@@ -51,7 +51,7 @@ export function Form() {
                         options={car.brand.options}
                         onChange={getModel}
                         value={car.brand.value}
-                        error={car.brand.error}
+                        error={null}
                         validate={car.brand.validate}
                     />
                     <Select
@@ -60,7 +60,7 @@ export function Form() {
                         options={car.model.options}
                         onChange={car.model.onChange}
                         value={car.model.value}
-                        error={car.model.error}
+                        error={null}
                         validate={car.model.validate}
                     />
                 </div>

@@ -1,35 +1,33 @@
-import { useRouter } from "next/router";
-import { api } from "../services/api";
 import base64 from "base-64";
 
 export class FilterHelper {
-    price_min: any;
-    price_max: any;
-    mileage_traveled_min: any;
-    mileage_traveled_max: any;
+    brakes: any;
     brands: any;
-    models: any;
-    versions: any;
+    categories: any;
     colors: any;
     comfort: any;
-    optional: any;
-    safety: any;
+    characteristics: any;
     fuels: any;
     fuels_systems: any;
     gearshifts: any;
-    characteristics: any;
-    categories: any;
-    styles: any;
-    brakes: any;
-    vehicles: any;
-    page: any;
     itemsPerPage: any;
-    vehicleGet: any;
-    total: any;
     logged: any;
+    mileage_traveled_min: any;
+    mileage_traveled_max: any;
+    models: any;
+    optional: any;
+    page: any;
+    price_min: any;
+    price_max: any;
+    safety: any;
+    styles: any;
+    state: any;
+    total: any;
+    versions: any;
+    vehicles: any;
+    vehicleGet: any;
 
     async run(id, query) {
-        //const res = await api.get(this.buildLink(id, query)).then((res: any) => res.data);
         const res:any = await this.vehicleGet.fetch(this.buildLink(id, query));
         return res.data;
     }
@@ -40,7 +38,6 @@ export class FilterHelper {
         id[2] ? link = link + `&model=${id[2]}` : null;
         id[3] ? link = link + `&version=${id[3]}` : null;
         if(obj) {
-            console.log(obj);
             obj.category.length > 0 ? link = link + `&category=[${obj.category}]` : null;
             obj.color.length > 0 ? link = link + `&color=[${obj.color}]` : null;
             obj.characteristics.length > 0 ? link = link + `&characteristics=[${obj.characteristics}]` : null;
@@ -68,8 +65,10 @@ export class FilterHelper {
             price_min: '',
             price_max: '',
             mileage_traveled_max: '',
-            mileage_traveled_min: ''
+            mileage_traveled_min: '',
+            state: [],
         }
+        console.log(type + ' - ' + value + ' - ' + link);
         link ? query = this.decode(link) : null;
         {type === "optional" ? query.optional.push(value) : null}
         {type === "category" ? query.category.push(value) : null}
@@ -79,6 +78,8 @@ export class FilterHelper {
         {type === "price" ? query.price_max = value[1] : null}
         {type === "mileage_traveled" ? query.mileage_traveled_min = value[0] : null}
         {type === "mileage_traveled" ? query.mileage_traveled_max = value[1] : null}
+        {type === "state" ? query.state.push(value) : null}
+        console.log(query);
         return this.encode(query);
     }
     filterQuery(type, value, link) {
@@ -87,6 +88,7 @@ export class FilterHelper {
             category: [],
             color: [],
             characteristics: [],
+            state: [],
             price_min: '',
             price_max: '',
             mileage_traveled_max: '',
@@ -95,6 +97,7 @@ export class FilterHelper {
         link ? query = this.decode(link) : null;
         {type === "optional" ? query.optional = query.optional.filter(item => item != value) : null}
         {type === "category" ? query.category = query.category.filter(item => item != value) : null}
+        {type === "state" ? query.state = query.state.filter(item => item != value) : null}
         {type === "characteristics" ? query.characteristics = query.characteristics.filter(item => item != value) : null}
         {type === "color" ? query.color = query.color.filter(item => item != value) : null}
         return this.encode(query);

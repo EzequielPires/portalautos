@@ -51,9 +51,8 @@ export function NavbarFixed() {
                         </li>
                     </ul>
                     <ButtonUser/>
-                    <button className={
-                        styles.btn_primary
-                    }>Anunciar meu veículo
+                    <button className={styles.btn_primary} onClick={() => router.push('/cadastrar-anuncio')}>
+                        Anunciar veículo
                     </button>
                 </div>
             </nav>

@@ -39,14 +39,16 @@ export function Filter({ show = false }) {
                 <hr />
                 <PriceRange />
                 <hr />
-                {/* <YearVehicle />
-                <hr /> */}
                 <MileageRange />
                 <hr />
                 <StateVehicle />
                 <hr />
-                <ColorsVehicle />
-                <hr />
+                {filter.optional.options?.length > 0 ?
+                    <>
+                        <ColorsVehicle />
+                        <hr />
+                    </>
+                    : null}
                 {filter.optional.options?.length > 0 ?
                     <>
                         {<OptionalsVehicle />}
@@ -65,8 +67,6 @@ export function Filter({ show = false }) {
                         <hr />
                     </>
                     : null}
-                <PlateVehicle />
-                <hr />
                 {filter.categories.options.length > 0 ?
                     <>
                         <BodyworkVehicle />

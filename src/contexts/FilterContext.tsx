@@ -53,6 +53,7 @@ export function FilterProvider({ children }) {
             filter.price_max.setValue(filterDecode.price_max);
             filter.mileage_traveled_min.setValue(filterDecode.mileage_traveled_min);
             filter.mileage_traveled_max.setValue(filterDecode.mileage_traveled_max);
+            filter.state.setValue(filterDecode.state);
         }
         filter.brands.setValue(filter.verifyItemIdString(id[1], res[0].brands));
         filter.models.setValue(filter.verifyItemIdString(id[2], res[0].models));

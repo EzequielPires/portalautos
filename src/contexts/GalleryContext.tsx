@@ -36,7 +36,7 @@ export function GalleryProvider({ children }) {
                 draggable.style.top = elCoordenadas.y + 'px';
                 draggable.style.left = elCoordenadas.x + 'px';
                 draggable.style.display = "flex";
-                draggable.style.background = `url(${image && image.path ? "https://classificados.portalcatalao.com.br/veiculos/" + image.path : URL.createObjectURL(image)}) center center`;
+                draggable.style.background = `url(${image && image.path ? "https://portalautos.com.br/" + image.path : URL.createObjectURL(image)}) center center`;
             }
         }
 

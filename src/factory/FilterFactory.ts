@@ -21,6 +21,7 @@ export class FilterFactory {
         filter.fuels = useMultiCheckbox();
         filter.gearshifts = useMultiCheckbox();
         filter.characteristics = useMultiCheckbox();
+        filter.state = useMultiCheckbox();
         filter.vehicles = useMultiCheckbox();
         filter.vehicleGet = useFetchDefault();
         return filter;

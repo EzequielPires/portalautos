@@ -29,7 +29,7 @@ export function PriceRange() {
             filter.price_min.setValue('5000');
             filter.price_max.setValue('999999');
         }
-    }, []);
+    }, [filter]);
 
     useEffect(() => {
         handleRange();
