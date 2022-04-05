@@ -19,9 +19,14 @@
             color: #333 !important;
         }
         .logo {
+            height: 32px;
             a {
                 display: flex;
                 align-items: center;
+                height: 100%;
+                img {
+                    height: 100%;
+                }
             }
         }
         .brand {
