@@ -24,3 +24,9 @@
   color: var(--main-color);
  }
 }
+@media (max-width: 720px) {
+    .wrapper {
+        padding: 0 !important;
+        padding-left: 1rem !important;
+    }
+}

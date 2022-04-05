@@ -1,8 +1,8 @@
 .header {
-    height: 88px;
+    height: 72px;
     .navbar {
         width: 100%;
-        height: 88px;
+        height: 72px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -19,6 +19,10 @@
             color: #333 !important;
         }
         .logo {
+            a {
+                display: flex;
+                align-items: center;
+            }
         }
         .brand {
             display: none;

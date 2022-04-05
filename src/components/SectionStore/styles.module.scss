@@ -23,6 +23,10 @@
 
 @media (max-width: 720px) {
   .section_store {
+    .wrapper {
+      padding: 0 !important;
+      padding-left: 1rem !important;
+    }
     #swiper_slide {
       width: 280px;
     }

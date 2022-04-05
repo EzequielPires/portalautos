@@ -89,7 +89,6 @@ export function SectionCategoryCar() {
                             <Card data={item}/>
                         </SwiperSlide>
                     ))}
-
                 </Swiper>
             </ul>
         </div>

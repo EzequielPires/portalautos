@@ -161,26 +161,22 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
 .gallery .swiper .swiper-button-next {
     pointer-events: none;
     justify-content: flex-end;
-    padding: 2rem;
+    padding-right: 1rem;
     top: 22px !important;
     right: 0 !important;
     height: 100% !important;
     width: 33.33% !important;
-    background: linear-gradient(90deg, rgba(196, 196, 196, 0) 0%, #1d1d1d 100%);
-    border-radius: 0 6px 6px 0;
     transition: .2s;
 }
 
 .gallery .swiper .swiper-button-prev {
     pointer-events: none;
     justify-content: flex-start;
-    padding: 2rem;
     top: 22px !important;
     left: 0 !important;
+    padding-left: 1rem;
     height: 100% !important;
     width: 33.33% !important;
-    border-radius: 0 0 6px 6px;
-    background: linear-gradient(90deg, #1d1d1d 0%, rgba(196, 196, 196, 0) 100%);
     transition: .2s;
 }
 
@@ -268,11 +264,13 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
     .section_offers:hover .swiper .swiper-button-prev,
     .section_offers:hover .swiper .swiper-button-next,
     .section_offers .swiper .swiper-button-prev,
-    .section_offers .swiper .swiper-button-next
+    .section_offers .swiper .swiper-button-next,
     .section_vehicles_popular:hover .swiper .swiper-button-next,
     .section_vehicles_popular:hover .swiper .swiper-button-prev,
     .section_vehicles_popular .swiper .swiper-button-next,
     .section_vehicles_popular .swiper .swiper-button-prev,
+    .section_store .swiper .swiper-button-prev,
+    .section_store .swiper .swiper-button-next,
     .carousel-indicators,
     .carousel-control-prev,
     .carousel-control-next {
