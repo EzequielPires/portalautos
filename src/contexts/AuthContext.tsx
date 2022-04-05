@@ -13,7 +13,8 @@ type Auth = {
     email: any;
     password: any;
     signIn: () => Promise<void | boolean>;
-    signInFacebook: ({accessToken}) => Promise<void | boolean>;
+    signInFacebook: ({ accessToken }) => Promise<void | boolean>;
+    addFavorite: (id) => Promise<void | boolean>;
     signOut: () => void;
     verify: () => void;
     old_password: any;
@@ -54,6 +55,13 @@ export function AuthProvider({ children }) {
     const setTokenCookies = (token) => setCookie(undefined, 'nextauth.token', token, { maxAge: 60 * 60 * 1, path: '/', })
     const setUserCookies = (user) => setCookie(undefined, 'user', user, { maxAge: 60 * 60 * 1, path: '/', });
 
+    const addFavorite = async (id) => {
+        const data = new FormData();
+        data.append('vehicle', id.toString());
+        const res = await api.post('favorite/add', data);
+        console.log(res);
+    }
+
     const signIn = async () => {
         const { token } = await signInRequest(email.value, password.value);
         if (!token) {
@@ -65,7 +73,9 @@ export function AuthProvider({ children }) {
             const user = await userRepository.findOne();
             setUserCookies(JSON.stringify(user));
             { user ? setUser(user) : setUser(null) }
-            router.push('/meus-anuncios');
+            let { r, f } = router.query;
+            f ? addFavorite(f) : null;
+            r ? router.push(`${r}`) : router.push('/meus-anuncios');
             return true;
         }
     }
@@ -169,6 +179,7 @@ export function AuthProvider({ children }) {
             email,
             password,
             signIn,
+            addFavorite,
             signInFacebook,
             signOut,
             verify,

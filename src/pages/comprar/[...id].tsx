@@ -62,7 +62,7 @@ export default function Comprar({id, data}) {
                 <>
                     <Gallery images={vehicle.gallery.images} />
                     <div className="d-flex justify-content-center">
-                        <div className={styles.content}>
+                        <div className={styles.content + ' px-3'}>
                             <div className="d-flex flex-column">
                                 <div className={styles.main}>
                                     <div className="d-flex w-100 flex-column">

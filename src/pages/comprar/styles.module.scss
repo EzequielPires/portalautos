@@ -3,13 +3,12 @@
   flex-direction: column;
   .content {
     width: 100%;
-    max-width: 1448px;
+    max-width: 1480px;
     flex-wrap: wrap;
     justify-content: center;
     display: flex;
     gap: 32px;
     background: transparent;
-
     margin-top: -32px;
     z-index: 10;
     margin-bottom: 2rem;
@@ -20,6 +19,7 @@
     }
     .main {
       width: 932px;
+      max-width: 100%;
       background: #fff;
       box-shadow: 0 0 8px rgba(0, 0, 0, .15);
       height: 100%;
@@ -164,7 +164,7 @@
     display: none;
   }
 }
-@media (max-width: 720px) {
+@media (max-width: 992px) {
   .comprar {
     padding-bottom: 64px;
     .content {
