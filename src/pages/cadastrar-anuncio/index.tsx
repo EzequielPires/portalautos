@@ -40,10 +40,11 @@ export default function CadastrarAnuncio() {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { ['nextauth.token']: token } = parseCookies(ctx);
+    console.log(ctx);
     if (!token) {
         return {
             redirect: {
-                destination: '/login',
+                destination: `/login`,
                 permanent: false,
             }
         }

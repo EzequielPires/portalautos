@@ -46,7 +46,7 @@ export function ButtonUser() {
                             <FaChevronDown />
                         </> : "Entrar"}
                 </button> :
-                <Link href="/login">
+                <Link href="/login?r=/">
                     <a className={styles.btn_sign_in}>
                         <AiOutlineUser />
                         Entrar
@@ -59,7 +59,7 @@ export function ButtonUser() {
             <ul className={show ? styles.show + ' ' + styles.body : styles.body}>
                 <li className={"d-flex justify-content-between"} style={{ background: '#1d1d1d' }}>
                     <button className={"text-capitalize"} onClick={() => {
-                        { user ? null : router.push('/login') }
+                        { user ? null : router.push('/login?r=/') }
                     }}>
                         {user ?
                             <>

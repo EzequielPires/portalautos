@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { useContext, useEffect } from "react";
 import { Loading } from "../../../components/Loading";
@@ -15,24 +15,32 @@ import { useFetch } from "../../../hooks/useFetch";
 
 import styles from "./styles.module.scss";
 import Head from "next/head";
+import { AlertContext } from "../../../contexts/AlertContext";
 
 export default function Carro() {
     const { setStep, clearCar, editVehicle, buildVehicle, getDetail } = useContext(CarContext);
+    const { alertShow } = useContext(AlertContext);
     const { setGallery } = useContext(GalleryContext);
     const newRouter = useRouter();
     const { id } = newRouter.query;
-    const { data, isLoading } = useFetch(`/vehicle/${id}/view`);
+    const { data, isLoading, error } = useFetch(`/vehicle/${id}/view`);
     useEffect(() => {
         setStep(3);
         clearCar();
         getDetail();
     }, []);
     useEffect(() => {
+        console.log(data);
         if (id && data) {
             buildVehicle(data.data);
             data.data.gallery ? setGallery(data.data.gallery.images ?? []) : setGallery([]);
         }
     }, [id, data]);
+
+    if(error) {
+        alertShow("danger", "Erro ao abrir o anúncio, tente novamente.");
+        Router.push('/meus-anuncios');
+    }
 
     return (
         <div className={styles.cadastrar_anuncio}>

@@ -5,10 +5,12 @@ import {ButtonUser} from "../ButtonUser";
 import Logo from "../../assets/logo.svg"
 import styles from "./styles.module.scss";
 import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import Link from "next/link";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export function NavbarFixed() {
+    const {user} = useContext(AuthContext);
     const router = useRouter();
     const [routeActive, setRouteActive] = useState('');
 
@@ -51,7 +53,7 @@ export function NavbarFixed() {
                         </li>
                     </ul>
                     <ButtonUser/>
-                    <button className={styles.btn_primary} onClick={() => router.push('/cadastrar-anuncio')}>
+                    <button className={styles.btn_primary} onClick={() => {user ? router.push('/cadastrar-anuncio') : router.push('/login?r=/cadastrar-anuncio')}}>
                         Anunciar veículo
                     </button>
                 </div>
