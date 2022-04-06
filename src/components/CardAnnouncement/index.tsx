@@ -2,7 +2,7 @@ import Link from "next/link";
 import VMasker from "vanilla-masker/build/vanilla-masker.min";
 import styles from "./styles.module.scss";
 import NoImage from "../../assets/no-image.svg";
-import { FaMapMarkerAlt, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaMapMarkerAlt, FaRegHeart } from "react-icons/fa";
 import { CarouselCard } from "../CarouselCard";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
@@ -10,14 +10,29 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { api } from "../../services/api";
 
 export function CardAnnouncement({ data }) {
-    const { user, addFavorite } = useContext(AuthContext);
+    const { user, addFavorite, favorites, removeFavorite} = useContext(AuthContext);
     const [isMobile, setIsMobile] = useState(false);
     const router = useRouter();
     const { id } = router.query;
+    const [isFavorite, setIsFavorite] = useState(false);
 
     const handleFavorite = async () => {
-        !user ? router.push(`/login?r=${router.asPath}&f=${data.id}`) : addFavorite(data.id);
+        if(isFavorite) {
+            removeFavorite(data.id);
+        } else {
+            !user ? router.push(`/login?r=${router.asPath}&f=${data.id}`) : addFavorite(data.id);
+        }
     }
+
+    useEffect(() => {
+        if(favorites?.length > 0) {
+            let favorite = false;
+            favorites.forEach(item => {
+                item === data.id ? favorite = true : null;
+            });
+            setIsFavorite(favorite);
+        }
+    }, [favorites]);
 
     useEffect(() => {
         if (id) {
@@ -51,7 +66,7 @@ export function CardAnnouncement({ data }) {
                     <hr />
                     <div className="d-flex justify-content-between px-2 px-md-3">
                         <span className="d-flex align-items-center gap-1"><FaMapMarkerAlt />Catalão - GO</span>
-                        <button className={styles.btn_favorites} onClick={handleFavorite}><FaRegHeart /></button>
+                        <button className={styles.btn_favorites} onClick={handleFavorite}>{!isFavorite ? <FaRegHeart /> : <FaHeart style={{color: '#e91e63'}}/>}</button>
                     </div>
                 </footer>
             </div>

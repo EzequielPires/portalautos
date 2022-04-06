@@ -1,4 +1,4 @@
-/* import Head from "next/head";
+import Head from "next/head";
 import { useContext, useEffect, useState } from "react";
 import { InputSearch } from "../../components/InputSearch";
 import { MenuAside } from "../../components/MenuAside";
@@ -164,7 +164,4 @@ export default function Integracoes() {
             </div>
         </div>
     );
-} */
-export default function Integracoes() {
-    return <div></div>
 }

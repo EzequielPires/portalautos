@@ -8,6 +8,7 @@ import {useRouter} from "next/router";
 import {useContext, useEffect, useState} from "react";
 import Link from "next/link";
 import { AuthContext } from "../../contexts/AuthContext";
+import { FaRegHeart } from "react-icons/fa";
 
 export function NavbarFixed() {
     const {user} = useContext(AuthContext);

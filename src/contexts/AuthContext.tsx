@@ -12,9 +12,11 @@ type Auth = {
     user: User;
     email: any;
     password: any;
+    favorites: any;
     signIn: () => Promise<void | boolean>;
     signInFacebook: ({ accessToken }) => Promise<void | boolean>;
     addFavorite: (id) => Promise<void | boolean>;
+    removeFavorite: (id) => Promise<void | boolean>;
     signOut: () => void;
     verify: () => void;
     old_password: any;
@@ -32,15 +34,26 @@ export function AuthProvider({ children }) {
     const password = useForm('email');
     const old_password = useForm('password');
     const password_repeat = useForm('password_repeat');
+    const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
         const { 'nextauth.token': token } = parseCookies();
         if (token) {
             recoverUserInformation().then((response: any) => {
-                setUser(response.user)
+                setUser(response.user);
+                getFavorites();
             })
         }
     }, [])
+
+    const getFavorites = async () => {
+        const res = await api.get('favorite/list').then(res => res.data);
+        let array = [];
+        res.data.forEach(item => {
+            array.push(item.id);
+        });
+        setFavorites(array);
+    }
 
     const verify = () => {
         const { 'nextauth.token': token } = parseCookies();
@@ -58,8 +71,13 @@ export function AuthProvider({ children }) {
     const addFavorite = async (id) => {
         const data = new FormData();
         data.append('vehicle', id.toString());
-        const res = await api.post('favorite/add', data);
-        console.log(res);
+        const res = await api.post('favorite/add', data).then(res => res.data);
+        setFavorites(res.data.favorites);
+    }
+
+    const removeFavorite = async (id) => {
+        const res = await api.delete(`favorite/${id}/remove`).then(res => res.data);
+        setFavorites(res.data.favorites);
     }
 
     const signIn = async () => {
@@ -178,8 +196,10 @@ export function AuthProvider({ children }) {
             user,
             email,
             password,
+            favorites,
             signIn,
             addFavorite,
+            removeFavorite,
             signInFacebook,
             signOut,
             verify,
