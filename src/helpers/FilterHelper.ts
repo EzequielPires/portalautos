@@ -28,12 +28,12 @@ export class FilterHelper {
     vehicleGet: any;
 
     async run(id, query) {
-        const res:any = await this.vehicleGet.fetch(this.buildLink(id, query));
+        const res:any = await this.vehicleGet.fetch(this.buildLink(id, query, null));
         return res.data;
     }
-    buildLink(id, query): string {
+    buildLink(id, query, page): string {
         let obj = query ? this.decode(query) : null;
-        let link = "ad/filter?type=car&total=1";
+        let link = `ad/filter?type=car&total=1&limit=20&page=${page ?? '1'}`;
         id[1] ? link = link + `&brand=${id[1]}` : null;
         id[2] ? link = link + `&model=${id[2]}` : null;
         id[3] ? link = link + `&version=${id[3]}` : null;
@@ -48,6 +48,10 @@ export class FilterHelper {
             obj.mileage_traveled_min != "" ? link = link + `&mileage_traveled_min=${obj.mileage_traveled_min}` : null;
         }
         return link;
+    }
+    async more(id, query, page) {
+        const res:any = await this.vehicleGet.fetch(this.buildLink(id, query, page));
+        return res.data;
     }
     verifyItemIdString(value, array) {
         let selected = "0";

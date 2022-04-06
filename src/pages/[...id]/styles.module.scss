@@ -61,6 +61,15 @@
       padding-bottom: 2rem;
     }
   }
+  .button_more {
+    width: 348px;
+    height: 48px;
+    border: 0;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 6px;
+    background: var(--main-color);
+  }
 }
 @media (max-width: 720px) {
   .search {

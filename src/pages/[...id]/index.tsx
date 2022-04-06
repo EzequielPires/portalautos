@@ -11,7 +11,7 @@ import { SkeletonCardAnnouncement } from "../../components/Skeleton/SkeletonCard
 import { useRouter } from 'next/router';
 
 export default function Search() {
-    const { brand, activeFilter, setActiveFilter, filter, run } = useContext(FilterContext);
+    const { brand, activeFilter, setActiveFilter, filter, run, more } = useContext(FilterContext);
     const router = useRouter();
     const id = router.query.id || [];
     const teste = useCallback(() => {
@@ -23,9 +23,6 @@ export default function Search() {
     useEffect(() => {
         teste();
     }, [id]);
-    useEffect(() => {
-        console.log(filter.vehicles.value);
-    }, [filter.vehicles.value]);
     return (
         <div className={styles.search + ` ${activeFilter && styles.active_filter}`}>
             <NavbarFixed />
@@ -53,7 +50,10 @@ export default function Search() {
                         <span>{filter.total.value} carros encontrados</span>
                     </div>
                     <div className={styles.list + " d-flex flex-wrap justify-content-start px-4 gap-4"}>
-                        {filter.vehicleGet.isLoading &&
+                        {filter.vehicles.value && filter.vehicles.value.length > 0 ? filter.vehicles.value.map((vehicle, idx) => (<CardAnnouncement key={idx} data={vehicle} />))
+                            : null
+                        }
+                        {filter.vehicleGet.isLoading ?
                             <>
                                 <SkeletonCardAnnouncement />
                                 <SkeletonCardAnnouncement />
@@ -65,10 +65,21 @@ export default function Search() {
                                 <SkeletonCardAnnouncement />
                                 <SkeletonCardAnnouncement />
                                 <SkeletonCardAnnouncement />
+                            </> :
+                            <>
+                                {(filter.vehicles.value.length % 20) === 0 && filter.vehicles.value.length >= 20 ?
+                                    <div className="d-flex justify-content-center w-100">
+                                        <button className={styles.button_more} onClick={() => {
+                                            if (id && id.length > 0) {
+                                                const { filter: link } = router.query;
+                                                more(id, link, filter.vehicles.value.length / 20 + 1);
+                                            }
+                                        }}>
+                                            Ver mais
+                                        </button>
+                                    </div>
+                                    : null}
                             </>
-                        }
-                        {filter.vehicles.value && filter.vehicles.value.length > 0 ? filter.vehicles.value.map((vehicle, idx) => (<CardAnnouncement key={idx} data={vehicle} />))
-                            : null
                         }
 
                     </div>

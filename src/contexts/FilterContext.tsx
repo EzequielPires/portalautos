@@ -17,6 +17,7 @@ type Filter = {
     version: any,
     run: any,
     filter: FilterHelper,
+    more: any;
 }
 
 export const FilterContext = createContext({} as Filter);
@@ -60,6 +61,12 @@ export function FilterProvider({ children }) {
         filter.versions.setValue(filter.verifyItemIdString(id[3], res[0].versions));
         filter.total.setValue(res.result.total);
     }
+    const more = async (id, link, page) => {
+        const res = await filter.more(id, link, page);
+        let array = [...filter.vehicles.value, ...res.result.vehicles];
+        console.log(array);
+        filter.vehicles.onChange(array);
+    }
 
     return (
         <FilterContext.Provider value={{
@@ -72,6 +79,7 @@ export function FilterProvider({ children }) {
             model,
             version,
             run,
+            more,
             filter
         }}>
             {children}

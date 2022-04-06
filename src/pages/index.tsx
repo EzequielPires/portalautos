@@ -27,7 +27,7 @@ export default function Home() {
       <NavbarFixed />
       <Filter />
       <SectionFormFilterHome />
-      <SectionServices />
+      {/* <SectionServices /> */}
       <SectionOffers />
       <SectionVehiclesPopular />
       <SectionStore />
