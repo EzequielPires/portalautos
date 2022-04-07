@@ -13,46 +13,21 @@ import LogoHonda from "../../assets/honda-logo.svg";
 import BannerMauricio from "../../assets/mauricio-banner.png";
 import LogoMauricio from "../../assets/mauricio-logo.svg";
 import {CardStore} from "../CardStore";
+import { useFetchDefault } from "../../hooks/useFetchDefault";
+import { useEffect } from "react";
 
 export function SectionStore() {
-    const data = [
-        {
-            id: "1",
-            name: "Ford Triauto",
-            banner: BannerTriauto.src,
-            avatar: LogoTriauto.src,
-        },
-        {
-            id: "2",
-            name: "Giovanni Veículos",
-            banner: BannerGiovanni.src,
-            avatar: LogoGiovanni.src,
-        },
-        {
-            id: "3",
-            name: "Jmk veículos",
-            banner: BannerJmw.src,
-            avatar: LogoJmw.src,
-        },
-        {
-            id: "4",
-            name: "Formula R Honda",
-            banner: BannerHonda.src,
-            avatar: LogoHonda.src,
-        },
-        {
-            id: "5",
-            name: "Maurício Motos",
-            banner: BannerMauricio.src,
-            avatar: LogoMauricio.src,
-        },
-        {
-            id: "6",
-            name: "Ford Triauto",
-            banner: BannerTriauto.src,
-            avatar: LogoTriauto.src,
-        },
-    ]
+    const {fetch, value} = useFetchDefault();
+
+    const handleStore = async () => {
+        const res = await fetch('/store/list');
+        console.log(res);
+    }
+
+    useEffect(() => {
+        handleStore();
+    }, []);
+
     return (
         <div className={styles.section_store}>
             <div className="d-flex justify-content-md-center" style={{paddingLeft: 12}}>
@@ -66,9 +41,9 @@ export function SectionStore() {
                     slidesPerView="auto"
                     navigation
                 >
-                    {data?.map(item => (
+                    {value && value.data?.map(item => (
                             <SwiperSlide id={styles.swiper_slide} key={item.id}>
-                                <Link href={`/store/${item.id}`}>
+                                <Link key={item.id} href={`/store/${item.id}`}>
                                     <a>
                                         <CardStore data={item}/>
                                     </a>

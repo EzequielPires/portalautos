@@ -11,10 +11,10 @@ import { api } from "../../services/api";
 
 export function CardAnnouncement({ data }) {
     const { user, addFavorite, favorites, removeFavorite} = useContext(AuthContext);
+    const [isFavorite, setIsFavorite] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const router = useRouter();
     const { id } = router.query;
-    const [isFavorite, setIsFavorite] = useState(false);
 
     const handleFavorite = async () => {
         if(isFavorite) {
