@@ -88,7 +88,6 @@ export default function Login() {
                                 appId="279554237662721"
                                 autoLoad={false}
                                 callback={responseFacebook}
-                                scope="pages_show_list,pages_read_engagement,pages_manage_metadata,pages_manage_posts,public_profile"
                                 render={renderProps => (
                                     <button type="button" className="w-100" style={{ background: "#395799" }} onClick={renderProps.onClick}>Entrar com Facebook</button>
                                 )}

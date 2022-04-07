@@ -12,14 +12,7 @@ import { CardStore } from '../../CardStore';
 import BannerTriauto from "../../../assets/triauto-banner.png";
 import LogoTriauto from "../../../assets/triauto-logo.svg";
 export function Aside({ vehicle }) {
-    const data = [
-        {
-            id: "1",
-            name: "Ford Triauto",
-            banner: BannerTriauto.src,
-            avatar: LogoTriauto.src,
-        },
-    ]
+    
     return (
         <div className={styles.aside}>
             <div className="d-flex justify-content-between align-items-start w-100 mb-4">
@@ -33,7 +26,7 @@ export function Aside({ vehicle }) {
                 <ModalDefault title="Enviar mensagem" />
             </div>
             <div className="d-flex justify-content-center my-3">
-                <CardStore data={data[0]} />
+                <CardStore data={vehicle.store} />
             </div>
             {/* <div className={"d-flex gap-2 mb-2"}>
                 <a href="#financing" className={styles.btn_santander + " mt-2"}>

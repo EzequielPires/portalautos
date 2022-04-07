@@ -15,8 +15,16 @@
         border-bottom: 1px solid #efefef;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .10);
         z-index: 9999;
-        a {
-            color: #333 !important;
+        .list_links {
+            a {
+                color: #333 !important;
+            }
+        }
+        .favorites {
+            svg {
+                margin: 0;
+                color: #d21b60;
+            }
         }
         .logo {
             height: 32px;

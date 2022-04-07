@@ -1,17 +1,17 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {faBullhorn, faHandshake, faQuestion, faUserEdit} from "@fortawesome/free-solid-svg-icons";
-import {ButtonUser} from "../ButtonUser";
+import { faBullhorn, faHandshake, faQuestion, faUserEdit } from "@fortawesome/free-solid-svg-icons";
+import { ButtonUser } from "../ButtonUser";
 import Logo from "../../assets/logo.svg"
 import styles from "./styles.module.scss";
-import {useRouter} from "next/router";
-import {useContext, useEffect, useState} from "react";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { AuthContext } from "../../contexts/AuthContext";
 import { FaRegHeart } from "react-icons/fa";
 
 export function NavbarFixed() {
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const router = useRouter();
     const [routeActive, setRouteActive] = useState('');
 
@@ -26,7 +26,7 @@ export function NavbarFixed() {
                 <div className={styles.logo}>
                     <Link href="/">
                         <a>
-                            <img src={Logo.src} alt=""/>
+                            <img src={Logo.src} alt="" />
                         </a>
                     </Link>
                 </div>
@@ -53,10 +53,19 @@ export function NavbarFixed() {
                             </Link>
                         </li>
                     </ul>
-                    <ButtonUser/>
-                    <button className={styles.btn_primary} onClick={() => {user ? router.push('/cadastrar-anuncio') : router.push('/login?r=/cadastrar-anuncio')}}>
-                        Anunciar veículo
-                    </button>
+                    <div className="d-flex align-items-center gap-2">
+                        <ButtonUser />
+                        {user ? <Link href={'/favoritos'}>
+                            <a className={styles.favorites}>
+                                <FaRegHeart />
+                            </a>
+                        </Link> : null}
+                    </div>
+                    <Link href={user ? '/cadastrar-anuncio' : '/login?r=/cadastrar-anuncio'}>
+                        <a className={styles.btn_primary}>
+                            Anunciar veículo
+                        </a>
+                    </Link>
                 </div>
             </nav>
         </header>

@@ -1,14 +1,10 @@
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { faBullhorn, faHandshake, faQuestion, faSignOutAlt, faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
 import { useRouter } from "next/router";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import Link from "next/link";
+import { AuthContext } from "../../contexts/AuthContext";
+import { FaBullhorn, FaHandsHelping, FaHeart, FaNetworkWired, FaQuestion, FaRegHeart, FaSignOutAlt, FaUserEdit, FaUsers } from "react-icons/fa";
 import Logo from "../../assets/logo.svg";
 import styles from "./styles.module.scss";
-import { FaBullhorn, FaHandsHelping, FaNetworkWired, FaQuestion, FaSignOutAlt, FaUserEdit, FaUsers } from "react-icons/fa";
 
 export function MenuAside() {
     const { user, signOut } = useContext(AuthContext);
@@ -58,6 +54,16 @@ export function MenuAside() {
                                 <FaHandsHelping />
                             </span>
                             Minhas vendas
+                        </a>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/favoritos">
+                        <a className={routeActive === "favoritos" ? styles.active : null}>
+                            <span>
+                                <FaHeart />
+                            </span>
+                            Favoritos
                         </a>
                     </Link>
                 </li>

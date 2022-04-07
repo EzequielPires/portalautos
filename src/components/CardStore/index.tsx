@@ -9,12 +9,12 @@ export function CardStore({data}) {
         <div className={styles.card}>
             <div className={styles.card_header}>
                 <div className={styles.banner}>
-                    <img src={data.banner} alt="" />
+                    {data.banner && <img src={data.banner} alt="" />}
                 </div>
-                <div className={styles.overflow}></div>
+                {data.banner && <div className={styles.overflow}></div>}
                 <div className={styles.avatar}>
                     <div className={styles.content_image}>
-                        <img src={data.avatar} alt="" />
+                        {data.logo ? <img src={data.logo} alt="" /> : <h2 className="m-0" style={{color: "#fff"}}>{data.name.substring(0, 1)}</h2>}
                     </div>
                 </div>
             </div>

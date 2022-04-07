@@ -23,7 +23,7 @@ import Head from "next/head";
 import { Loading } from "../../components/Loading";
 import { api } from "../../services/api";
 
-export default function Comprar({id, data}) {
+export default function Comprar({id, data, error}) {
     const [url, setUrl] = useState('');
     const [vehicle, setVehicle] = useState(null);
 
@@ -35,9 +35,9 @@ export default function Comprar({id, data}) {
         setUrl(location.href);
     }, [id]);
 
-    /* if (error) {
+    if (error) {
         return <Error />
-    } */
+    }
 
     const generateTitle = () => {
         let link = `${id[0]} ${id[1]} ${id[2]} ${id[3]}`;
@@ -145,8 +145,9 @@ export default function Comprar({id, data}) {
 
 export async function getServerSideProps({params}) {
     const id = params.id;
-    const data = await api.get(`/ad/${id[id.length - 1]}/view`).then((res) => res.data); 
+    let error = null;
+    const data = await api.get(`/ad/${id[id.length - 1]}/view`).then((res) => res.data).catch(() => error = true);
     return {
-      props: {id, data}, // will be passed to the page component as props
+      props: {id, data, error}, // will be passed to the page component as props
     }
   }

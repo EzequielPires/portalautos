@@ -40,6 +40,7 @@ export function NavTabs() {
             </div>
             <nav className={styles.nav}>
                 <TabButton Link="Ativos" Active={active} onClick={onClick} />
+                <TabButton Link="Vendidos" Active={active} onClick={onClick} />
                 <TabButton Link="Incompletos" Active={active} onClick={onClick} />
                 <TabButton Link="Removidos" Active={active} onClick={onClick} />
             </nav>
