@@ -1,0 +1,77 @@
+.minha_loja {
+    width: 100vw;
+    .content {
+        padding-left: 300px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .content_header {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .btn_submit {
+            width: 248px;
+            height: 48px;
+            border: 0;
+            color: #fff;
+            font-weight: 600;
+            background: var(--main-color);
+            border-radius: 6px;
+        }
+        .banner {
+            width: 100%;
+            height: 200px;
+            background: #1d1d1d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 0 0 .5rem .5rem;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .logo {
+            width: 148px;
+            height: 148px;
+            background: #1d1d1d;
+            border-radius: 50%;
+            margin-top: -74px;
+            z-index: 9999;
+            border: 8px solid #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 80%;
+            }
+        }
+        .btn_add_image {
+            height: 48px;
+            padding: 0 2rem;
+            border: 2px solid var(--main-color);
+            border-radius: 6px;
+            color: #333;
+            font-weight: 600;
+            background: #fff;
+        }
+        .content_main {
+            background: #fff;
+            padding: 2rem 1rem;
+            border: 1px solid #d3d3d3;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+    }
+}
