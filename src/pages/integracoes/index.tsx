@@ -44,6 +44,9 @@ export default function Integracoes() {
             Router.push('/minha-loja?origin=/integracoes')
         }
     }
+    useEffect(() => {
+        handleIntegrations();
+    }, []);
     if (error) {
         return (
             <>
@@ -54,9 +57,6 @@ export default function Integracoes() {
             </>
         )
     }
-    useEffect(() => {
-        handleIntegrations();
-    }, []);
     return (
         <div className={styles.container}>
             <Head>
