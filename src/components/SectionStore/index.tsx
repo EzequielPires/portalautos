@@ -20,8 +20,7 @@ export function SectionStore() {
     const {fetch, value} = useFetchDefault();
 
     const handleStore = async () => {
-        const res = await fetch('/store/list');
-        console.log(res);
+        const res = await fetch('/store/list?home=1');
     }
 
     useEffect(() => {
@@ -43,7 +42,7 @@ export function SectionStore() {
                 >
                     {value && value.data?.map(item => (
                             <SwiperSlide id={styles.swiper_slide} key={item.id}>
-                                <Link key={item.id} href={`/store/${item.id}`}>
+                                <Link key={item.id} href={`/store/${item.id_string}`}>
                                     <a>
                                         <CardStore data={item}/>
                                     </a>
