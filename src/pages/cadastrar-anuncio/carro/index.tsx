@@ -17,7 +17,7 @@ export default function Carro() {
     const handleStore = async () => {
         try {
             const res = await storeRepository.view();
-            {!res.success ? router.push('/criar-loja') : null}
+            {!res.success ? router.push('/minha-loja?origin=/cadastrar-anuncio/carro') : null}
         } catch {
             return false;
         }

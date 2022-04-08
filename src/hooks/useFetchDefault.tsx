@@ -12,13 +12,10 @@ export function useFetchDefault() {
             setIsLoading(false);
             setValue(res.data);
             return res.data;
-        }).catch(() => {
-            setIsLoading(false);
-            setError(true);
-        })
+        }).catch(() => setError(true))
+        setIsLoading(false);
         return res;
     }, []);
-
     return {
         fetch,
         value,

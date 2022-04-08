@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
-import { Button, Modal, Spinner } from 'react-bootstrap';
+import { Modal, Spinner } from 'react-bootstrap';
 import { AlertContext } from '../../contexts/AlertContext';
 import { AuthContext } from '../../contexts/AuthContext';
-import useForm from '../../hooks/useForm';
 import { Input } from '../Form/Input';
 import styles from './styles.module.scss';
 

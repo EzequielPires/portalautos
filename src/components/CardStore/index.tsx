@@ -2,7 +2,6 @@ import styles from "./styles.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import Image from "next/image";
 import Bg from "../../assets/bg.png";
 import { useFetchDefault } from "../../hooks/useFetchDefault";
 import { useEffect, useState } from "react";

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaImage } from "react-icons/fa";
 import { InputDefault } from "../../components/InputDefault";
 import { MenuAside } from "../../components/MenuAside";
@@ -12,9 +12,13 @@ import { StoreRepository } from "../../repositories/StoreRepository";
 import { api } from "../../services/api";
 import { maskPhone } from "../../hooks/useMask";
 import styles from "./styles.module.scss";
+import { useRouter } from "next/router";
+import { AlertContext } from "../../contexts/AlertContext";
+import { Loading } from "../../components/Loading";
 
 export default function MinhaLoja() {
     const { fetch, value } = useFetchDefault();
+    const [loading, setLoading] = useState(false);
     const [store, setStore] = useState(null);
     const name = useForm('name');
     const phone = useForm('tel');
@@ -24,6 +28,9 @@ export default function MinhaLoja() {
     const storeRepository = new StoreRepository();
     const [banner, setBanner] = useState(null);
     const [logo, setLogo] = useState(null);
+    const router = useRouter();
+    const {origin} = router.query;
+    const { alertShow } = useContext(AlertContext);
 
     const handleTypesStore = async () => {
         const res = await storeRepository.findTypesStore();
@@ -43,25 +50,60 @@ export default function MinhaLoja() {
     }
     const handleSubmit = async () => {
         if (name.validate() && email.validate() && phone.validate() && wpp.validate()) {
-            console.log(name.value);
+            setLoading(true);
             const data = new FormData();
             data.append('store[name]', name.value);
             data.append('store[email]', email.value);
             data.append('store[phone_number]', phone.value);
             data.append('store[wpp_number]', wpp.value);
             data.append('store[type]', typeStore.value);
-            await api.post('/store/edit', data).then(res => res.data).then( async () => {
-                if(logo) {
-                    let dataLogo = new FormData();
-                    dataLogo.append('file', logo);
-                    await api.post('store/logo', dataLogo);
+            if(store.id) {
+                const res:any = await api.post('/store/edit', data).then( async (res) => {
+                    if(logo) {
+                        let dataLogo = new FormData();
+                        dataLogo.append('file', logo);
+                        await api.post('store/logo', dataLogo);
+                    }
+                    if(banner) {
+                        let dataBanner = new FormData();
+                        dataBanner.append('file', banner);
+                        await api.post('store/banner', dataBanner);
+                    }
+                    return res.data;
+                });
+                console.log(res);
+                if (res.success) {
+                    alertShow("success", "Loja alterada com sucesso.");
+                    {origin && router.push(`/${origin}`)}
+                    setLoading(false);
+                } else {
+                    alertShow("danger", "Erro ao alterar loja, tente novamente.");
+                    setLoading(false);
                 }
-                if(banner) {
-                    let dataBanner = new FormData();
-                    dataBanner.append('file', banner);
-                    await api.post('store/banner', dataBanner);
+            } else {
+                const res: any = await api.post('/store/create', data).then( async (res) => {
+                    if(logo) {
+                        let dataLogo = new FormData();
+                        dataLogo.append('file', logo);
+                        await api.post('store/logo', dataLogo);
+                    }
+                    if(banner) {
+                        let dataBanner = new FormData();
+                        dataBanner.append('file', banner);
+                        await api.post('store/banner', dataBanner);
+                    }
+                    return res.data;
+                });
+                console.log(res);
+                if (res.success) {
+                    alertShow("success", "Loja criada com sucesso.");
+                    {origin && router.push(`/${origin}`)}
+                    setLoading(false);
+                } else {
+                    alertShow("danger", "Erro ao criar loja, tente novamente.");
+                    setLoading(false);
                 }
-            });
+            }
         }
     }
     const onChangeBanner = (e) => {
@@ -87,9 +129,13 @@ export default function MinhaLoja() {
                 <Navbar />
                 <MenuAside />
             </header>
+            {loading && <Loading />}
             {
                 store &&
                 <div className={styles.content}>
+                    {origin === '/integracoes' ? <div className="alert  alert-warning mt-5">Para ver a página de integrações primeiro crie sua loja!</div> : null}
+                    {origin === '/cadastrar-anuncio/carro' ? <div className="alert  alert-warning mt-5">Para ver a página de cadastro de veículos primeiro crie sua loja!</div> : null}
+                    {origin === '/cadastrar-anuncio/moto' ? <div className="alert  alert-warning mt-5">Para ver a página de cadastro de veículos primeiro crie sua loja!</div> : null}
                     <div className={styles.card}>
                         <div className={styles.content_header}>
                             <div className={styles.banner}>

@@ -1,41 +1,34 @@
 import Head from "next/head";
 import { useContext, useEffect, useState } from "react";
-import { InputSearch } from "../../components/InputSearch";
 import { MenuAside } from "../../components/MenuAside";
 import { Navbar } from "../../components/Navbar";
-import { Row } from "../../components/Table/Row";
-import { useFetch } from "../../hooks/useFetch";
-import useForm from "../../hooks/useForm";
 import WebmotorsLogo from "../../assets/logos/webmotors.svg";
 import ICarrosLogo from "../../assets/logos/icarros.png";
 import OlxLogo from "../../assets/logos/olx.png";
 import MercadoLivreLogo from "../../assets/logos/mercado-livre.png";
 import styles from "./styles.module.scss";
-import { FaCogs, FaFacebook, FaFacebookF, FaPlus } from "react-icons/fa";
+import { FaCogs, FaFacebook, FaPlus } from "react-icons/fa";
 import { Modal } from "react-bootstrap";
 import ReactFacebookLogin from "react-facebook-login-typed";
 import { api } from "../../services/api";
 import { MdOutlineRemove } from "react-icons/md";
-import { Alert } from "../../components/Alert";
 import { AlertContext } from "../../contexts/AlertContext";
+import Router from "next/router";
+import Link from "next/link";
 
 export default function Integracoes() {
     const [show, setShow] = useState(false);
     const [integrations, setIntegrations] = useState(null);
-    const search = useForm('search_id');
-    const { data } = useFetch<any>('/vehicle/list?limit=16&active=1');
-    const {alertShow} = useContext(AlertContext);
+    const { alertShow } = useContext(AlertContext);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [error, setError] = useState(false);
 
-    const searchVehicle = (e) => {
-
-    }
     const handleIntegrationFacebook = async (accessToken) => {
         const data = new FormData();
         data.append('access_token', accessToken);
-        const res:any = await api.post('/integration/facebook', data);
-        if(res.data.success) {
+        const res: any = await api.post('/integration/facebook', data);
+        if (res.data.success) {
             handleClose();
             alertShow("success", "Itegração com Facebook realizada com sucesso.");
         } else {
@@ -44,8 +37,22 @@ export default function Integracoes() {
         }
     }
     const handleIntegrations = async () => {
-        const res = await api.get('/integration');
-        setIntegrations(res.data.data);
+        let error = false;
+        try {
+            await api.get('/integration');
+        } catch(err) {
+            Router.push('/minha-loja?origin=/integracoes')
+        }
+    }
+    if (error) {
+        return (
+            <>
+                <p>Para acessar essa página é necessário ter uma loja criada!</p>
+                <Link href={'/minha-loja?r=integracoes'}>
+                    <a>Criar loja</a>
+                </Link>
+            </>
+        )
     }
     useEffect(() => {
         handleIntegrations();
@@ -67,7 +74,6 @@ export default function Integracoes() {
                         <h2 className={styles.title}>Seu anúncio para todo o Brasil</h2>
                         <p className={styles.subtitle}>Integre o seus anúncios com diversas plataformas de vendas de veículos e aumente sua chance de sucesso.</p>
                     </div>
-                    <InputSearch onSubmit={searchVehicle} {...search} />
                 </div>
                 <div className={styles.integrations}>
                     <h2>Integração de leads</h2>
@@ -77,8 +83,8 @@ export default function Integracoes() {
                                 <FaFacebook />
                             </div>
                             <span className={styles.name}>Facebook</span>
-                            <span className={styles.status}>{integrations?.facebook?.length > 0 ? 'Integração ativada' :'Integração desativada'}</span>
-                            <button onClick={handleShow}>{integrations?.facebook?.length > 0 ? <><MdOutlineRemove /> Desativar integração</>: <><FaPlus />Ativar integração</>}</button>
+                            <span className={styles.status}>{integrations?.facebook?.length > 0 ? 'Integração ativada' : 'Integração desativada'}</span>
+                            <button onClick={handleShow}>{integrations?.facebook?.length > 0 ? <><MdOutlineRemove /> Desativar integração</> : <><FaPlus />Ativar integração</>}</button>
                         </div>
                         <div className={styles.card}>
                             <div className={styles.logo}>
