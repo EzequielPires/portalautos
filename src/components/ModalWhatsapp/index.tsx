@@ -5,23 +5,26 @@ import {InputDefault} from "../InputDefault";
 import {TextArea} from "../TextArea";
 import { FaWhatsapp, FaFacebookF} from 'react-icons/fa';
 import useForm from "../../hooks/useForm";
+import { useRouter } from "next/router";
 
-export function ModalWhatsapp({title}) {
+export function ModalWhatsapp({title, wpp_number}) {
     const [show, setShow] = useState(false);
     const name = useForm('name');
     const phone = useForm('tel');
     const email = useForm('email');
     const message = useForm('message');
+    const router = useRouter();
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     useEffect(() => {
-        message.setValue('Olá, vi um anúncio no site portalautos.com.br e gostaria de mais informações! https://www.portalautos.com.br/comprar/22021011072');
+        message.setValue('Olá, vi um anúncio no site portalautos.com.br e gostaria de mais informações! http://portalautos.com.br/' + router.asPath);
     }, [])
 
     return (
         <>
             <button
+                disabled={wpp_number ? false : true}
                 onClick={handleShow}
                 className={styles.btn_primary + " d-flex align-items-center justify-content-center gap-2"}
             >
@@ -51,17 +54,6 @@ export function ModalWhatsapp({title}) {
                         error={phone.error}
                         placeholder={'Ex.: (00) 00000-0000'}
                     />
-                    <div className="mt-4"></div>
-                    <TextArea
-                        label="Mensagem"
-                        placeholder="Digite aqui a sua mensagem"
-                        onChange={message.onChange}
-                        value={message.value}
-                        onBlur={message.onBlur}
-                        type="text"
-                        error={message.error}
-                        required={true}
-                    />
                 </Modal.Body>
                 <Modal.Footer id={styles.modal_footer}>
                     <button
@@ -70,12 +62,12 @@ export function ModalWhatsapp({title}) {
                     >
                         Voltar
                     </button>
-                    <button
-                        onClick={handleClose}
+                    <a
+                        href={`https://api.whatsapp.com/send?phone=55${wpp_number}&text=${message.value}`}
                         className={styles.btn_submit + " d-flex align-items-center justify-content-center gap-2"}
                     >
                         Enviar mensagem
-                    </button>
+                    </a>
                 </Modal.Footer>
             </Modal>
         </>

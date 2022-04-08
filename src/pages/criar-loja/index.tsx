@@ -21,8 +21,8 @@ export default function CriarLoja() {
     const storeRepository = new StoreRepository();
     const name = useForm('name');
     const [response, setResponse] = useState(null);
-    const typeStore = useSelect();
     const [types, setTypes] = useState([]);
+    const typeStore = useSelect();
 
     const handleTypesStore = async () => {
         const res = await storeRepository.findTypesStore();

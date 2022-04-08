@@ -1,12 +1,12 @@
 import styles from "./styles.module.scss";
 import Modal from 'react-bootstrap/Modal'
-import {useEffect, useState} from "react";
-import {InputDefault} from "../InputDefault";
-import {TextArea} from "../TextArea";
-import { FaEnvelope, FaFacebookF} from 'react-icons/fa';
+import { useEffect, useState } from "react";
+import { InputDefault } from "../InputDefault";
+import { TextArea } from "../TextArea";
+import { FaEnvelope, FaFacebookF } from 'react-icons/fa';
 import useForm from "../../hooks/useForm";
 
-export function ModalDefault({title}) {
+export function ModalDefault({ title }) {
     const [show, setShow] = useState(false);
     const name = useForm('name');
     const phone = useForm('tel');
@@ -22,6 +22,7 @@ export function ModalDefault({title}) {
     return (
         <>
             <button
+                disabled
                 onClick={handleShow}
                 className={styles.btn_primary + " d-flex align-items-center justify-content-center gap-2"}
             >

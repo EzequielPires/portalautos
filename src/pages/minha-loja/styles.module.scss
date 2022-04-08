@@ -1,5 +1,4 @@
 .minha_loja {
-    width: 100vw;
     .content {
         padding-left: 300px;
         width: 100%;
@@ -7,11 +6,14 @@
         flex-direction: column;
         align-items: center;
         .card {
-            margin-top: 1.5rem;
+            margin: 1.5rem 0;
             border: 1px solid #d3d3d3;
             border-radius: 8px;
             background: #fff;
             padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .content_header {
             width: 100%;
@@ -54,8 +56,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
             img {
-                width: 80%;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         }
         .btn_add_image {
@@ -66,10 +71,13 @@
             color: #333;
             font-weight: 600;
             background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .content_main {
             width: 100%;
-            max-width: 500px;
+            max-width: 392px;
             display: flex;
             flex-direction: column;
             align-items: center;

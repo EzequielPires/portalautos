@@ -4,9 +4,13 @@ import { FaImage } from "react-icons/fa";
 import { InputDefault } from "../../components/InputDefault";
 import { MenuAside } from "../../components/MenuAside";
 import { Navbar } from "../../components/Navbar";
+import { Select } from "../../components/Select";
 import { useFetchDefault } from "../../hooks/useFetchDefault";
 import useForm from "../../hooks/useForm";
+import { useSelect } from "../../hooks/useSelect";
+import { StoreRepository } from "../../repositories/StoreRepository";
 import { api } from "../../services/api";
+import { maskPhone } from "../../hooks/useMask";
 import styles from "./styles.module.scss";
 
 export default function MinhaLoja() {
@@ -16,29 +20,59 @@ export default function MinhaLoja() {
     const phone = useForm('tel');
     const wpp = useForm('tel');
     const email = useForm('email');
+    const typeStore = useSelect();
+    const storeRepository = new StoreRepository();
+    const [banner, setBanner] = useState(null);
+    const [logo, setLogo] = useState(null);
 
+    const handleTypesStore = async () => {
+        const res = await storeRepository.findTypesStore();
+        typeStore.setOptions(res.data);
+    }
     const handleStore = async () => {
         const res = await fetch('store/view');
         setStore(res.data);
-        res.data.name && name.setValue(res.data.name);
+        res.data.name && name.setValue(res.data.name.toUpperCase());
         res.data.email && email.setValue(res.data.email);
-        res.data.phone_number && phone.setValue(res.data.phone_number);
-        res.data.wpp_number && wpp.setValue(res.data.wpp_number);
+        res.data.phone_number && phone.setValue(maskPhone(res.data.phone_number));
+        res.data.wpp_number && wpp.setValue(maskPhone(res.data.wpp_number));
+        res.data.type && typeStore.setValue(res.data.type.id);
+        res.data.banner && setBanner(res.data.banner);
+        res.data.logo && setLogo(res.data.logo);
+
     }
     const handleSubmit = async () => {
         if (name.validate() && email.validate() && phone.validate() && wpp.validate()) {
             console.log(name.value);
             const data = new FormData();
-            data.append('name', name.value);
-            data.append('email', email.value);
-            data.append('phone_number', phone.value);
-            data.append('wpp_number', wpp.value);
-            const res = await api.post('/store/edit', data).then(res => res.data);
-            console.log(res.data);
+            data.append('store[name]', name.value);
+            data.append('store[email]', email.value);
+            data.append('store[phone_number]', phone.value);
+            data.append('store[wpp_number]', wpp.value);
+            data.append('store[type]', typeStore.value);
+            await api.post('/store/edit', data).then(res => res.data).then( async () => {
+                if(logo) {
+                    let dataLogo = new FormData();
+                    dataLogo.append('file', logo);
+                    await api.post('store/logo', dataLogo);
+                }
+                if(banner) {
+                    let dataBanner = new FormData();
+                    dataBanner.append('file', banner);
+                    await api.post('store/banner', dataBanner);
+                }
+            });
         }
+    }
+    const onChangeBanner = (e) => {
+        setBanner(e.target.files[0]);
+    }
+    const onChangeLogo = (e) => {
+        setLogo(e.target.files[0]);
     }
 
     useEffect(() => {
+        handleTypesStore();
         handleStore();
     }, []);
 
@@ -59,18 +93,25 @@ export default function MinhaLoja() {
                     <div className={styles.card}>
                         <div className={styles.content_header}>
                             <div className={styles.banner}>
-                                {store.banner ? <img src={`https://portalautos.com.br/` + store.banner.path} alt="" /> : <FaImage style={{ color: '#fff' }} />}
+                                {banner && banner.path ? <img src={`https://portalautos.com.br/` + banner.path} alt="" /> : null}
+                                {banner && !banner.path? <img src={window.URL.createObjectURL(banner)} alt="" /> : null}
+                                {!store.banner && !banner ? <FaImage style={{ color: '#fff' }} /> : null}
                             </div>
                             <div className={styles.logo}>
-                                {store.logo ? <img src={`https://portalautos.com.br/` + store.logo.path} alt="" /> : <FaImage style={{ color: '#fff' }} />}
+                                {logo && logo.path ? <img src={`https://portalautos.com.br/` + store.logo.path} alt="" /> : null}
+                                {logo && !logo.path? <img src={window.URL.createObjectURL(logo)} alt="" /> : null}
+                                {!store.logo && !logo ? <FaImage style={{ color: '#fff' }} /> : null}
                             </div>
                             <div className="d-flex mt-3 mb-4 gap-2">
-                                <button className={styles.btn_add_image}>Adicionar Banner</button>
-                                <button className={styles.btn_add_image}>Adicionar Logo</button>
+                                <input type="file" name="banner" id="banner" className="d-none" onChange={(e) => onChangeBanner(e)}/>
+                                <input type="file" name="logo" id="logo" className="d-none" onChange={(e) => onChangeLogo(e)}/>
+                                <label htmlFor="banner" className={styles.btn_add_image}>Adicionar Banner</label>
+                                <label htmlFor="logo" className={styles.btn_add_image}>Adicionar Logo</label>
                             </div>
                         </div>
                         <div className={styles.content_main}>
                             <InputDefault type="text" id={'name'} label={"Nome da empresa"} {...name} />
+                            <Select label="Tipo de Loja" {...typeStore}/>
                             <InputDefault type="tel" id={'phone'} label={"Celular/telefone para contato"} {...phone} />
                             <InputDefault type="tel" id={'wpp'} label={"Whatsapp para contato"} {...wpp} />
                             <InputDefault type="email" id={'email'} label={"E-mail para contato"} {...email} />

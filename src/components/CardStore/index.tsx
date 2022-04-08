@@ -25,12 +25,12 @@ export function CardStore({ data }) {
         <div className={styles.card}>
             <div className={styles.card_header}>
                 <div className={styles.banner}>
-                    {data.banner ? <img src={data.banner} alt="" /> : <img src={Bg.src} alt="" />}
+                    {data.banner ? <img src={"https://portalautos.com.br/" + data.banner.path} alt="" /> : <img src={Bg.src} alt="" />}
                 </div>
                 {data.banner && <div className={styles.overflow}></div>}
                 <div className={styles.avatar}>
                     <div className={styles.content_image}>
-                        {data.logo ? <img src={data.logo} alt="" /> : <h2 className="m-0" style={{ color: "#fff" }}>{data.name.substring(0, 1).toUpperCase()}</h2>}
+                        {data.logo ? <img src={"https://portalautos.com.br/" + data.logo.path} alt="" /> : <h2 className="m-0" style={{ color: "#fff" }}>{data.name.substring(0, 1).toUpperCase()}</h2>}
                     </div>
                 </div>
             </div>

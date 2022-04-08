@@ -66,9 +66,9 @@ export function Select({ label, options, onChange, value, error, validate, place
                 <span className={selected === placeholder || selected === 'Selecione uma opção' ? styles.placeholder : null}>{selected}</span>
                 <div className="d-flex align-items-center">
                     {value != '0' &&
-                        <button className={styles.close} onClick={() => onChange('0')}>
+                        <span className={styles.close + ' d-block mx-2'} onClick={() => onChange('0')}>
                             <MdClose />
-                        </button>
+                        </span>
                     }
                     <FaChevronDown />
                 </div>
