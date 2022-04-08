@@ -1,9 +1,8 @@
 import styles from "./styles.module.scss";
-import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavbarFixed } from "../../components/NavbarFixed";
 import { useEffect, useState } from "react";
-import { faArrowRight, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { CardAnnouncement } from "../../components/CardAnnouncement";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { useRouter } from "next/router";
