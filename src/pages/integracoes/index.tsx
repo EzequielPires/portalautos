@@ -62,7 +62,7 @@ export default function Integracoes() {
                 <MenuAside />
             </header>
             <div className={styles.content}>
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between flex-wrap">
                     <div className="d-flex flex-column">
                         <h2 className={styles.title}>Seu anúncio para todo o Brasil</h2>
                         <p className={styles.subtitle}>Integre o seus anúncios com diversas plataformas de vendas de veículos e aumente sua chance de sucesso.</p>
@@ -71,7 +71,7 @@ export default function Integracoes() {
                 </div>
                 <div className={styles.integrations}>
                     <h2>Integração de leads</h2>
-                    <div className="d-flex gap-4 mt-4">
+                    <div className="d-flex flex-wrap gap-4 mt-4">
                         <div className={styles.card}>
                             <div className={styles.logo}>
                                 <FaFacebook />
@@ -114,7 +114,7 @@ export default function Integracoes() {
                         </div>
                     </div>
                 </div>
-                <div className={styles.table + ' row mx-0'}>
+                {/* <div className={styles.table + ' row mx-0'}>
                     <div className={styles.header + " row mx-0"}>
                         <div className={styles.col + " col-md-4"}>
                             <h4>Anúncio</h4>
@@ -135,7 +135,7 @@ export default function Integracoes() {
                     {data?.data.vehicles?.map(item => (
                         <Row key={item.id} item={item} />
                     ))}
-                </div>
+                </div> */}
                 <Modal id={styles.modal} show={show} onHide={handleClose}>
                     <Modal.Header id={styles.modal_header} closeButton>
                         <FaCogs />

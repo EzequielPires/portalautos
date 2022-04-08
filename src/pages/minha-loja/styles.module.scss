@@ -77,3 +77,26 @@
         }
     }
 }
+
+@media (max-width: 1200px) {
+    .minha_loja {
+        .content {
+            padding-left: 0;
+        }
+    }
+}
+@media (max-width: 520px) {
+    .minha_loja {
+        .content {
+            .card {
+                margin-top: 0;
+                padding-top: 2rem;
+                border: 0;
+                border-radius: 0;
+            }
+            .btn_add_image {
+                padding: 0 1rem;
+            }
+        }
+    }
+}
