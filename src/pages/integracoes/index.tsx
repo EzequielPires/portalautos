@@ -47,6 +47,7 @@ export default function Integracoes() {
     useEffect(() => {
         handleIntegrations();
     }, []);
+    
     if (error) {
         return (
             <>
