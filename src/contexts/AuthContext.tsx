@@ -72,12 +72,26 @@ export function AuthProvider({ children }) {
         const data = new FormData();
         data.append('vehicle', id.toString());
         const res = await api.post('favorite/add', data).then(res => res.data);
-        setFavorites(res.data.favorites);
+        console.log(res.data.favorites);
+        let array = [];
+        for (let key in res.data.favorites) {
+            array.push(res.data.favorites[key]);
+        }
+        setFavorites(array);
     }
 
     const removeFavorite = async (id) => {
         const res = await api.delete(`favorite/${id}/remove`).then(res => res.data);
-        setFavorites(res.data.favorites);
+        let array = [];
+        console.log(Array.isArray(res.data.favorites));
+        if(Array.isArray(res.data.favorites)) {
+            setFavorites(res.data.favorites);
+        } else {
+            for (let key in res.data.favorites) {
+                array.push(res.data.favorites[key]);
+            }
+            setFavorites(array);
+        }
     }
 
     const signIn = async () => {

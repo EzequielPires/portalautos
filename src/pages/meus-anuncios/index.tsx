@@ -4,6 +4,7 @@ import { parseCookies } from "nookies";
 import { useContext, useEffect } from "react";
 import { MenuAside } from "../../components/MenuAside";
 import { Navbar } from "../../components/Navbar";
+import { NavbarFixed } from "../../components/NavbarFixed";
 import { NavTabs } from "../../components/NavTabs";
 import { CarContext } from "../../contexts/CarContext";
 
@@ -22,7 +23,7 @@ export default function MeusAnuncios() {
                 <meta name="author" content="Portal Catalão Internet Service" />
             </Head>
             <header className="d-flex">
-                <Navbar />
+                <NavbarFixed />
                 <MenuAside />
             </header>
             <div className={styles.content}>

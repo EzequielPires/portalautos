@@ -25,7 +25,7 @@ export function CardAnnouncement({ data }) {
     }
 
     useEffect(() => {
-        if(favorites?.length > 0) {
+        if(favorites) {
             let favorite = false;
             favorites.forEach(item => {
                 item === data.id ? favorite = true : null;
