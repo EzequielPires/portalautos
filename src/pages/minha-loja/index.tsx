@@ -15,6 +15,8 @@ import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 import { AlertContext } from "../../contexts/AlertContext";
 import { Loading } from "../../components/Loading";
+import { InputIco } from "../../components/InputIco";
+import { Input } from "../../components/Input";
 
 export default function MinhaLoja() {
     const { fetch, value } = useFetchDefault();
@@ -156,11 +158,11 @@ export default function MinhaLoja() {
                             </div>
                         </div>
                         <div className={styles.content_main}>
-                            <InputDefault type="text" id={'name'} label={"Nome da empresa"} {...name} />
+                            <Input type="text" id={'name'} label={"Nome da empresa"} error={false} {...name} />
                             <Select label="Tipo de Loja" {...typeStore}/>
-                            <InputDefault type="tel" id={'phone'} label={"Celular/telefone para contato"} {...phone} />
-                            <InputDefault type="tel" id={'wpp'} label={"Whatsapp para contato"} {...wpp} />
-                            <InputDefault type="email" id={'email'} label={"E-mail para contato"} {...email} />
+                            <Input type="tel" id={'phone'} label={"Celular/telefone para contato"} {...phone} />
+                            <Input type="tel" id={'wpp'} label={"Whatsapp para contato"} {...wpp} />
+                            <Input type="email" id={'email'} label={"E-mail para contato"} {...email} />
                             <button className={styles.btn_submit} onClick={handleSubmit}>Salvar</button>
                         </div>
                     </div>
