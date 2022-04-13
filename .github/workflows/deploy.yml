@@ -51,6 +51,6 @@ jobs:
             cd /var/www/html/vehicles &&
             rm -rf node_modules/ && 
             rm -rf .next/ &&
-            npm install -g npm-cli && 
+            npm install --silent && 
             npm run build && 
-            cd /vasr/www/html && pm2 start site
+            cd /var/www/html && pm2 start site
