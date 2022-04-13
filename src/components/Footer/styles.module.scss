@@ -125,5 +125,12 @@
         padding: 1rem 1rem 0 1rem;
       }
     }
+    .content_botom {
+      flex-direction: column;
+      gap: 0;
+      img {
+        margin-bottom: 1rem;
+      }
+    }
   }
 }

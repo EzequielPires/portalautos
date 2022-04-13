@@ -157,7 +157,7 @@ export function Footer() {
             </div>
             <div className={styles.content_botom}>
                     <img src={Logo.src} alt="Logo"/>
-                    <span>© 1995-2022 PortalCatalão. Todos os direitos reservados.</span>
+                    <span>© 2002-2022 PortalCatalão. Todos os direitos reservados.</span>
             </div>
         </footer>
     );
