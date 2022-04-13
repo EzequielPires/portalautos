@@ -19,6 +19,24 @@ on:
 
 jobs:
 
+  remove:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Removed Old Version
+        uses: appleboy/ssh-action@master
+        with:
+          passphrase: ${{ secrets.DEPLOY_PASSPHRASE }}
+          host: ${{ secrets.HOST_DNS }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: ${{ secrets.PORT }}
+          KEY: ${{ secrets.AWS_PRIVATE_KEY }}
+          script: cd /var/www/html &&
+            pm2 stop site &&
+            rm -rf vehicles
+
   deploy:
 
     runs-on: ubuntu-latest
@@ -46,11 +64,8 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.AWS_PRIVATE_KEY }}
-          script:  cd /var/www/html &&
-            pm2 stop site && 
-            cd /var/www/html/vehicles &&
-            rm -rf node_modules/ && 
-            rm -rf .next/ &&
-            npm install --silent && 
+          script:
+            cd /var/www/html/vehicles &&            
+            npm install && 
             npm run build && 
             cd /var/www/html && pm2 start site
