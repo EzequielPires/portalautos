@@ -25,8 +25,8 @@ export default function Home() {
         <meta property="og:image" content={`https://portalcatalao.com.br/${ImgDefault.src}`} />
       </Head>
       <NavbarFixed />
-      <Filter />
-      <SectionFormFilterHome />
+      {/* <Filter />
+      <SectionFormFilterHome /> */}
       {/* <SectionServices /> */}
       <SectionOffers />
       <SectionVehiclesPopular />
