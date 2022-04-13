@@ -61,6 +61,6 @@ jobs:
           KEY: ${{ secrets.AWS_PRIVATE_KEY }}
           script:
             cd /var/www/html/vehicles &&
-            npm install --force &&
+            npm install --save --legacy-peer-deps &&
             npm run build &&
             cd /var/www/html && pm2 start site
