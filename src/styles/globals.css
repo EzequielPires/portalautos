@@ -6,7 +6,7 @@ body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     overflow-y: scroll; /* has to be scroll, not auto */
-  -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;
 }
 html {
     scroll-behavior: auto !important;

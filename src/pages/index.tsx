@@ -18,7 +18,7 @@ export default function Home() {
   }, []); */
 
   return (
-    <div>
+    <>
       <Head>
         <title>PortalAutos - Compre, venda e financie carros usados, novos e motos.</title>
         <meta name="description" content="Se você está procurando o carro ou moto perfeito para a sua vida e não quer pagar rios de dinheiro por isso, nós podemos te ajudar! O PortalAutos oferece a você uma forma de encontrar o seu veículo ideal de forma rápida, fácil e segura." />
@@ -33,6 +33,6 @@ export default function Home() {
       <SectionStore />
       <SectionCategoryCar />
       <Footer />
-    </div>
+    </>
   )
 }
