@@ -37,7 +37,8 @@ jobs:
           KEY: ${{ secrets.AWS_PRIVATE_KEY }}
           script: cd /var/www/html &&
             pm2 stop site &&
-            rm -rf vehicles
+            rm -rf vehicles &&
+            npm cache clean --force
 
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
@@ -50,6 +51,8 @@ jobs:
           source: "./"
           target: "/var/www/html/vehicles"
 
+
+
 #      - name: Executing remote command
 #        uses: appleboy/ssh-action@master
 #        with:
@@ -60,6 +63,6 @@ jobs:
 #          KEY: ${{ secrets.AWS_PRIVATE_KEY }}
 #          script:
 #            cd /var/www/html/vehicles &&
-#            npm install &&
+#            npm i --force &&
 #            npm run build &&
 #            cd /var/www/html && pm2 start site
