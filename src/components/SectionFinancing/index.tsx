@@ -88,7 +88,7 @@ export function SectionFinancing() {
                 </Link>
                     .
                 </span>
-                <div className={"d-flex w-100 justify-content-center"}>
+                <div className={"d-flex w-100 justify-content-center mt-3"}>
                     <button className={styles.btn_primary}>Simular</button>
                 </div>
 
