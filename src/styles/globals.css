@@ -1,32 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap");
 
 html,
 body {
     padding: 0;
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
+    background-color: #fafafa !important;
 }
 html {
-    /* scroll-behavior: auto !important; */
-}
-body {
-    background-color: #fafafa !important;
-    /* position: absolute;
-    width: 100%;
-    height: 100%; */
-    min-width: 350px;
+    scroll-behavior: auto !important;
 }
 
 :root {
-    --main-color: #3446BD;
+    --main-color: #3446bd;
     --light: #e7eaff;
     --yellow-color: #ebb61f;
     --dark-color: #1d1d1d;
     --red-color: #f74141;
     --red-light: #fdd5d5;
-    --green-color: #00AE1C;
+    --green-color: #00ae1c;
     --success: #00ae1c69;
-    --linear-gradient: #3446BD;
+    --linear-gradient: #3446bd;
 }
 
 a {
@@ -44,17 +38,21 @@ ul {
 }
 
 * {
-    box-sizing: border-box;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+    font-family: "Open Sans", sans-serif;
 }
 
-input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:focus, input:-webkit-autofill:hover {
+input:-webkit-autofill,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover {
     -webkit-box-shadow: inset 0 0 0 30px #fff !important;
 }
 
 .draggable.dragging {
-    opacity: .5;
+    opacity: 0.5;
 }
 
 .is-dragging {
@@ -72,7 +70,7 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
 }
 
 .uploading::after {
-    content: 'Carregando';
+    content: "Carregando";
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,7 +87,7 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
 }
 
 .waiting::after {
-    content: '';
+    content: "";
     display: flex;
     align-items: center;
     justify-content: center;
@@ -153,7 +151,8 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
     border-radius: 4px;
 }
 
-.section_offers .swiper, .section_vehicles_popular .swiper {
+.section_offers .swiper,
+.section_vehicles_popular .swiper {
     width: 100%;
     padding: 0 1.5rem;
 }
@@ -166,7 +165,7 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
     right: 0 !important;
     height: 100% !important;
     width: 33.33% !important;
-    transition: .2s;
+    transition: 0.2s;
 }
 
 .gallery .swiper .swiper-button-prev {
@@ -177,10 +176,11 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
     padding-left: 1rem;
     height: 100% !important;
     width: 33.33% !important;
-    transition: .2s;
+    transition: 0.2s;
 }
 
-.gallery .swiper .swiper-button-prev:after, .gallery .swiper .swiper-button-next:after {
+.gallery .swiper .swiper-button-prev:after,
+.gallery .swiper .swiper-button-next:after {
     pointer-events: all;
     width: 48px;
     height: 48px;
@@ -194,8 +194,7 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
 }
 
 .section_vehicles_popular .swiper .swiper-button-next::after,
-.section_vehicles_popular .swiper .swiper-button-prev::after
- {
+.section_vehicles_popular .swiper .swiper-button-prev::after {
     font-size: 1.5rem;
     color: #fff;
 }
@@ -218,7 +217,7 @@ input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:fo
     color: #333;
 }
 .carousel-indicators {
-    margin-bottom: .5rem !important;
+    margin-bottom: 0.5rem !important;
 }
 
 .carousel-indicators button {
