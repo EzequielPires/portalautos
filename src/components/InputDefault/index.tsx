@@ -24,9 +24,7 @@ export function InputDefault({
     label,
     placeholder,
     type,
-    error,
     readOnly,
-    ico
 }: Input) {
     return (
         <div className={styles.input_box}>
