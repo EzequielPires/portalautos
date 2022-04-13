@@ -96,3 +96,13 @@
     }
   }
 }
+@media (max-width: 720px) {
+  .store {
+    .content {
+      flex-direction: column;
+      .aside_bar {
+        padding-bottom: 2rem;
+      }
+    }
+  }
+}
