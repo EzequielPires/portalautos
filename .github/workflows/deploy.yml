@@ -50,7 +50,7 @@ jobs:
             pm2 stop site && 
             cd /var/www/html/vehicles &&
             rm -rf node_modules/ && 
-            rm -rf .next/ && 
-            npm install && 
+            rm -rf .next/ &&
+            npm install -g npm-cli && 
             npm run build && 
-            cd /var/www/html && pm2 start site
+            cd /vasr/www/html && pm2 start site
