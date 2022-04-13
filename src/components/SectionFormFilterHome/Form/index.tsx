@@ -44,7 +44,7 @@ export function Form() {
                 </button>
             </div>
             <div className={styles.content}>
-                <div className="d-flex flex-column flex-md-row flex-wrap w-100 gap-3">
+                <div className="d-flex flex-column flex-md-row flex-wrap w-100 gap-md-3">
                     <Select
                         label="Marca"
                         placeholder="Selecione uma marca"
@@ -54,6 +54,7 @@ export function Form() {
                         error={null}
                         validate={car.brand.validate}
                     />
+                    <div className="mb-3 mb-md-0 d-md-none"></div>
                     <Select
                         label="Modelo"
                         placeholder="Selecione um modelo"
