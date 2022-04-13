@@ -61,6 +61,7 @@
       }
     }
     &.active_filter {
+      z-index: 9999;
       left: 0;
       .btn_filter {
         left: 0;
