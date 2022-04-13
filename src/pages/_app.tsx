@@ -72,8 +72,8 @@ function MyApp({ Component, pageProps }) {
                       <AuthProvider>
                         <AlertProvider>
                           <Component {...pageProps} />
-                          {/* <Alert />
-                          {loading && <Loading />} */}
+                          <Alert />
+                          {loading && <Loading />}
                         </AlertProvider>
                         <ModalAction />
                       </AuthProvider>
