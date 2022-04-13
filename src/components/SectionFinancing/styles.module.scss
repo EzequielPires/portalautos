@@ -56,5 +56,10 @@
     align-items: flex-start;
     max-width: 100vw;
     border-bottom: 1px solid #ededed;
+    .field_inputs {
+      div {
+        margin-bottom: 1rem;
+      }
+    }
   }
 }
