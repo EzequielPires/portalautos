@@ -46,6 +46,9 @@
     }
     .search_advanced {
       display: none;
+      svg {
+        margin-right: .5rem;
+      }
     }
   }
 }
