@@ -61,6 +61,6 @@ jobs:
           KEY: ${{ secrets.AWS_PRIVATE_KEY }}
           script:
             cd /var/www/html/vehicles &&
-            npm i --force &&
+            npm install --force &&
             npm run build &&
             cd /var/www/html && pm2 start site
