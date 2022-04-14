@@ -8,15 +8,9 @@ import { Footer } from "../components/Footer";
 import { SectionServices } from "../components/SectionServices";
 import { Filter } from "../components/Filter";
 import ImgDefault from "../assets/image-default.png";
-import { useEffect } from "react";
-import Router from "next/router";
 import Head from "next/head";
 
 export default function Home() {
-  /* useEffect(() => {
-    Router.push('/login')
-  }, []); */
-
   return (
     <div className="d-flex flex-column w-100">
       <Head>
@@ -33,7 +27,6 @@ export default function Home() {
       <SectionStore />
       <SectionCategoryCar />
       <Footer />
-      <p>Teste</p>
     </div>
   )
 }

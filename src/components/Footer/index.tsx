@@ -151,6 +151,11 @@ export function Footer() {
                                     Termos de Uso
                                 </a>
                             </Link>
+                            <Link href={"/endereco"}>
+                                <a className={styles.link}>
+                                    Endereço
+                                </a>
+                            </Link>
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>
