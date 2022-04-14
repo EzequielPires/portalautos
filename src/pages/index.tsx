@@ -33,6 +33,7 @@ export default function Home() {
       <SectionStore />
       <SectionCategoryCar />
       <Footer />
+      <p>Teste</p>
     </div>
   )
 }
