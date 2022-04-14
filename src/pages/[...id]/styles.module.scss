@@ -90,6 +90,10 @@
       .list {
         padding: 12px;
         margin-left: 0;
+        gap: 0 !important;
+        & > div {
+          margin-bottom: 1.5rem;
+        }
       }
     }
   }
