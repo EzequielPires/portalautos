@@ -4,6 +4,9 @@
   padding: 1rem;
   border-radius: 6px;
   box-shadow: 0 0 8px rgba(0, 0, 0, .1);
+  .header {
+    height: 180px;
+  }
   .body {
     padding-top: 1rem;
     h4 {
@@ -14,4 +17,21 @@
       width: 160px;
     }
   }
+}
+@media (max-width: 720px) {
+    .card {
+      padding: .5rem;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      .header {
+        width: 160px; 
+        height: 100%;
+        overflow: hidden;
+        margin-right: .5rem;
+      }
+      .body {
+        padding-top: 0;
+      }
+    }
 }

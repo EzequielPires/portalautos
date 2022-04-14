@@ -6,7 +6,7 @@ export function SkeletonCardAnnouncement() {
     return (
         <div className={styles.card}>
             <div className={styles.header}>
-                <Skeleton duration={1} height={180} width={"100%"} />
+                <Skeleton duration={1} height={"100%"} width={"100%"} />
             </div>
             <div className={styles.body}>
                 <header>
