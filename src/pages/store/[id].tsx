@@ -8,11 +8,14 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { useRouter } from "next/router";
 import { useFetchDefault } from "../../hooks/useFetchDefault";
 import Bg from "../../assets/bg.svg";
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function Store() {
     const { fetch } = useFetchDefault();
     const [store, setStory] = useState(null);
     const [vehicles, setVehicles] = useState(null);
+    const [total, setTotal] = useState(0);
     const router = useRouter();
     const { id } = router.query;
     const handleStore = async () => {
@@ -23,9 +26,9 @@ export default function Store() {
         setStory(res.data);
     }
     const handleVehicles = async () => {
-        const res = await fetch(`store/${id}/vehicles`)
-        console.log(res);
+        const res = await fetch(`store/${id}/vehicles?total=1`);
         setVehicles(res.data.result.vehicles);
+        setTotal(res.data.result.total);
     }
 
     useEffect(() => {
@@ -50,21 +53,21 @@ export default function Store() {
                         <FontAwesomeIcon icon={faMapMarkerAlt as IconProp} />
                         <span>Catalão - GO</span>
                     </div>
-                    <p className="mt-3">{store.wpp_number}</p>
-                    <p>{store.phone_number}</p>
-                    <p>{store.email}</p>
+                    <Link href="/">
+                        <a className={styles.btn_wpp}>Iniciar conversa</a>
+                    </Link>
                     <hr />
                 </nav>
                 <div className="d-flex flex-column">
-                    {/* <div className="d-flex justify-content-between px-4 mt-4">
-                        <p className={styles.text_results}><span>10 veículos</span> em estoque</p>
+                    <div className="d-flex justify-content-between px-4 mt-4">
+                        <p className={styles.text_results}><span>{total} veículos</span> em estoque</p>
                         <Link href="/">
                             <a className={styles.filter_results + " d-flex align-items-center gap-2"}>
-                                <span>Filtrar resultados</span><FontAwesomeIcon icon={faArrowRight as IconProp} />
+                                <span>Filtrar resultados</span><FaArrowRight />
                             </a>
                         </Link>
 
-                    </div> */}
+                    </div>
                     <div className={styles.list + " d-flex flex-wrap justify-content-center gap-4"}>
                         {vehicles?.map((vehicle, idx) => (
                             <CardAnnouncement key={idx} data={vehicle} />

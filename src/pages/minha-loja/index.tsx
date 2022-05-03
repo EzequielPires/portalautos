@@ -17,6 +17,8 @@ import { AlertContext } from "../../contexts/AlertContext";
 import { Loading } from "../../components/Loading";
 import { InputIco } from "../../components/InputIco";
 import { Input } from "../../components/Input";
+import { GetServerSideProps } from "next";
+import { parseCookies } from "nookies";
 
 export default function MinhaLoja() {
     const { fetch, value } = useFetchDefault();
@@ -73,7 +75,6 @@ export default function MinhaLoja() {
                     }
                     return res.data;
                 });
-                console.log(res);
                 if (res.success) {
                     alertShow("success", "Loja alterada com sucesso.");
                     {origin && router.push(`/${origin}`)}
@@ -96,7 +97,6 @@ export default function MinhaLoja() {
                     }
                     return res.data;
                 });
-                console.log(res);
                 if (res.success) {
                     alertShow("success", "Loja criada com sucesso.");
                     {origin && router.push(`/${origin}`)}
@@ -170,4 +170,20 @@ export default function MinhaLoja() {
             }
         </div>
     )
+}
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+    const { ['nextauth.token']: token } = parseCookies(ctx);
+    if (!token) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            }
+        }
+    }
+    return {
+        props: {
+        }
+    }
 }

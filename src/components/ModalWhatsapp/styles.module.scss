@@ -36,6 +36,9 @@
 }
 #modal {
   max-width: 470px !important;
+  > div {
+    height: min-content !important;
+  }
 }
 #modal_header {
   border: 0;

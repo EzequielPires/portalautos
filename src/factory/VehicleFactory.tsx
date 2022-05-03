@@ -1,4 +1,5 @@
 import { Car } from "../entities/Car";
+import { Motorcycle } from "../entities/Motorcycle";
 import { Vehicle } from "../entities/Vehicle";
 import { useCheckbox } from "../hooks/useCheckbox";
 import useForm from "../hooks/useForm";
@@ -38,5 +39,37 @@ export class VehicleFactory {
         car.visible_price = useCheckbox();
         car.new = useCheckbox();
         return car;
+    }
+    public static createForUseFormMotorcycle(): Motorcycle {
+        const motorcycle = new Motorcycle();
+        motorcycle.price = useForm('price');
+        motorcycle.mileage_traveled = useForm('mileage_traveled');
+        motorcycle.description = useForm('description');
+        motorcycle.plate = useForm('plate');
+        motorcycle.fipe_price = useForm('price');
+        
+        motorcycle.brand = useSelect();
+        motorcycle.model = useSelect();
+        motorcycle.version = useSelect();
+        motorcycle.year_manufacture = useSelect();
+        motorcycle.year_model = useSelect();
+        motorcycle.color = useSelect();
+        motorcycle.categories = useSelect();
+        motorcycle.directions = useSelect();
+        motorcycle.fuel_systems = useSelect();
+        motorcycle.fuels = useSelect();
+        motorcycle.gear_shifts = useSelect();
+        motorcycle.styles = useSelect();
+        motorcycle.gear_number = useSelect();
+        motorcycle.brakes = useSelect();
+
+        motorcycle.characteristic = useMultiCheckbox();
+        motorcycle.confort = useMultiCheckbox();
+        motorcycle.optional = useMultiCheckbox();
+        motorcycle.safety = useMultiCheckbox();
+
+        motorcycle.visible_price = useCheckbox();
+        motorcycle.new = useCheckbox();
+        return motorcycle;
     }
 }

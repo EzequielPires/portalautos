@@ -23,7 +23,6 @@ export function CardAnnouncement({ data }) {
             !user ? router.push(`/login?r=${router.asPath}&f=${data.id}`) : addFavorite(data.id);
         }
     }
-
     useEffect(() => {
         if (favorites) {
             let favorite = false;
@@ -33,20 +32,20 @@ export function CardAnnouncement({ data }) {
             setIsFavorite(favorite);
         }
     }, [favorites]);
-
     useEffect(() => {
         if (id) {
             { id.length > 0 && id[0] === 'carros' || id[0] === 'motos' ? setIsMobile(true) : null }
         }
     }, [id]);
+
     return (
         <Link href={`/comprar/${data.version.model.brand.id_string}/${data.version.model.id_string}/${data.version.id_string}/${data.identifier}`}>
             <div className={styles.card + ` ${isMobile ? styles.search : null}`}>
-
                 <div className={styles.card_header}>
                     {data.gallery && data.gallery.images.length > 0
                         ? <CarouselCard array={data.gallery.images} /> : <img src={NoImage.src} alt="" />}
                     {data.new ? <span className={styles.new}><span>0Km</span></span> : null}
+                    {data.sold ? <span className={styles.sold}>Vendido</span> : null}
                 </div>
                 <div className={styles.card_body}>
 

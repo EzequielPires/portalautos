@@ -6,14 +6,17 @@ import useForm from "../hooks/useForm";
 import { useSelect } from "../hooks/useSelect";
 import { vehicle } from "../services/api";
 import { getListVehicle } from "../helpers/getListVehicle";
+import { Motorcycle } from "../entities/Motorcycle";
+import { VehicleFactory } from "../factory/VehicleFactory";
 
 type MotorcycleType = {
-    brand,
-    listBrand,
+    motorcycle: Motorcycle;
+    //brand,
+    //listBrand,
     getBrand: () => Promise<void>,
 
-    model,
-    listModel,
+    //model,
+    //listModel,
     getModel: (value) => Promise<void>,
 
     version,
@@ -119,9 +122,9 @@ type MotorcycleType = {
 export const MotorcycleContext = createContext({} as MotorcycleType);
 
 export function MotorcycleProvider({ children }) {
-
-    const brand = useSelect();
-    const model = useSelect();
+    const motorcycle = VehicleFactory.createForUseFormMotorcycle();
+    //const brand = useSelect();
+    //const model = useSelect();
     const version = useSelect();
     const yearModel = useSelect();
     const yearFabrication = useSelect();
@@ -147,8 +150,8 @@ export function MotorcycleProvider({ children }) {
     const [statePrice, setStatePrice] = useState(false);
 
 
-    const [listBrand, setListBrand] = useState([]);
-    const [listModel, setListModel] = useState([]);
+    //const [listBrand, setListBrand] = useState([]);
+    //const [listModel, setListModel] = useState([]);
     const [listVersion, setListVersion] = useState([]);
     const [listYearModel, setListYearModel] = useState([]);
     const [listYearFabrication, setListYearFabrication] = useState([]);
@@ -171,29 +174,35 @@ export function MotorcycleProvider({ children }) {
     const [announcement, setAnnouncement] = useState(null);
 
     const getBrand = async () => {
-        setListModel([]);
-        setListYearModel([]);
-        setListVersion([]);
-        setListColor([]);
+        motorcycle.model.setOptions([]);
+        motorcycle.year_model.setOptions([]);
+        motorcycle.year_manufacture.setOptions([]);
+        motorcycle.version.setOptions([]);
+        motorcycle.color.setOptions([]);
         const res = await getListVehicle.brand('motorcycle');
-        res.success ? setListBrand(res.data) : console.log(res);
+        res.success ? motorcycle.brand.setOptions(res.data) : console.log(res);
     }
 
     const getModel = async (value) => {
-        brand.validate(value);
-        brand.setValue(value);
-        setListYearModel([]);
-        setListVersion([]);
-        setListColor([]);
-        const res = await getListVehicle.model('motorcycle', value);
-        res.success ? setListModel(res.data) : console.log(res);
+        motorcycle.brand.setValue(value);
+        motorcycle.brand.validate(value);
+        motorcycle.model.setOptions([]);
+        motorcycle.year_model.setOptions([]);
+        motorcycle.year_manufacture.setOptions([]);
+        motorcycle.version.setOptions([]);
+        motorcycle.color.setOptions([]);
+        const res = await getListVehicle.model('motorcycle', value).then((res: any) => res);
+        res.success && res.data.length > 0 ? motorcycle.model.setOptions(res.data) : motorcycle.brand.setError(`Nenhum modelo encontrado.`);
     }
 
     const getYearModel = async (value) => {
-        /* model.setValue(value);
-        model.validate(value);
-        const res = await getListVehicle.yearModel('motorcycle', value);
-        res.success ? setListYearModel(res.data) : console.log(res); */
+        motorcycle.model.setValue(value);
+        motorcycle.model.validate(value);
+        motorcycle.year_manufacture.setOptions([]);
+        motorcycle.version.setOptions([]);
+        motorcycle.color.setOptions([]);
+        const res = await getListVehicle.yearModel('motorcycle', motorcycle.brand.value, value);
+        res.success && res.data.length > 0 ? motorcycle.year_model.setOptions(res.data) : motorcycle.model.setError(`Nenhum ano encontrado.`);
     }
 
     const getYearFabrication = async (value) => {
@@ -284,7 +293,7 @@ export function MotorcycleProvider({ children }) {
             if (type === "characteristics") {
                 setCharacteristics([...characteristics, value])
             } else {
-                if(type === "safety") {
+                if (type === "safety") {
                     setSafety([...safety, value]);
                 }
             }
@@ -301,7 +310,7 @@ export function MotorcycleProvider({ children }) {
                 let filteredArray = characteristics.filter(item => item.id !== value.id);
                 setCharacteristics(filteredArray);
             } else {
-                if(type === "safety") {
+                if (type === "safety") {
                     let filteredArray = safety.filter(item => item.id !== value.id);
                     setSafety(filteredArray);
                 }
@@ -336,7 +345,7 @@ export function MotorcycleProvider({ children }) {
     }
 
     const buildVehicle = (data) => {
-        console.log(data);
+        /* console.log(data);
         setAnnouncement(data);
         brand.setValue(data.fipe_vehicle.model.brand.id);
         model.setValue(data.fipe_vehicle.model.id);
@@ -366,7 +375,7 @@ export function MotorcycleProvider({ children }) {
         data.brake ? brake.setValue(data.brake.id) : null;
         data.type_motor ? type_motor.setValue(data.type_motor.id) : null;
         data.number_gears ? gears.setValue(data.number_gears) : null;
-        data.cylinder ? cylinder.setValue(data.cylinder) : null;
+        data.cylinder ? cylinder.setValue(data.cylinder) : null; */
     }
 
     const viewVehicle = async (id) => {
@@ -380,34 +389,34 @@ export function MotorcycleProvider({ children }) {
     }
 
     const clearMotorcycle = () => {
-        brand.setValue('0');
-        model.setValue('0');
-        version.setValue('0');
-        yearModel.setValue('0');
-        yearFabrication.setValue('0');
-        color.setValue('0');
-        mileage_traveled.setValue('');
-        description.setValue('');
-        price.setValue('');
-        setOptionals([]);
-        setCharacteristics([]);
-        category.setValue('0');
-        style.setValue('0');
-        fuel.setValue('0');
-        systemFuel.setValue('0');
-        brake.setValue('0');
-        starter.setValue('0');
-        type_motor.setValue('0');
-        gearshift.setValue('0');
-        gears.setValue('0');
-        cylinder.setValue('');
-        last_digit_plate.setValue('');
-        setStateNew(false);
+        /*  brand.setValue('0');
+         model.setValue('0');
+         version.setValue('0');
+         yearModel.setValue('0');
+         yearFabrication.setValue('0');
+         color.setValue('0');
+         mileage_traveled.setValue('');
+         description.setValue('');
+         price.setValue('');
+         setOptionals([]);
+         setCharacteristics([]);
+         category.setValue('0');
+         style.setValue('0');
+         fuel.setValue('0');
+         systemFuel.setValue('0');
+         brake.setValue('0');
+         starter.setValue('0');
+         type_motor.setValue('0');
+         gearshift.setValue('0');
+         gears.setValue('0');
+         cylinder.setValue('');
+         last_digit_plate.setValue('');
+         setStateNew(false); */
     }
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        /* e.preventDefault();
         const { 'nextauth.token': token } = parseCookies();
         if (
             brand.validate(brand.value) &&
@@ -419,7 +428,7 @@ export function MotorcycleProvider({ children }) {
             token
         ) {
             setStep(step + 1);
-        }
+        } */
     }
 
     const handleStore = async () => {
@@ -509,8 +518,9 @@ export function MotorcycleProvider({ children }) {
 
     return (
         <MotorcycleContext.Provider value={{
-            brand,
-            model,
+            motorcycle,
+            //brand,
+            //model,
             version,
             yearModel,
             yearFabrication,
@@ -539,8 +549,8 @@ export function MotorcycleProvider({ children }) {
             listSafety,
             getSafety,
 
-            listBrand,
-            listModel,
+            //listBrand,
+            //listModel,
             listVersion,
             listYearModel,
             listYearFabrication,

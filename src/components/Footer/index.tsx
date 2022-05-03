@@ -141,7 +141,7 @@ export function Footer() {
                                     Publicidade
                                 </a>
                             </Link>
-                            <Link href={"/"}>
+                            <Link href={"/politica-de-privacidade"}>
                                 <a className={styles.link}>
                                     Política de Privacidade
                                 </a>

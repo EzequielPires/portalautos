@@ -119,7 +119,6 @@ export function CarProvider({ children }) {
         car.version.setValue(value);
         car.version.validate(value);
         car.version.options?.forEach(item => {
-            console.log(`${item.id} ${value}`);
             if(item.id === value) {
                 car.fipe_price.setValue(item.price);
             }

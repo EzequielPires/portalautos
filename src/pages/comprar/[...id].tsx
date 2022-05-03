@@ -40,7 +40,7 @@ export default function Comprar({id, data, error}) {
     }
 
     const generateTitle = () => {
-        let link = `${id[0]} ${id[1]} ${id[2]} ${id[3]}`;
+        let link = `${id[0]} ${id[1]} ${id[2]}`;
         return link.toUpperCase();
     }
     if (!data) return <Loading />

@@ -15,6 +15,8 @@ import { MdOutlineRemove } from "react-icons/md";
 import { AlertContext } from "../../contexts/AlertContext";
 import Router from "next/router";
 import Link from "next/link";
+import { GetServerSideProps } from "next";
+import { parseCookies } from "nookies";
 
 export default function Integracoes() {
     const [show, setShow] = useState(false);
@@ -25,21 +27,31 @@ export default function Integracoes() {
     const [error, setError] = useState(false);
 
     const handleIntegrationFacebook = async (accessToken) => {
+        handleClose();
         const data = new FormData();
         data.append('access_token', accessToken);
         const res: any = await api.post('/integration/facebook', data);
         if (res.data.success) {
-            handleClose();
+            handleIntegrations();
             alertShow("success", "Itegração com Facebook realizada com sucesso.");
         } else {
-            handleClose();
             alertShow("danger", "Falha na itegração com Facebook.");
         }
     }
+    const removeIntegrationFacebook = async () => {
+        const res: any = await api.delete('/integration/facebook');
+        if (res.data.success) {
+            handleIntegrations();
+            alertShow("success", "Itegração com Facebook removida com sucesso.");
+        } else {
+            alertShow("danger", "Falha na remoção da itegração com Facebook.");
+        }
+    }
     const handleIntegrations = async () => {
-        let error = false;
         try {
-            await api.get('/integration');
+            await api.get('/integration').then(res => {
+                setIntegrations(res.data.data);
+            });
         } catch(err) {
             Router.push('/minha-loja?origin=/integracoes')
         }
@@ -85,7 +97,7 @@ export default function Integracoes() {
                             </div>
                             <span className={styles.name}>Facebook</span>
                             <span className={styles.status}>{integrations?.facebook?.length > 0 ? 'Integração ativada' : 'Integração desativada'}</span>
-                            <button onClick={handleShow}>{integrations?.facebook?.length > 0 ? <><MdOutlineRemove /> Desativar integração</> : <><FaPlus />Ativar integração</>}</button>
+                            <button onClick={() => integrations?.facebook?.length > 0 ? removeIntegrationFacebook() : handleShow()}>{integrations?.facebook?.length > 0 ? <><MdOutlineRemove /> Desativar integração</> : <><FaPlus />Ativar integração</>}</button>
                         </div>
                         <div className={styles.card}>
                             <div className={styles.logo}>
@@ -121,28 +133,6 @@ export default function Integracoes() {
                         </div>
                     </div>
                 </div>
-                {/* <div className={styles.table + ' row mx-0'}>
-                    <div className={styles.header + " row mx-0"}>
-                        <div className={styles.col + " col-md-4"}>
-                            <h4>Anúncio</h4>
-                        </div>
-                        <div className={styles.col + " col-md-2"}>
-                            <h4>Identificador</h4>
-                        </div>
-                        <div className={styles.col + " col-md-1"}>
-                            <h4>Data</h4>
-                        </div>
-                        <div className={styles.col + " col-md-1"}>
-                            <h4>Cor</h4>
-                        </div>
-                        <div className={styles.col + " col-md-4"}>
-                            <h4>Postagens</h4>
-                        </div>
-                    </div>
-                    {data?.data.vehicles?.map(item => (
-                        <Row key={item.id} item={item} />
-                    ))}
-                </div> */}
                 <Modal id={styles.modal} show={show} onHide={handleClose}>
                     <Modal.Header id={styles.modal_header} closeButton>
                         <FaCogs />
@@ -159,16 +149,35 @@ export default function Integracoes() {
                         <ReactFacebookLogin
                             appId="279554237662721"
                             fields={"profile_id"}
-                            autoLoad={false}
+                            /* reAuthenticate={true} */
+                            cookie={false}
+                            xfbml={true}
                             callback={(res) => handleIntegrationFacebook(res.accessToken)}
                             scope="pages_show_list,pages_read_engagement,pages_manage_posts,public_profile"
                             render={renderProps => (
                                 <button type="button" onClick={renderProps.onClick}>Confirmar</button>
                             )}
+                            
                         />
                     </Modal.Footer>
                 </Modal>
             </div>
         </div>
     );
+}
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+    const { ['nextauth.token']: token } = parseCookies(ctx);
+    if (!token) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            }
+        }
+    }
+    return {
+        props: {
+        }
+    }
 }

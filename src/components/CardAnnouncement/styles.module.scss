@@ -88,6 +88,26 @@
     }
   }
 }
+.sold {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0.5rem;
+  border: 2px solid #ecedf2;
+  border-top: 0;
+  margin-top: -2px;
+  border-radius: 0 0 50% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 36px;
+  background: var(--red-color);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  pointer-events: none;
+}
 @media (max-width: 720px) {
   .card {
     &.search {

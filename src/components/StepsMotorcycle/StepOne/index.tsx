@@ -7,16 +7,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import styles from "./styles.module.scss";
 import { ModalReportVehicle } from "../../ModalReportVehicle";
-import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export function StepOne() {
     const {
-        brand,
-        listBrand,
-        getBrand,
+        motorcycle,
 
-        model,
-        listModel,
+        getBrand,
         getModel,
 
         yearModel,
@@ -38,7 +35,7 @@ export function StepOne() {
 
         handleSubmit,
         handleStore,
-        
+
         step,
         setStep,
     } = useContext(MotorcycleContext);
@@ -46,13 +43,10 @@ export function StepOne() {
 
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
-
     useEffect(() => {
-        handleStore().then(() => {
-            getBrand();
-        });
+        getBrand();
     }, []);
-    
+
     return (
         <div className={step === 1 ? styles.step_one : styles.step_one + ' ' + styles.concluded}>
             <div className={styles.step_header}>
@@ -69,19 +63,23 @@ export function StepOne() {
                 <div className="d-flex flex-wrap gap-4">
                     <Select
                         label="Marca*"
-                        options={listBrand}
+                        placeholder="Selecione uma marca"
+                        options={motorcycle.brand.options}
                         onChange={getModel}
-                        value={brand.value}
-                        validate={brand.validate}
-                        error={brand.error}
+                        value={motorcycle.brand.value}
+                        validate={motorcycle.brand.validate}
+                        error={motorcycle.brand.error}
+                        filter={true}
                     />
                     <Select
                         label="Modelo*"
-                        options={listModel}
+                        placeholder="Selecione um modelo"
+                        options={motorcycle.model.options}
                         onChange={getYearModel}
-                        value={model.value}
-                        validate={model.validate}
-                        error={model.error}
+                        value={motorcycle.model.value}
+                        validate={motorcycle.model.validate}
+                        error={motorcycle.model.error}
+                        filter={true}
                     />
                     <Select
                         label="Ano do Modelo*"

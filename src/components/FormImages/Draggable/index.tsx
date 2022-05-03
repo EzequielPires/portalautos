@@ -1,12 +1,10 @@
 import Car from "../../../assets/ico/icon-carro-position-default.svg";
 import Motorcycle from "../../../assets/ico/icon-moto-position-default.svg";
-import Delete from "../../../assets/ico/delete.svg";
-import Zoom from "../../../assets/ico/zoom.svg";
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { GalleryContext } from '../../../contexts/GalleryContext';
-import {FontAwesomeIcon, FontAwesomeIconProps} from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { faCheck, faEllipsisH, faSearchPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSearchPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 import styles from './styles.module.scss';
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
@@ -21,7 +19,7 @@ type DraggableType = {
 
 export function Draggable({ image, index, onClick, id, type }: DraggableType) {
     const refDrag = useRef(null);
-    const { dropImageGallery, loading, drag, dragOver } = useContext(GalleryContext);
+    const { dropImageGallery, drag, dragOver } = useContext(GalleryContext);
     return (
         <>
             {
@@ -59,31 +57,3 @@ export function Draggable({ image, index, onClick, id, type }: DraggableType) {
 
     );
 }
-{/* <>
-    {
-        image ?
-            <div
-                className={styles.draggable + " draggable"}
-                data-index={index}
-                draggable="true"
-                id-gallery={image.id ?? index}
-                style={{ background: `url(${image.path ? "https://classificados.portalcatalao.com.br/veiculos/storage/" + image.path : URL.createObjectURL(image)}) center center` }}
-            >
-                <button onClick={() => {
-                    onClick(image);
-                }}>
-                    <img src={Zoom.src} alt="" />
-                </button>
-                <button onClick={() => {
-                    dropImageGallery(index, image.id, id);
-                }}>
-                    <img src={Delete.src} alt="" />
-                </button>
-            </div>
-            :
-            <label htmlFor="multifile" className={type === 'car' ? styles.car + " " + styles.draggable + " disabled" : styles.motorcycle + " " + styles.draggable + " disabled"}>
-                {type === 'car' ? <img src={Car.src} alt="" /> : <img src={Motorcycle.src} alt="" />}
-                <span>Adicionar</span>
-            </label>
-    }
-</> */}

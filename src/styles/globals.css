@@ -14,11 +14,13 @@ html {
 :root {
     --main-color: #3446bd;
     --light: #e7eaff;
-    --yellow-color: #ebb61f;
+    --yellow-color: #c0910e;
+    --yellow-light: #fff7e0;
     --dark-color: #1d1d1d;
     --red-color: #f74141;
     --red-light: #fdd5d5;
     --green-color: #00ae1c;
+    --green-light: #dfffe4;
     --success: #00ae1c69;
     --linear-gradient: #3446bd;
 }

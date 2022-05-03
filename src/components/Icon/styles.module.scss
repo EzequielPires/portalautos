@@ -1,0 +1,13 @@
+.icon {
+    margin: 0;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: block;
+    -webkit-mask-size: 100%!important;
+    mask-size: 100%!important;
+    background-color: #fff;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    color: transparent;
+}
