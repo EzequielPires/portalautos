@@ -18,14 +18,15 @@ import {Loading} from "../../../components/Loading";
 import Head from "next/head";
 
 export default function Moto() {
-    const { setStep, clearMotorcycle, editVehicle, buildVehicle } = useContext(MotorcycleContext);
+    const { setStep, clearMotorcycle, editVehicle, buildVehicle, getDetail } = useContext(MotorcycleContext);
     const { setGallery } = useContext(GalleryContext);
     const newRouter = useRouter();
     const { id } = newRouter.query;
-    const { data, isLoading } = useFetch(`admin/vehicle/${id}/view`);
+    const { data, isLoading } = useFetch(`/vehicle/${id}/view`);
     useEffect(() => {
         setStep(3);
         clearMotorcycle();
+        getDetail();
     }, []);
     useEffect(() => {
         if (id && data) {

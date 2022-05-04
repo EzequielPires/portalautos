@@ -15,26 +15,12 @@ export function StepOne() {
 
         getBrand,
         getModel,
-
-        yearModel,
-        listYearModel,
         getYearModel,
-
-        yearFabrication,
-        listYearFabrication,
         getYearFabrication,
-
-        version,
-        listVersion,
         getVersion,
-
-        color,
-        listColor,
         getColor,
         setColorFinish,
-
         handleSubmit,
-        handleStore,
 
         step,
         setStep,
@@ -83,35 +69,40 @@ export function StepOne() {
                     />
                     <Select
                         label="Ano do Modelo*"
-                        options={listYearModel}
+                        placeholder="Selecione uma opção"
+                        options={motorcycle.year_model.options}
                         onChange={getYearFabrication}
-                        value={yearModel.value}
-                        validate={yearModel.validate}
-                        error={yearModel.error}
+                        value={motorcycle.year_model.value}
+                        validate={motorcycle.year_model.validate}
+                        error={motorcycle.year_model.error}
+                        filter={true}
                     />
                     <Select
                         label="Ano de Fabricação*"
-                        options={listYearFabrication}
+                        options={motorcycle.year_manufacture.options}
                         onChange={getVersion}
-                        value={yearFabrication.value}
-                        validate={yearFabrication.validate}
-                        error={yearFabrication.error}
+                        value={motorcycle.year_manufacture.value}
+                        validate={motorcycle.year_manufacture.validate}
+                        error={motorcycle.year_manufacture.error}
+                        filter={true}
                     />
                     <Select
                         label="Versão*"
-                        options={listVersion}
+                        options={motorcycle.version.options}
                         onChange={getColor}
-                        value={version.value}
-                        validate={version.validate}
-                        error={version.error}
+                        value={motorcycle.version.value}
+                        validate={motorcycle.version.validate}
+                        error={motorcycle.version.error}
+                        filter={true}
                     />
                     <Select
                         label="Cor*"
-                        options={listColor}
+                        placeholder="Selecione uma cor"
+                        options={motorcycle.color.options}
                         onChange={setColorFinish}
-                        value={color.value}
-                        validate={color.validate}
-                        error={color.error}
+                        value={motorcycle.color.value}
+                        validate={motorcycle.color.validate}
+                        error={motorcycle.color.error}
                     />
                 </div>
                 <ModalReportVehicle show={show} handleClose={handleClose} />

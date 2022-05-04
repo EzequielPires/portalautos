@@ -58,8 +58,8 @@ export default function Leads() {
                     </div>
                 </div>
                 <Table header={headerTable}>
-                    {data?.data?.vehicles.map(item => (
-                        <Row>
+                    {data?.data?.vehicles.map((item, index) => (
+                        <Row key={index}>
                             <Column
                                 image={"https://portalautos.com.br/" + item.gallery.images[0].path}
                                 title={`${item.version.model.brand.name} ${item.version.model.name}`}

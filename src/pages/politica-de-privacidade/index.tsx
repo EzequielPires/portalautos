@@ -9,7 +9,7 @@ export default function PoliticaPrivacidade() {
             <div className={styles.content + ' container py-5'}>
                 <h1>Política de Privacidade</h1>
                 <h4>TERMOS E CONDIÇÕES DE USO <span>PORTAL AUTOS</span></h4>
-                <p>Os presentes Termos e Condições de Uso visam regular a utilização por você, usuário, de nossos serviços pela plataforma mobile, aplicativo e outros canais de contato do Portal Autos (denominados "Serviços").</p>
+                <p>Os presentes Termos e Condições de Uso visam regular a utilização por você, usuário, de nossos serviços pela plataforma mobile, aplicativo e outros canais de contato do Portal Autos.</p>
                 <ul>
                     <li>
                         <h5>1. Termo de Aceitação</h5>
@@ -36,7 +36,7 @@ export default function PoliticaPrivacidade() {
                             <li>Disponibilize ou permita o acesso a conteúdo ilegal, violento, pornográfico ou qualquer outro ato contrário à lei e à ordem pública;</li>
                             <li>Induza a discriminação ou incite o ódio contra pessoas e/ou grupos de pessoas em razão de nacionalidade, raça, religião, orientação sexual, gênero, condição física, nacionalidade, dentre outros atos que contrariem a ordem pública e a legislação brasileira vigente;</li>
                             <li>Seja resguardado por direito de propriedade intelectual de terceiro e você não tenha autorização prévia para utilizá-lo;</li>
-                            <li>Contenha vírus ou outro elemento que seja capaz, em razão de suas características (como forma, extensão, etc), de causar danos ou impedir o funcionamento regular da rede do sistema e/ou de equipamentos informáticos ("hardware" e "software") do Portal Autos ou de terceiro.</li>
+                            <li>Contenha vírus ou outro elemento que seja capaz, em razão de suas características (como forma, extensão, etc), de causar danos ou impedir o funcionamento regular da rede do sistema e/ou de equipamentos informáticos do Portal Autos ou de terceiro.</li>
                         </ul>
                     </li>
                     <li>
@@ -70,7 +70,7 @@ export default function PoliticaPrivacidade() {
                 </ul>
                 <h4>POLÍTICA DE PRIVACIDADE <span>PORTAL AUTOS</span></h4>
                 <p>Alinhados com as melhores práticas e calcados em sua filosofia de transparência e respeito aos clientes Portal Autos, apresentamos os princípios básicos da Política de Privacidade On-Line (chamada “Política de Privacidade”).</p>
-                <p>Tratam-se das diretrizes adotadas pelo Portal Autos em relação à coleta, armazenamento, utilização e todas as demais formas de tratamento das informações pessoais dos clientes/usuários e internautas, para acesso e uso dos nossos serviços pela plataforma mobile, aplicativo e outros canais de contato do Portal Autos (denominados "Serviços").</p>
+                <p>Tratam-se das diretrizes adotadas pelo Portal Autos em relação à coleta, armazenamento, utilização e todas as demais formas de tratamento das informações pessoais dos clientes/usuários e internautas, para acesso e uso dos nossos serviços pela plataforma mobile, aplicativo e outros canais de contato do Portal Autos.</p>
                 <ul>
                     <li>
                         <h5>1. Definições</h5>
@@ -87,9 +87,9 @@ export default function PoliticaPrivacidade() {
                         </ul>
                         <p className='mt-4'>Sem prejuízo de outras definições constantes nesta Política, os seguintes termos terão os significados a eles designados abaixo:</p>
                         <ul className={styles.list_circle}>
-                            <li><strong>"internauta"</strong>: todo aquele que, de alguma forma, acessa o Portal Autos e outros canais, sendo cliente ou não.</li>
-                            <li><strong>"cliente"</strong>: todo aquele que utiliza os produtos e/ou serviços oferecidos pelo Portal Autos, pagos ou não.</li>
-                            <li><strong>"usuário"</strong>: todo aquele que se cadastrar neste Portal e receber uma identificação individual e exclusiva.</li>
+                            <li><strong>internauta</strong>: todo aquele que, de alguma forma, acessa o Portal Autos e outros canais, sendo cliente ou não.</li>
+                            <li><strong>cliente</strong>: todo aquele que utiliza os produtos e/ou serviços oferecidos pelo Portal Autos, pagos ou não.</li>
+                            <li><strong>usuário</strong>: todo aquele que se cadastrar neste Portal e receber uma identificação individual e exclusiva.</li>
                         </ul>
                     </li>
                     <li>
@@ -117,16 +117,16 @@ export default function PoliticaPrivacidade() {
                         <p>Lembramos que você pode, a qualquer momento, ativar em seu navegador mecanismos para informá-lo quando os cookies estiverem acionados ou, ainda, impedir que sejam ativados.</p>
                         <p>Você pode desativar os cookies não-essenciais para a utilização dos Serviços através das preferências do seu navegador. Sem eles, sua navegação pode se tornar limitada e algumas funcionalidades dos sites podem ficar comprometidas. Veja as definições sobre cookies em cada um dos navegadores.</p>
                         <div className="d-flex gap-2">
-                            <a href="https://support.microsoft.com/pt-br/windows/microsoft-edge-dados-de-navega%C3%A7%C3%A3o-e-privacidade-bb8174ba-9d73-dcf2-9b4a-c582b4e640dd" target="_blank">Internet Explorer</a> /
-                            <a href="https://support.mozilla.org/pt-BR/kb/desative-cookies-terceiros-impedir-rastreamento?redirectslug=desative-cookies-no-firefox-parar-rastreamento&redirectlocale=pt-BR" target="_blank">Firefox</a> /
-                            <a href="https://support.google.com/accounts/answer/61416?hl=pt-BR" target="_blank">Google Chrome</a> /
-                            <a href="https://support.apple.com/pt-br/guide/safari/sfri11471/mac" target="_blank">Safari</a>
+                            <a href="https://support.microsoft.com/pt-br/windows/microsoft-edge-dados-de-navega%C3%A7%C3%A3o-e-privacidade-bb8174ba-9d73-dcf2-9b4a-c582b4e640dd" target="_blank" rel="noreferrer">Internet Explorer</a> /
+                            <a href="https://support.mozilla.org/pt-BR/kb/desative-cookies-terceiros-impedir-rastreamento?redirectslug=desative-cookies-no-firefox-parar-rastreamento&redirectlocale=pt-BR" target="_blank" rel="noreferrer">Firefox</a> /
+                            <a href="https://support.google.com/accounts/answer/61416?hl=pt-BR" target="_blank" rel="noreferrer">Google Chrome</a> /
+                            <a href="https://support.apple.com/pt-br/guide/safari/sfri11471/mac" target="_blank" rel="noreferrer">Safari</a>
                         </div>
                     </li>
                     <li>
                         <h5>5. Tratamento de informações pessoais</h5>
                         <p>Para o fornecimento dos Serviços online aos seus clientes, o Portal Autos adota recursos avançados visando a proteção das informações pessoais dos usuários e de seus Serviços.</p>
-                        <p>As informações de caráter pessoal dos usuários dos Serviços do Portal Autos, entendendo-se por informações pessoais todas aquelas que forem relacionadas a pessoa natural identificada ou identificável, inclusive informações pessoais sensíveis (que tratem sobre origem racial ou étnica, convicção religiosa, opinião política, filiação a sindicato ou a organização de caráter religioso, filosófico ou político, dado referente à saúde ou à vida sexual, dado genético ou biométrico, quando vinculado a uma pessoa natural), como: o nome completo do usuário, endereço físico e eletrônico, número de telefone, RG, CPF, biometria, número de cartão de crédito, situação financeira e patrimonial, preferências e padrões de acesso ("informações pessoais"), não são divulgadas pelo Portal Autos, exceto nas hipóteses expressamente mencionadas nesta Política.</p>
+                        <p>As informações de caráter pessoal dos usuários dos Serviços do Portal Autos, entendendo-se por informações pessoais todas aquelas que forem relacionadas a pessoa natural identificada ou identificável, inclusive informações pessoais sensíveis (que tratem sobre origem racial ou étnica, convicção religiosa, opinião política, filiação a sindicato ou a organização de caráter religioso, filosófico ou político, dado referente à saúde ou à vida sexual, dado genético ou biométrico, quando vinculado a uma pessoa natural), como: o nome completo do usuário, endereço físico e eletrônico, número de telefone, RG, CPF, biometria, número de cartão de crédito, situação financeira e patrimonial, preferências e padrões de acesso, não são divulgadas pelo Portal Autos, exceto nas hipóteses expressamente mencionadas nesta Política.</p>
                         <p>Tais informações são coletadas por meio dos canais do Portal Autos e armazenadas utilizando-se rígidos padrões de sigilo e integridade, bem como controles de acesso físico e lógico, observando-se sempre os mais elevados princípios éticos e legais.</p>
                         <p>Caso o usuário decida fornecer suas informações pessoais nos sites institucionais e/ou no Portal e outros canais Portal Autos para usufruir dos Serviços online do Portal Autos, inclusive as informações pessoais sensíveis, tais informações serão tratadas atendendo às finalidades definidas em contrato de prestação de serviços e nos Termos e Condições de Uso.</p>
                         <p>Uma vez provida das informações pessoais a respeito do usuário, o Portal Autos poderá utilizar, de acordo com o seu interesse legítimo, os dados do cliente/usuário/internauta para o fim de enviar publicidade, direcionada por e-mail ou por quaisquer outros meios de comunicação, contendo informações sobre o Portal, parceiros comerciais relacionados no Anexo I e/ou prestadores de serviço para oferta de produtos e serviços de seu interesse. Entretanto, fica reservado ao cliente/usuário/internauta o direito de, a qualquer momento, inclusive no ato da disponibilização das informações pessoais, informar o Portal Autos, por meio dos canais de comunicação disponíveis para o cadastramento de tais informações, do não interesse em receber tais anúncios, inclusive por e-mail (opt-out), hipótese em que o Portal Autos interromperá tais envios no menor tempo possível. Para cancelar sua inscrição, consulte as instruções de opt-out presentes no rodapé dos nossos e-mails.</p>
@@ -171,7 +171,7 @@ export default function PoliticaPrivacidade() {
                             <li>aos seus controladores, às empresas por ele controladas, as empresas a ele coligadas ou por qualquer forma associadas, no Brasil ou no exterior;</li>
                         </ul>
                         <p>O Portal Autos trabalha exaustivamente para assegurar que as informações divulgadas para os clientes sejam verdadeiras e íntegras, contando com controles apurados de monitoramento das informações fornecidas. Sua participação no processo é revisar as informações, valores e informativos e enviar para o usuário, um comunicado de qualquer discrepância nas informações fornecidas.</p>
-                        <p>O Portal Autos não responderá por prejuízos que possam advir do vazamento das informações pessoais por violação ou quebra das barreiras de segurança de internet por terceiros como "hackers" ou "crackers".</p>
+                        <p>O Portal Autos não responderá por prejuízos que possam advir do vazamento das informações pessoais por violação ou quebra das barreiras de segurança de internet por terceiros como hackers ou crackers.</p>
                         <p>Além dos casos acima citados, havendo a necessidade ou interesse em repassar a terceiros, exceto aqueles já mencionados acima, dados de identificação individual dos clientes/usuários/internautas, o Portal Autos lhes solicitará autorização prévia. Informações que não sejam de identificação individual (como demográficas, por exemplo), poderão ser repassadas a anunciantes, fornecedores, patrocinadores e parceiros, com o objetivo de melhorar a qualidade dos produtos e serviços oferecidos pela Portal Autos.</p>
                         <p>Aos terceiros que, porventura receberem do Portal Autos informações de qualquer natureza, sobre os internautas que acessam o seu Portal, cabe igualmente, a responsabilidade de zelar pelo sigilo e segurança de referidas informações.</p>
                         <p>O Portal Autos se empenha expressivamente para prover segurança e sigilo das informações que capta. Contudo, para que as medidas adotadas tenham eficácia, faz-se necessário que cada cliente/usuário/internauta também tenha atitude responsável, sendo cuidadoso com os dados de sua identificação individual sempre que acessar a internet, informando-os somente em operações em que exista a proteção de dados, nunca divulgando sua identificação de usuário e sempre desconectando a conta do Portal Autos tão logo deixe de acessá-la, principalmente se dividir o computador com outra(s) pessoa(s).</p>

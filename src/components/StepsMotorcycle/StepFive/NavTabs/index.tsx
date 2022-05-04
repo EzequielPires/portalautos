@@ -1,26 +1,22 @@
 import { useContext, useEffect, useState } from "react";
+import { CarContext } from "../../../../contexts/CarContext";
 import { MotorcycleContext } from "../../../../contexts/MotorcycleContext";
+import { CheckOptional } from "../../../Form/CheckOptional";
 import styles from "./styles.module.scss";
 import { TabContent } from "./TabContent";
 
 export function NavTabs() {
     const [active, setActive] = useState('characteristics');
-    const { listOptionals, listCharacteristics, getCharacteristics, getOptionals, getSafety, listSafety, step } = useContext(MotorcycleContext);
-    useEffect(() => {
-        if(step === 5 && listOptionals.length === 0) {
-            getOptionals().then(() => {
-                getCharacteristics().then(() => {
-                    getSafety();
-                });
-            });
-        }
-    }, []);
+    const { motorcycle } = useContext(MotorcycleContext);
     return (
         <div className={styles.navtabs}>
             <nav className={styles.header}>
                 <button className={active === 'characteristics' ? styles.active : null} onClick={() => {
                     setActive('characteristics');
                 }}>Características</button>
+                <button className={active === 'comfort' ? styles.active : null} onClick={() => {
+                    setActive('comfort');
+                }}>Conforto</button>
                 <button className={active === 'optional' ? styles.active : null} onClick={() => {
                     setActive('optional');
                 }}>Opcionais</button>
@@ -30,13 +26,16 @@ export function NavTabs() {
             </nav>
             <hr />
             {active === 'optional' ?
-                <TabContent list={listOptionals} type={active}/> 
+                <TabContent list={motorcycle.optional.options} type={active}/> 
             : null}
             {active === 'characteristics' ?
-                <TabContent list={listCharacteristics} type={active}/> 
+                <TabContent list={motorcycle.characteristic.options} type={active}/> 
             : null}
             {active === 'safety' ?
-                <TabContent list={listSafety} type={active}/> 
+                <TabContent list={motorcycle.safety.options} type={active}/> 
+            : null}
+            {active === 'comfort' ?
+                <TabContent list={motorcycle.confort.options} type={active}/> 
             : null}
         </div>
     );

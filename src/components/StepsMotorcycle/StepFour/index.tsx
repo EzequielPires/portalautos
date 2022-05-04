@@ -10,114 +10,37 @@ import { InputDefault } from "../../InputDefault";
 import { Loading } from "../../Loading";
 import { useRouter } from "next/router";
 import { MotorcycleContext } from "../../../contexts/MotorcycleContext";
-import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export function StepFour() {
     const {
-        gears,
-        listGears,
-        getGears,
-
-        category,
-        listCategory,
-        getCategory,
-
-        style,
-        listStyle,
-        getStyle,
-
-        fuel,
-        listFuel,
-        getFuel,
-
-        systemFuel,
-        listSystemFuel,
-        getSystemFuel,
-
-        gearshift,
-        listGearshift,
-        getGearshift,
-
-        starter,
-        listStarter,
-        getStarter,
-
-        brake,
-        listBrake,
-        getBrake,
-
-        type_motor,
-        listTypeMotor,
-        getTypeMotor,
-
+        motorcycle,
         cylinder,
-
-        listCharacteristics,
-        getCharacteristics,
-
-        listOptionals,
-        getOptionals,
-
         last_digit_plate,
-
-        stateNew,
-        setStateNew,
-
-        viewVehicle,
         editVehicle,
         loading,
-        setLoading,
-        announcement,
-
         step,
         setStep
     } = useContext(MotorcycleContext);
     const router = useRouter();
     const { id } = router.query;
 
-    useEffect(() => {
-        if (id &&
-            step === 4 &&
-            listCategory.length === 0) {
-            getGears().then(() => setLoading(true));
-            getCategory().then(() => {
-                getStyle().then(() => {
-                    getFuel().then(() => {
-                        getSystemFuel().then(() => {
-                            getGearshift().then(() => {
-                                getStarter().then(() => {
-                                    getBrake().then(() => {
-                                        getTypeMotor().then(() => {
-                                            getGears().then(() => setLoading(false))
-                                        })
-                                    })
-                                })
-                            });
-                        })
-                    })
-                });
-            });
-        }
-    }, [id, step]);
-
     const checkConcluded = () => {
-        if (category.value != '0' ||
-            style.value != '0' ||
-            fuel.value != '0' ||
-            systemFuel.value != '0' ||
-            gearshift.value != '0' ||
-            starter.value != '0' ||
-            brake.value != '0' ||
-            type_motor.value != '0' ||
-            gears.value != '0' ||
-            last_digit_plate.value != '' ||
-            cylinder.value != ''
+        if (motorcycle.categories.value != '0' ||
+            motorcycle.styles.value != '0' ||
+            motorcycle.fuels.value != '0' ||
+            motorcycle.fuel_systems.value != '0' ||
+            motorcycle.gear_shifts.value != '0' ||
+            motorcycle.starters.value != '0' ||
+            motorcycle.motors.value != '0' ||
+            motorcycle.plate.value != ''
         ) {
             return true;
         } else {
             return false;
         }
     }
+    const handleGearNumber = (value) => motorcycle.gear_number.setValue(value);
 
     return (
         <div className={step === 4 ? styles.step_four : styles.step_four + ' ' + styles.concluded}>
@@ -135,101 +58,103 @@ export function StepFour() {
                 <div className="d-flex flex-wrap gap-4">
                     <Select
                         label="Categoria"
-                        options={listCategory}
-                        onChange={category.onChange}
-                        value={category.value}
-                        validate={category.validate}
+                        options={motorcycle.categories.options}
+                        onChange={motorcycle.categories.onChange}
+                        value={motorcycle.categories.value}
+                        validate={motorcycle.categories.validate}
                         error={null}
                     />
                     <Select
                         label="Estilo"
-                        options={listStyle}
-                        onChange={style.onChange}
-                        value={style.value}
-                        validate={style.validate}
+                        options={motorcycle.styles.options}
+                        onChange={motorcycle.styles.onChange}
+                        value={motorcycle.styles.value}
+                        validate={motorcycle.styles.validate}
                         error={null}
                     />
                     <Select
                         label="Combustível"
-                        options={listFuel}
-                        onChange={fuel.onChange}
-                        value={fuel.value}
-                        validate={fuel.validate}
+                        options={motorcycle.fuels.options}
+                        onChange={motorcycle.fuels.onChange}
+                        value={motorcycle.fuels.value}
+                        validate={motorcycle.fuels.validate}
                         error={null}
                     />
                     <Select
                         label="Sistema de combustível"
-                        options={listSystemFuel}
-                        onChange={systemFuel.onChange}
-                        value={systemFuel.value}
-                        validate={systemFuel.validate}
+                        options={motorcycle.fuel_systems.options}
+                        onChange={motorcycle.fuel_systems.onChange}
+                        value={motorcycle.fuel_systems.value}
+                        validate={motorcycle.fuel_systems.validate}
                         error={null}
                     />
                     <Select
                         label="Câmbio de marchas"
-                        options={listGearshift}
-                        onChange={gearshift.onChange}
-                        value={gearshift.value}
-                        validate={gearshift.validate}
+                        options={motorcycle.gear_shifts.options}
+                        onChange={motorcycle.gear_shifts.onChange}
+                        value={motorcycle.gear_shifts.value}
+                        validate={motorcycle.gear_shifts.validate}
                         error={null}
                     />
                     <Select
                         label="Tipo de partida"
-                        options={listStarter}
-                        onChange={starter.onChange}
-                        value={starter.value}
-                        validate={starter.validate}
+                        options={motorcycle.starters.options}
+                        onChange={motorcycle.starters.onChange}
+                        value={motorcycle.starters.value}
+                        validate={motorcycle.starters.validate}
                         error={null}
                     />
                     <Select
                         label="Tipo de freios"
-                        options={listBrake}
-                        onChange={brake.onChange}
-                        value={brake.value}
-                        validate={brake.validate}
+                        options={motorcycle.brakes.options}
+                        onChange={motorcycle.brakes.onChange}
+                        value={motorcycle.brakes.value}
+                        validate={motorcycle.brakes.validate}
                         error={null}
                     />
                     <Select
                         label="Tipo do motor"
-                        options={listTypeMotor}
-                        onChange={type_motor.onChange}
-                        value={type_motor.value}
-                        validate={type_motor.validate}
+                        options={motorcycle.motors.options}
+                        onChange={motorcycle.motors.onChange}
+                        value={motorcycle.motors.value}
+                        validate={motorcycle.motors.validate}
                         error={null}
-                    />
-                    <Select
-                        label="Quantidade de marchas"
-                        options={listGears}
-                        onChange={gears.onChange}
-                        value={gears.value}
-                        validate={gears.validate}
-                        error={null}
-                    />
-                    <InputDefault
-                        label="Último dígito da placa"
-                        placeholder="Ex.: 1"
-                        type="text"
-                        {...last_digit_plate}
                     />
                     <div className="d-flex flex-wrap align-items-center w-100 gap-4">
                         <InputDefault
+                            label="Placa"
+                            onChange={motorcycle.plate.onChange}
+                            value={motorcycle.plate.value}
+                            onBlur={motorcycle.plate.onBlur}
+                            type="text"
+                            error={motorcycle.plate.error}
+                        />
+                        <InputDefault
                             label="CC:"
                             placeholder="Ex.: 160"
+                            onChange={motorcycle.cylinder.onChange}
+                            value={motorcycle.cylinder.value}
+                            onBlur={motorcycle.cylinder.onBlur}
                             type="text"
-                            {...cylinder}
+                            error={motorcycle.cylinder.error}
                         />
-                        <div className={styles.input_box}>
-                            <input
-                                type="checkbox"
-                                name="new"
-                                id="new"
-                                checked={stateNew}
-                                onChange={
-                                    () => {
-                                        setStateNew(stateNew === true ? false : true)
-                                    }}
-                            />
-                            <label htmlFor="new">Veículo usado</label>
+                    </div>
+                    <div className={styles.last_digit + " d-flex"}>
+                        <label htmlFor="">Quantidade de marchas</label>
+                        <small>Selecione:</small>
+                        <div className="d-flex gap-2">
+                            <button onClick={() => handleGearNumber(1)} className={motorcycle.gear_number.value === 1 ? styles.active : null}>1</button>
+                            <button onClick={() => handleGearNumber(2)} className={motorcycle.gear_number.value === 2 ? styles.active : null}>2</button>
+                            <button onClick={() => handleGearNumber(3)} className={motorcycle.gear_number.value === 3 ? styles.active : null}>3</button>
+                            <button onClick={() => handleGearNumber(4)} className={motorcycle.gear_number.value === 4 ? styles.active : null}>4</button>
+                            <button onClick={() => handleGearNumber(5)} className={motorcycle.gear_number.value === 5 ? styles.active : null}>5</button>
+                            <button onClick={() => handleGearNumber(6)} className={motorcycle.gear_number.value === 6 ? styles.active : null}>6</button>
+                            <button onClick={() => handleGearNumber(7)} className={motorcycle.gear_number.value === 7 ? styles.active : null}>7</button>
+                            <button onClick={() => handleGearNumber(8)} className={motorcycle.gear_number.value === 8 ? styles.active : null}>8</button>
+                            <button onClick={() => handleGearNumber(9)} className={motorcycle.gear_number.value === 9 ? styles.active : null}>9</button>
+                            <button onClick={() => handleGearNumber(10)} className={motorcycle.gear_number.value === 10 ? styles.active : null}>10</button>
+                            <button onClick={() => handleGearNumber(11)} className={motorcycle.gear_number.value === 11 ? styles.active : null}>11</button>
+                            <button onClick={() => handleGearNumber(12)} className={motorcycle.gear_number.value === 12 ? styles.active : null}>12</button>
                         </div>
                     </div>
                 </div>

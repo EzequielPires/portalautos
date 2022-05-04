@@ -46,6 +46,7 @@ export class VehicleFactory {
         motorcycle.mileage_traveled = useForm('mileage_traveled');
         motorcycle.description = useForm('description');
         motorcycle.plate = useForm('plate');
+        motorcycle.cylinder = useForm('cylinder');
         motorcycle.fipe_price = useForm('price');
         
         motorcycle.brand = useSelect();
@@ -60,6 +61,8 @@ export class VehicleFactory {
         motorcycle.fuels = useSelect();
         motorcycle.gear_shifts = useSelect();
         motorcycle.styles = useSelect();
+        motorcycle.starters = useSelect();
+        motorcycle.motors = useSelect();
         motorcycle.gear_number = useSelect();
         motorcycle.brakes = useSelect();
 

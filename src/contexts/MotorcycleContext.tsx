@@ -4,35 +4,19 @@ import { parseCookies } from "nookies";
 import { createContext, useState } from "react";
 import useForm from "../hooks/useForm";
 import { useSelect } from "../hooks/useSelect";
-import { vehicle } from "../services/api";
+import { api, vehicle } from "../services/api";
 import { getListVehicle } from "../helpers/getListVehicle";
 import { Motorcycle } from "../entities/Motorcycle";
 import { VehicleFactory } from "../factory/VehicleFactory";
+import { VehicleService } from "../services/VehicleService";
 
 type MotorcycleType = {
     motorcycle: Motorcycle;
-    //brand,
-    //listBrand,
     getBrand: () => Promise<void>,
-
-    //model,
-    //listModel,
     getModel: (value) => Promise<void>,
-
-    version,
-    listVersion,
     getVersion: (value) => Promise<void>,
-
-    yearModel,
-    listYearModel,
     getYearModel: (value) => Promise<void>,
-
-    yearFabrication,
-    listYearFabrication,
     getYearFabrication: (value) => Promise<void>,
-
-    color,
-    listColor,
     getColor: (value) => Promise<void>,
     setColorFinish: (value) => Promise<void>,
 
@@ -108,13 +92,13 @@ type MotorcycleType = {
 
     addCheck: (value, type) => Promise<void>,
     removeCheck: (value, type) => Promise<void>,
-
+    getDetail: () => Promise<void>,
     activeVehicle: (id) => Promise<void>,
     viewVehicle: (id) => Promise<void>,
     buildVehicle: (data) => void,
     handleStore: () => Promise<void>,
     handleSubmit: (e) => Promise<void>,
-    performFirstStep: (e) => Promise<void>,
+    createMotorcycle: (e) => Promise<void>,
     editVehicle: (e, id) => Promise<void>,
     clearMotorcycle: () => void,
 }
@@ -122,13 +106,9 @@ type MotorcycleType = {
 export const MotorcycleContext = createContext({} as MotorcycleType);
 
 export function MotorcycleProvider({ children }) {
-    const motorcycle = VehicleFactory.createForUseFormMotorcycle();
-    //const brand = useSelect();
-    //const model = useSelect();
-    const version = useSelect();
-    const yearModel = useSelect();
-    const yearFabrication = useSelect();
-    const color = useSelect();
+    let motorcycle = VehicleFactory.createForUseFormMotorcycle();
+    const vehicleService = new VehicleService();
+
     const mileage_traveled = useForm('mileage_traveled');
     const description = useForm('description');
     const price = useForm('price');
@@ -149,13 +129,6 @@ export function MotorcycleProvider({ children }) {
     const [stateNew, setStateNew] = useState(false);
     const [statePrice, setStatePrice] = useState(false);
 
-
-    //const [listBrand, setListBrand] = useState([]);
-    //const [listModel, setListModel] = useState([]);
-    const [listVersion, setListVersion] = useState([]);
-    const [listYearModel, setListYearModel] = useState([]);
-    const [listYearFabrication, setListYearFabrication] = useState([]);
-    const [listColor, setListColor] = useState([]);
     const [listCategory, setListCategory] = useState([]);
     const [listOptionals, setListOptionals] = useState([]);
     const [listSafety, setListSafety] = useState([]);
@@ -206,32 +179,65 @@ export function MotorcycleProvider({ children }) {
     }
 
     const getYearFabrication = async (value) => {
-        /* yearModel.setValue(value);
-        yearModel.validate(value);
-        setListYearFabrication([]);
-        setListVersion([]);
-        setListColor([]);
-        setListYearFabrication([parseInt(value), parseInt(value) - 1]); */
+        motorcycle.year_model.setValue(value);
+        motorcycle.year_model.validate(value);
+        motorcycle.year_manufacture.setOptions([]);
+        motorcycle.version.setOptions([]);
+        motorcycle.color.setOptions([]);
+        motorcycle.year_manufacture.setOptions([parseInt(value), parseInt(value) - 1]);
     }
 
     const getVersion = async (value) => {
-        /* const res = await getListVehicle.version('motorcycle', model.value, yearModel.value);
-        res.success ? setListVersion(res.data) : console.log(res);
-        yearFabrication.setValue(value);
-        yearFabrication.validate(value); */
+        motorcycle.version.setOptions([]);
+        motorcycle.color.setOptions([]);
+        const res = await getListVehicle.version('motorcycle', motorcycle.brand.value, motorcycle.model.value, motorcycle.year_model.value);
+        let array = [];
+        console.log(res)
+        res.data?.forEach(item => {
+            array.push({...item.version, price: item.price});
+        });
+        motorcycle.version.setOptions(array);
+        motorcycle.year_manufacture.setValue(value);
+        motorcycle.year_manufacture.validate(value);
     }
 
     const getColor = async (value) => {
-        version.validate(value);
-        version.setValue(value);
+        motorcycle.version.setValue(value);
+        motorcycle.version.validate(value);
+        motorcycle.version.options?.forEach(item => {
+            if(item.id === value) {
+                motorcycle.fipe_price.setValue(item.price);
+            }
+        });
         const res = await getListVehicle.details('motorcycle');
-        res.success ? setListColor(res.data) : console.log(res);
+        res.success ? motorcycle.color.setOptions(res.data.colors) : console.log(res);
     }
 
     const setColorFinish = async (value) => {
-        color.validate(value);
-        color.setValue(value)
+        motorcycle.color.validate(value);
+        motorcycle.color.setValue(value);
     }
+
+
+    const getDetail = async () => {
+        const res = await getListVehicle.details('motorcycle');
+        if (res.success) {
+            console.log(res)
+            motorcycle.categories.setOptions(res.data.categories);
+            motorcycle.styles.setOptions(res.data.styles);
+            motorcycle.starters.setOptions(res.data.starters);
+            motorcycle.motors.setOptions(res.data.motors);
+            motorcycle.fuels.setOptions(res.data.fuels);
+            motorcycle.fuel_systems.setOptions(res.data.fuel_systems);
+            motorcycle.gear_shifts.setOptions(res.data.gear_shifts);
+            motorcycle.directions.setOptions(res.data.directions);
+            motorcycle.characteristic.setOptions(res.data.characteristics);
+            motorcycle.optional.setOptions(res.data.items.optional);
+            motorcycle.confort.setOptions(res.data.items.comfort);
+            motorcycle.safety.setOptions(res.data.items.safety);
+            motorcycle.brakes.setOptions(res.data.brakes);
+        }
+    } 
 
     const getCategory = async () => {
         const res = await getListVehicle.details('motorcycle');
@@ -345,90 +351,40 @@ export function MotorcycleProvider({ children }) {
     }
 
     const buildVehicle = (data) => {
-        /* console.log(data);
         setAnnouncement(data);
-        brand.setValue(data.fipe_vehicle.model.brand.id);
-        model.setValue(data.fipe_vehicle.model.id);
-        yearModel.setValue(data.fipe_vehicle.year_model);
-        yearFabrication.setValue(data.year_manufacture);
-        version.setValue(data.fipe_vehicle.id);
-        color.setValue(data.color.id);
-        price.setValue(VMasker.toMoney(data.price));
-        description.setValue(data.description);
-        console.log(data.mileage_traveled);
-        mileage_traveled.setValue(VMasker.toMoney(data.mileage_traveled, {
-            precision: 0,
-            delimiter: '.',
-        }));
-
-        setOptionals(data.optionals);
-        setCharacteristics(data.characteristics);
-
-        data.last_digit_plate ? last_digit_plate.setValue(data.last_digit_plate) : null;
-        setStateNew(!data.new);
-
-        data.style ? style.setValue(data.style.id) : null;
-        data.fuel ? fuel.setValue(data.fuel.id) : null;
-        data.fuel_system ? systemFuel.setValue(data.fuel_system.id) : null;
-        data.gearshift ? gearshift.setValue(data.gearshift.id) : null;
-        data.starter ? starter.setValue(data.starter.id) : null;
-        data.brake ? brake.setValue(data.brake.id) : null;
-        data.type_motor ? type_motor.setValue(data.type_motor.id) : null;
-        data.number_gears ? gears.setValue(data.number_gears) : null;
-        data.cylinder ? cylinder.setValue(data.cylinder) : null; */
+        motorcycle = motorcycle.fromObject(data);
     }
 
     const viewVehicle = async (id) => {
-        setOptionals([]);
-        const res = await vehicle.get(`admin/vehicle/${id}/view`)
-            .then((res: any) => res.data)
-            .catch(() => router.push('/error'));
+        setLoading(true);
+        const res = await api.get(`/vehicle/${id}/view`).then((res: any) => res.data).catch(() => router.push('/error'));
         if (res.success === true) {
-            buildVehicle(res.data);
+            motorcycle = motorcycle.fromObject(res.data);
+            setLoading(null);
+        } else {
+            setLoading(null);
         }
     }
 
     const clearMotorcycle = () => {
-        /*  brand.setValue('0');
-         model.setValue('0');
-         version.setValue('0');
-         yearModel.setValue('0');
-         yearFabrication.setValue('0');
-         color.setValue('0');
-         mileage_traveled.setValue('');
-         description.setValue('');
-         price.setValue('');
-         setOptionals([]);
-         setCharacteristics([]);
-         category.setValue('0');
-         style.setValue('0');
-         fuel.setValue('0');
-         systemFuel.setValue('0');
-         brake.setValue('0');
-         starter.setValue('0');
-         type_motor.setValue('0');
-         gearshift.setValue('0');
-         gears.setValue('0');
-         cylinder.setValue('');
-         last_digit_plate.setValue('');
-         setStateNew(false); */
+        motorcycle = motorcycle.fromObjectClean();
     }
 
 
     const handleSubmit = async (e) => {
-        /* e.preventDefault();
+        e.preventDefault();
         const { 'nextauth.token': token } = parseCookies();
         if (
-            brand.validate(brand.value) &&
-            model.validate(model.value) &&
-            yearModel.validate(yearModel.value) &&
-            yearFabrication.validate(yearFabrication.value) &&
-            version.validate(version.value) &&
-            color.validate(color.value) &&
+            motorcycle.brand.validate(motorcycle.brand.value) &&
+            motorcycle.model.validate(motorcycle.model.value) &&
+            motorcycle.year_model.validate(motorcycle.year_model.value) &&
+            motorcycle.year_manufacture.validate(motorcycle.year_manufacture.value) &&
+            motorcycle.version.validate(motorcycle.version.value) &&
+            motorcycle.color.validate(motorcycle.color.value) &&
             token
         ) {
             setStep(step + 1);
-        } */
+        }
     }
 
     const handleStore = async () => {
@@ -443,74 +399,20 @@ export function MotorcycleProvider({ children }) {
         }
     }
 
-    const performFirstStep = async (e) => {
+    const createMotorcycle = async (e) => {
         e.preventDefault();
         const { 'nextauth.token': token } = parseCookies();
-        if (
-            token &&
-            mileage_traveled.validate() &&
-            price.validate()
-        ) {
-            const data: any = new FormData();
-            data.append('motorcycle[fipe]', version.value);
-            data.append('motorcycle[year_manufacture]', yearFabrication.value);
-            data.append('motorcycle[color]', color.value);
-            data.append('motorcycle[price]', price.value.replace(/(R\$) (([1-9])?(\d{2})?(.?\d{3})*?(,\d{2}))/, '$2'));
-            data.append('motorcycle[mileage_traveled]', mileage_traveled.value);
-            data.append('motorcycle[visible_price]', statePrice);
-            description.value ? data.append('motorcycle[description]', description.value) : null;
-            const res = await vehicle.post(`/admin/vehicle/motorcycle/new`, data)
-                .then((res): any => {
-                    return res.data;
-                })
-                .catch(() => router.push('/error'));
-            if (res.success === true) {
-                router.push(`/cadastrar-anuncio/moto/${res.data.id}`).then(() => setStep(3));
-            }
+        if (token && motorcycle.mileage_traveled.validate() && motorcycle.price.validate()) {
+            const res = await vehicleService.create(motorcycle.toFormDataFromUseFormCar(), 'motorcycle');
+            { res && res.success === true ? router.push(`/cadastrar-anuncio/carro/${res.data.id}`).then(() => setStep(3)) : null }
         }
     }
 
     const editVehicle = async (e, id) => {
         e.preventDefault();
-        const { 'nextauth.token': token } = parseCookies();
-        if (
-            token
-        ) {
-            const data: any = new FormData();
-            setLoading(true);
-            data.append('motorcycle[fipe]', version.value);
-            data.append('motorcycle[year_manufacture]', yearFabrication.value);
-            data.append('motorcycle[color]', color.value);
-            data.append('motorcycle[price]', price.value.replace(/(R\$) (([1-9])?(\d{2})?(.?\d{3})*?(,\d{2}))/, '$2'));
-            console.log(mileage_traveled.value);
-            data.append('motorcycle[mileage_traveled]', mileage_traveled.value.replace(/[^0-9]/g, ''));
-            data.append('motorcycle[description]', description.value);
-            !stateNew ? data.append('motorcycle[new]', true) : null;
-            data.append('motorcycle[last_digit_plate]', last_digit_plate.value);
-            fuel.value != '0' ? data.append('motorcycle[fuel]', fuel.value) : null;
-            systemFuel.value != '0' ? data.append('motorcycle[fuel_system]', systemFuel.value) : null;
-            style.value != '0' ? data.append('motorcycle[style]', style.value) : null;
-            category.value != '0' ? data.append('motorcycle[category]', category.value) : null;
-            gearshift.value != '0' ? data.append('motorcycle[gearshift]', gearshift.value) : null;
-            starter.value != '0' ? data.append('motorcycle[starter]', starter.value) : null;
-            brake.value != '0' ? data.append('motorcycle[brake]', brake.value) : null;
-            type_motor.value != '0' ? data.append('motorcycle[type_motor]', type_motor.value) : null;
-            gears.value != '0' ? data.append('motorcycle[number_gears]', gears.value) : null;
-            cylinder.value != '0' ? data.append('motorcycle[cylinder]', cylinder.value) : null;
-
-            optionals.forEach(item => {
-                data.append('motorcycle[optional][]', item.id);
-            })
-            characteristics.forEach(item => {
-                data.append('motorcycle[characteristics][]', item.id);
-            })
-
-            const res = await vehicle.post(`admin/vehicle/motorcycle/${id}/edit`, data)
-                .then((res): any => {
-                    setLoading(false);
-                    return res.data;
-                })
-                .catch(() => router.push('/error'));
+        if (motorcycle.mileage_traveled.validate() && motorcycle.price.validate()) {
+            const data = motorcycle.toFormDataFromUseFormCar();
+            await vehicleService.update(data, 'motorcycle', id);
         }
     }
 
@@ -519,12 +421,6 @@ export function MotorcycleProvider({ children }) {
     return (
         <MotorcycleContext.Provider value={{
             motorcycle,
-            //brand,
-            //model,
-            version,
-            yearModel,
-            yearFabrication,
-            color,
             mileage_traveled,
             description,
             price,
@@ -549,12 +445,6 @@ export function MotorcycleProvider({ children }) {
             listSafety,
             getSafety,
 
-            //listBrand,
-            //listModel,
-            listVersion,
-            listYearModel,
-            listYearFabrication,
-            listColor,
             listOptionals,
             listCategory,
             listCharacteristics,
@@ -574,6 +464,7 @@ export function MotorcycleProvider({ children }) {
             setStateNew,
             announcement,
 
+            getDetail,
             getBrand,
             getModel,
             getVersion,
@@ -600,7 +491,7 @@ export function MotorcycleProvider({ children }) {
             buildVehicle,
             handleStore,
             handleSubmit,
-            performFirstStep,
+            createMotorcycle,
             editVehicle,
             clearMotorcycle
         }}>

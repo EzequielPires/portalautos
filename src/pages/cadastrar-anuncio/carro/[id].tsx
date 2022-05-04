@@ -30,7 +30,6 @@ export default function Carro() {
         getDetail();
     }, []);
     useEffect(() => {
-        console.log(data);
         if (id && data) {
             buildVehicle(data.data);
             data.data.gallery ? setGallery(data.data.gallery.images ?? []) : setGallery([]);

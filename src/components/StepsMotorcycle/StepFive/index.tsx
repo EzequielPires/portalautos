@@ -6,25 +6,25 @@ import { faCheck, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import styles from "./styles.module.scss";
 import { NavTabs } from "./NavTabs";
 import { useRouter } from "next/router";
-import { MotorcycleContext } from "../../../contexts/MotorcycleContext";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import { MotorcycleContext } from "../../../contexts/MotorcycleContext";
 
 export function StepFive() {
     const {
         step,
         setStep,
         editVehicle,
-        safety,
-        optionals,
-        characteristics
+        motorcycle
     } = useContext(MotorcycleContext);
     const router = useRouter();
     const { id } = router.query;
+
     const checkConcluded = () => {
         if (
-            safety.length > 0 ||
-            optionals.length > 0 ||
-            characteristics.length > 0
+            motorcycle.safety.value.length > 0 ||
+            motorcycle.optional.value.length > 0 ||
+            motorcycle.confort.value.length > 0 ||
+            motorcycle.characteristic.value.length > 0
         ) {
             return true;
         } else {
@@ -39,7 +39,7 @@ export function StepFive() {
                 </div>
                 <div className={styles.step_title}>
                     <span>ETAPA 5</span>
-                    <span className={styles.title}>Sobre o veículo</span>
+                    <span className={styles.title}>Adicionais</span>
                 </div>
             </div>
             <button className={step === 5 ? "d-none" : null} onClick={() => setStep(5)}>EDITAR</button>
