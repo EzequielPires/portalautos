@@ -27,18 +27,18 @@ jobs:
 
       - uses: actions/checkout@v1
 
-      - name: Removed Old Version
-        uses: appleboy/ssh-action@master
-        with:
-          passphrase: ${{ secrets.DEPLOY_PASSPHRASE }}
-          host: ${{ secrets.HOST_DNS }}
-          USERNAME: ${{ secrets.USERNAME }}
-          PORT: ${{ secrets.PORT }}
-          KEY: ${{ secrets.AWS_PRIVATE_KEY }}
-          script: cd /var/www/html &&
-            pm2 stop site &&
-            rm -rf vehicles &&
-            npm cache clean --force
+#      - name: Removed Old Version
+#        uses: appleboy/ssh-action@master
+#        with:
+#          passphrase: ${{ secrets.DEPLOY_PASSPHRASE }}
+#          host: ${{ secrets.HOST_DNS }}
+#          USERNAME: ${{ secrets.USERNAME }}
+#          PORT: ${{ secrets.PORT }}
+#          KEY: ${{ secrets.AWS_PRIVATE_KEY }}
+#          script: cd /var/www/html &&
+#            pm2 stop site &&
+#            rm -rf vehicles &&
+#            npm cache clean --force
 
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
@@ -62,5 +62,7 @@ jobs:
           script:
             cd /var/www/html/vehicle &&
             npm install --save --force &&            
-            npm run build &&
+            npm run build && pm2 stop site
+            cd /var/www/html &&
+            rm -rf vehicles && mv vehicle vehicles &&
             cd /var/www/html && pm2 start site
