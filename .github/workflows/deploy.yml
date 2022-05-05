@@ -62,7 +62,7 @@ jobs:
           script:
             cd /var/www/html/vehicle &&
             npm install --save --force &&            
-            npm run build && pm2 stop site
+            npm run build && pm2 stop site &&
             cd /var/www/html &&
             rm -rf vehicles && mv vehicle vehicles &&
             cd /var/www/html && pm2 start site
