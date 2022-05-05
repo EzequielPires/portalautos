@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../services/api";
+import router from "next/router";
 
 export function useFetchDefault() {
     const [isLoading, setIsLoading] = useState(null);
@@ -8,7 +9,11 @@ export function useFetchDefault() {
 
     const fetch = useCallback(async (url) => {
         setIsLoading(true);
-        const res = await api.get(url).then(res => {
+        const res = await api.get(url, {
+            headers: {
+                'X-Requested-Uri': `${router.asPath}`
+            }
+        }).then(res => {
             setIsLoading(false);
             setValue(res.data);
             return res.data;

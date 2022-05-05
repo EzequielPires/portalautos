@@ -146,7 +146,13 @@ export default function Comprar({id, data, error}) {
 export async function getServerSideProps({params}) {
     const id = params.id;
     let error = null;
-    const data = await api.get(`/ad/${id[id.length - 1]}/view`).then((res) => res.data).catch(() => error = true);
+    const data = await api.get(`/ad/${id[id.length - 1]}/view`, {
+        headers: {
+            'X-Requested-Uri': `${params.asPath}`
+        }
+    }).then((res) => {
+        return res.data
+    }).catch(() => error = true);
     return {
       props: {id, data, error}, // will be passed to the page component as props
     }
