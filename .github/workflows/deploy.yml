@@ -49,7 +49,7 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.AWS_PRIVATE_KEY }}
           source: "./"
-          target: "/var/www/html/vehicles"
+          target: "/var/www/html/vehicle"
 
       - name: Executing remote command
         uses: appleboy/ssh-action@master
@@ -60,7 +60,7 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.AWS_PRIVATE_KEY }}
           script:
-            cd /var/www/html/vehicles &&
+            cd /var/www/html/vehicle &&
             npm install --save --force &&            
             npm run build &&
             cd /var/www/html && pm2 start site
