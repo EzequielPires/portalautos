@@ -1,0 +1,71 @@
+.section_form_filter_home {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 0 72px 0;
+  width: 100%;
+  height: auto;
+  background: linear-gradient(180deg, #000000 10.34%, #FAFAFA 100%);
+  .car_animated {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .15;
+    background-image: url("../../assets/car-logos.svg");
+    background-repeat: repeat;
+    background-position: center;
+    backface-visibility: hidden;
+    background-position-y: 0px;
+    background-size: auto;
+    animation: backgroundCarLogos 50s linear infinite;
+    z-index: 10;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    z-index: 12;
+    h2 {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: 600;
+      width: 508px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: center;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+  }
+}
+@keyframes backgroundCarLogos {
+  0% {
+    background-position-y: 960px;
+  }
+}
+
+@media (max-width: 720px) {
+  .section_form_filter_home {
+    background: transparent;
+    padding: 2rem .75rem;
+    height: auto;
+    .car_animated {
+      display: none;
+    }
+    .content {
+      h2, h1 {
+        display: none;
+      }
+    }
+  }
+
+}

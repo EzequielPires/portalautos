@@ -1,0 +1,72 @@
+.vehicle_items {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  button {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    .title_section{
+      display: block;
+      color: var(--main-color);
+      text-transform: uppercase;
+      font-size: .875rem;
+      font-weight: 600;
+    }
+    &:focus, &:not(.collapse) {
+      box-shadow: none;
+      background: #fff;
+      &:after {
+        width: 14px;
+        height: 14px;
+        background-image: url("../../../assets/ico/chevron-down-solid.svg");
+        background-size: 14px;
+        background-position: center center;
+      }
+    }
+    &:after {
+      width: 14px;
+      height: 14px;
+      background-image: url("../../../assets/ico/chevron-down-solid.svg");
+      background-size: 14px;
+      background-position: center center;
+    }
+  }
+  .item {
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 210px;
+    svg {
+      display: none;
+    }
+    span {
+      font-weight: 500;
+      font-size: .875rem;
+      color: #999999;
+    }
+    strong {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #555;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .vehicle_items {
+    .item {
+      min-width: 210px;
+      strong {
+        font-size: .875rem;
+        font-weight: 400;
+      }
+      svg {
+        display: flex;
+        font-size: .75rem;
+        color: var(--green-color);
+      }
+    }
+  }
+}

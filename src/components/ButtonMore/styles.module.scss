@@ -1,0 +1,14 @@
+.btn_more {
+  background: transparent;
+  border: 0;
+  color: #777;
+  font-size: .75rem;
+  font-weight: 600;
+  transition: .2s;
+  &:hover {
+    color: #333;
+  }
+  svg {
+    margin-left: .5rem;
+  }
+}

@@ -1,0 +1,3 @@
+portalautosFront:
+  component: "@sls-next/serverless-component"
+  

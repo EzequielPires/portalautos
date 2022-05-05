@@ -1,0 +1,30 @@
+.item {
+    width: 190px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 190px;
+    span {
+        font-weight: 500;
+        font-size: 0.875rem;
+        color: #999999;
+    }
+    strong {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #555;
+    }
+}
+@media (max-width: 720px) {
+    .item {
+        min-width: 210px;
+        strong {
+            font-size: 0.875rem;
+            font-weight: 400;
+        }
+        svg {
+            font-size: 0.75rem;
+            color: var(--green-color);
+        }
+    }
+}

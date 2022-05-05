@@ -1,0 +1,173 @@
+.card {
+    width: 320px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    .card_header {
+        width: 100%;
+        height: 212px;
+        overflow: hidden;
+        position: relative;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        .new {
+            position: absolute;
+            top: 0;
+            right: 0.5rem;
+            border: 2px solid #ecedf2;
+            border-top: 0;
+            margin-top: -2px;
+            border-radius: 0 0 50% 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--linear-gradient);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            pointer-events: none;
+        }
+    }
+
+    .card_body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1;
+        padding: 0 1rem 1rem 1rem;
+        header {
+            padding: 1rem 0;
+            border-bottom: 1px solid #ddd;
+            .identifier {
+                font-size: 0.75rem;
+                color: #555;
+            }
+            .new {
+                text-transform: uppercase;
+                color: #555;
+            }
+            .title {
+                font-size: 1.3rem;
+                text-transform: capitalize;
+                color: #333;
+                margin-bottom: 0;
+                span {
+                    font-size: 0.9rem;
+                }
+            }
+            .subtitle {
+                font-size: 0.875rem;
+                font-weight: 400;
+                max-width: 220px;
+                color: #555;
+                margin-bottom: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                line-height: 18px;
+                height: 18px;
+                max-height: 18px;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+            }
+            .price {
+                color: #555;
+                font-size: 1.3rem;
+                font-weight: 700;
+                margin-top: 0.5rem;
+                margin-bottom: 0;
+                span {
+                    color: var(--main-color);
+                }
+            }
+        }
+        main {
+            .add {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                span {
+                    color: var(--main-color);
+                    font-size: 0.875rem;
+                    color: #555;
+                }
+            }
+            button {
+                width: 100% !important;
+                max-width: unset;
+                svg {
+                    transition: 0.3s;
+                }
+                &:hover {
+                    background: var(--main-color);
+                    color: #fff;
+                    transition: 0.3s;
+                    svg {
+                        color: #fff;
+                    }
+                }
+            }
+            .btn_removed {
+                border: 0;
+                width: unset !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: .5rem;
+                background: transparent;
+                color: var(--red-color);
+                font-size: .8rem;
+                &:hover {
+                    background: transparent;
+                    color: var(--red-color);
+                    svg {
+                        color: var(--red-color);
+                    }
+                }
+            }
+        }
+    }
+}
+/* @media (min-width: 0px) {
+    .card {
+        flex-direction: column !important;
+        width: 320px !important;
+        min-width: unset;
+        height: auto;
+        .card_header {
+            width: 280px;
+            height: 186px;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: 0.5s;
+            }
+        }
+        .card_body {
+            header {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                div {
+                    align-items: flex-start !important;
+                }
+            }
+            .btn_edit {
+                width: 100%;
+            }
+        }
+    }
+}
+ */

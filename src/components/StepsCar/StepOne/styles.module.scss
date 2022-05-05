@@ -1,0 +1,117 @@
+.step_one {
+    width: 100%;
+    max-width: 882px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #d3d3d3;
+    padding: 2rem;
+    transition: .4s;
+    .step_header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        .state {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid #d3d3d3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: .5rem;
+            svg {
+                color: #d3d3d3;
+            }
+        }
+        .step_title {
+            span {  
+                display: block;
+                font-size: .875rem;
+                color: #999;
+            }
+            .title {
+                display: block;
+                font-size: 1rem;
+                font-weight: 600;
+                color: #555;
+            }
+        }
+    }
+}
+.button_link {
+    background: transparent;
+    border: 0;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--main-color);
+}
+.concluded {
+    display: flex;
+    justify-content: space-between;
+    button {
+        background: transparent;
+        border: 0;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #555;
+    }
+    .step_header {
+        margin-bottom: 0;
+        .state {
+            background: #3EDB6A;
+            svg {
+                color: #fff;
+            }
+        }
+    }
+    .content {
+        display: none;
+    }
+}
+.content {
+    .group_button {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 2rem !important;
+        gap: 24px;
+        .btn_primary {
+            width: 220px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 0;
+            border-radius: 6px;
+            background: var(--main-color);
+            color: #fff;
+            font-weight: 600;
+        }
+        .btn_secondary {
+            width: 220px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--main-color);
+            border-radius: 6px;
+            background: #fff;
+            color: var(--main-color);
+            font-weight: 600;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .step_one {
+        padding: 2rem .75rem;
+    }
+    .content {
+        .group_button {
+            width: 100%;
+            button {
+                width: 100% !important;
+            }
+        }
+    }
+}

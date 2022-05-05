@@ -1,0 +1,9 @@
+.tab_content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    li {
+        height: 34px !important;
+    }
+}
