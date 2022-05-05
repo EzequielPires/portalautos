@@ -143,12 +143,12 @@ export default function Comprar({id, data, error}) {
     );
 }
 
-export async function getServerSideProps({params}) {
+export async function getServerSideProps({resolvedUrl, params}) {
     const id = params.id;
     let error = null;
     const data = await api.get(`/ad/${id[id.length - 1]}/view`, {
         headers: {
-            'X-Requested-Uri': `${params.asPath}`
+            'X-Requested-Uri': `${resolvedUrl}`
         }
     }).then((res) => {
         return res.data
