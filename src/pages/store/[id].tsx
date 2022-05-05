@@ -37,6 +37,7 @@ export default function Store() {
     if (!store) {
         return <div></div>
     }
+
     return (
         <div className={styles.store}>
             <NavbarFixed />
