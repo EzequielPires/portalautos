@@ -5,6 +5,7 @@ import NProgress from "nprogress";
 import SSRProvider from 'react-bootstrap/SSRProvider';
 import { AuthProvider } from '../contexts/AuthContext';
 import { AnnouncementProvider } from '../contexts/AnnouncementContext';
+import jwt from 'jsonwebtoken';
 import {
   QueryClient,
   QueryClientProvider,
@@ -30,11 +31,15 @@ import { AlertProvider } from '../contexts/AlertContext';
 import { Alert } from '../components/Alert';
 import ImgDefault from "../assets/image-default.png";
 import { Loading } from '../components/Loading';
+import {Session} from "../entities/Session";
+import {parseCookies, setCookie} from "nookies";
+import {api} from "../services/api";
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
   useEffect(() => {
     const handleStart = (url) => {
       setLoading(true);

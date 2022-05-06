@@ -1,7 +1,6 @@
 import { NavbarFixed } from "../../components/NavbarFixed";
 import { Gallery } from "../../components/Gallery";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import VMasker from "vanilla-masker/build/vanilla-masker.min";
 import styles from "./styles.module.scss";
 import { SectionOffers } from "../../components/SectionOffers";
@@ -16,8 +15,6 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { VehicleItems } from "../../components/ViewVehicleComponents/VehicleItems";
 import { Accordion } from "react-bootstrap";
 import { Datasheet } from "../../components/ViewVehicleComponents/Datasheet";
-import { useFetchDefault } from "../../hooks/useFetchDefault";
-import ImgDefault from "../../assets/image-default.png";
 import { Error } from "../../components/Error";
 import Head from "next/head";
 import { Loading } from "../../components/Loading";

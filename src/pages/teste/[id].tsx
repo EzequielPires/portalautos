@@ -2,6 +2,9 @@ import axios from "axios"
 import { useEffect, useState } from "react";
 import {useRouter} from "next/router";
 import {api} from "../../services/api";
+import {parseCookies, setCookie} from "nookies";
+import {Session} from "../../entities/Session";
+import jwt from 'jsonwebtoken';
 
 export default function Teste({res}) {
     const [data, setData] = useState(null);
@@ -20,13 +23,14 @@ export default function Teste({res}) {
         </div>
     )
 }
+
 export async function getServerSideProps(context) {
-    console.log(context)
-    let res = await axios.get('https://api.portalautos.com.br/ad/22030710085/view-teset', {
+    let res = await api.get('https://api.portalautos.com.br/ad/22030710085/view-teset', {
         headers: {
-            'X-Requested-Uri': `${context.resolvedUrl}`
+            'X-Requested-Uri': `${context.resolvedUrl}`,
         }
     }).then(res => res.data);
+    console.log(res);
     return {
         props: {res}, // will be passed to the page component as props
     }
