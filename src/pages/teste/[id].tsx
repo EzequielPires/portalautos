@@ -29,8 +29,9 @@ export async function getServerSideProps(context) {
         headers: {
             'X-Requested-Uri': `${context.resolvedUrl}`,
         }
-    }).then(res => res.data);
-    console.log(res);
+    }).then(res => res.data).catch(error => {
+        console.log(error);
+    })
     return {
         props: {res}, // will be passed to the page component as props
     }

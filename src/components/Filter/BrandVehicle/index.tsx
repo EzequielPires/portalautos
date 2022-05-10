@@ -1,6 +1,6 @@
 import router from "next/router"
 import { ButtonMore } from "../../ButtonMore";
-import { useContext } from "react";
+import {useContext, useEffect, useState} from "react";
 import { FilterContext } from "../../../contexts/FilterContext";
 import { Select } from "../Select";
 import styles from "./style.module.scss";
@@ -118,13 +118,43 @@ const brands = [
 
 export function BrandVehicle() {
     const { brand, filter, run } = useContext(FilterContext);
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        if(filter.type.value === 'motorcycle') {
+            let array = filter.brands.options.filter(item =>
+                item.name.toLowerCase() === 'bmw' ||
+                item.name.toLowerCase() === 'dafra' ||
+                item.name.toLowerCase() === 'ducati' ||
+                item.name.toLowerCase() === 'harley-davidson' ||
+                item.name.toLowerCase() === 'honda' ||
+                item.name.toLowerCase() === 'kasinski' ||
+                item.name.toLowerCase() === 'kawasaki' ||
+                item.name.toLowerCase() === 'suzuki' ||
+                item.name.toLowerCase() === 'yamaha'
+            );
+            setData(array);
+        } else {
+            let array = filter.brands.options.filter(item =>
+                item.id_string.toLowerCase() === 'vw-volkswagen' ||
+                item.id_string.toLowerCase() === 'fiat' ||
+                item.id_string.toLowerCase() === 'ford' ||
+                item.id_string.toLowerCase() === 'gm-chevrolet' ||
+                item.id_string.toLowerCase() === 'hyundai' ||
+                item.id_string.toLowerCase() === 'mitsubishi' ||
+                item.id_string.toLowerCase() === 'honda' ||
+                item.id_string.toLowerCase() === 'toyota' ||
+                item.id_string.toLowerCase() === 'renault'
+            );
+            setData(array);
+        }
+    }, [filter.type])
 
     return (
         <div className={styles.brand_vehicle}>
             <span className={styles.title}>Marca do veículo</span>
             {filter.brands.value === '0' ?
-                <div className="d-flex flex-wrap gap-4">
-                    {brands?.map(item => (
+                <div className="d-flex flex-wrap gap-2">
+                    {data?.map(item => (
                         <button key={item.id} className={styles.card} onClick={() => {
                             let [link,filter,] = router.asPath.split("?");
                             router.replace(`/carros/${item.id_string.toLowerCase()}${filter ? "?" + filter : ''}`);
@@ -151,8 +181,6 @@ export function BrandVehicle() {
                 </div>
                 : null
             }
-
-
         </div>
     )
 }

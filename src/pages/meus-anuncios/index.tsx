@@ -9,11 +9,14 @@ import { NavTabs } from "../../components/NavTabs";
 import { CarContext } from "../../contexts/CarContext";
 
 import styles from "./styles.module.scss";
+import {MotorcycleContext} from "../../contexts/MotorcycleContext";
 
 export default function MeusAnuncios() {
     const {clearCar} = useContext(CarContext);
+    const {clearMotorcycle} = useContext(MotorcycleContext);
     useEffect(() => {
         clearCar();
+        clearMotorcycle();
     }, []);
     return (
         <div className={styles.meus_anuncios}>

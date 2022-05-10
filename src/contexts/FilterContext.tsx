@@ -34,15 +34,16 @@ export function FilterProvider({ children }) {
     const run = async (id, link) => {
         const res = await filter.run(id, link);
         let filterDecode = link ? filter.decode(link) : null;
-        filter.brands.setOptions(res[0].brands);
-        filter.models.setOptions(res[0].models);
-        filter.versions.setOptions(res[0].versions);
-        filter.categories.setOptions(res[0].categories);
-        filter.characteristics.setOptions(res[0].characteristics);
-        filter.fuels.setOptions(res[0].fuels);
-        filter.colors.setOptions(res[0].colors);
-        filter.gearshifts.setOptions(res[0].gearshifts);
-        filter.optional.setOptions(res[0].items.optional);
+        filter.brands.setOptions(res.brands);
+        filter.models.setOptions(res.models);
+        filter.versions.setOptions(res.versions);
+        filter.categories.setOptions(res.categories);
+        filter.characteristics.setOptions(res.characteristics);
+        filter.fuels.setOptions(res.fuels);
+        filter.colors.setOptions(res.colors);
+        filter.gearshifts.setOptions(res.gearshifts);
+        filter.optional.setOptions(res.items.optional);
+        filter.type.setValue(res.type);
 
         filter.vehicles.onChange(res.result.vehicles);
         if(filterDecode) {
@@ -56,9 +57,9 @@ export function FilterProvider({ children }) {
             filter.mileage_traveled_max.setValue(filterDecode.mileage_traveled_max);
             filter.state.setValue(filterDecode.state);
         }
-        filter.brands.setValue(filter.verifyItemIdString(id[1], res[0].brands));
-        filter.models.setValue(filter.verifyItemIdString(id[2], res[0].models));
-        filter.versions.setValue(filter.verifyItemIdString(id[3], res[0].versions));
+        filter.brands.setValue(filter.verifyItemIdString(id[1], res.brands));
+        filter.models.setValue(filter.verifyItemIdString(id[2], res.models));
+        filter.versions.setValue(filter.verifyItemIdString(id[3], res.versions));
         filter.total.setValue(res.result.total);
     }
     const more = async (id, link, page) => {

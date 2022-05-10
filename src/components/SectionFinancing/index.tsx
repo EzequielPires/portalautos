@@ -16,7 +16,7 @@ export function SectionFinancing() {
     return (
         <div id="financing" className={styles.container + " d-flex justify-content-center"}>
             <div className={styles.section_financing}>
-                <div className="d-flex flex-column align-items-center">
+                <div className={styles.header + " d-flex flex-column align-items-center"}>
                     <img src={Logo.src} style={{width: 120, marginBottom: 16}} alt=""/>
                     <h2>Simulador de Financiamento</h2>
                     <h4>Veja as parcelas desse veículo</h4>
@@ -88,7 +88,7 @@ export function SectionFinancing() {
                 </Link>
                     .
                 </span>
-                <div className={"d-flex w-100 justify-content-center mt-3"}>
+                <div className={styles.group_button + " d-flex w-100 justify-content-center mt-3"}>
                     <button className={styles.btn_primary}>Simular</button>
                 </div>
 

@@ -62,7 +62,6 @@ export class Motorcycle extends Vehicle {
         return this;
     }
     fromObject(data: any): Motorcycle {
-        console.log(data)
         this.brand.setValue(data.version.model.brand.id ?? '0');
         this.model.setValue(data.version.model.id ?? '0');
         this.version.setValue(data.version?.id ?? '0');

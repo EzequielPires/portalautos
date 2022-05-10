@@ -1,35 +1,44 @@
-import { NavbarFixed } from "../../components/NavbarFixed";
-import { Gallery } from "../../components/Gallery";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import VMasker from "vanilla-masker/build/vanilla-masker.min";
+import {Error} from "../../Error";
+import {Loading} from "../../Loading";
+import {Accordion} from "react-bootstrap";
 import styles from "./styles.module.scss";
-import { SectionOffers } from "../../components/SectionOffers";
-import { SectionFinancing } from "../../components/SectionFinancing";
-import { Aside } from "../../components/ViewVehicleComponents/Aside";
-import { Footer } from "../../components/Footer";
-import { BsWhatsapp, BsEnvelope } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoneyBillWave } from "@fortawesome/free-solid-svg-icons";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { VehicleItems } from "../../components/ViewVehicleComponents/VehicleItems";
-import { Accordion } from "react-bootstrap";
-import { Datasheet } from "../../components/ViewVehicleComponents/Datasheet";
-import { Error } from "../../components/Error";
 import Head from "next/head";
-import { Loading } from "../../components/Loading";
-import { api } from "../../services/api";
+import {NavbarFixed} from "../../NavbarFixed";
+import {Gallery} from "../../Gallery";
+import {FaMoneyBillWave} from "react-icons/fa";
+import {FaRegHeart} from "react-icons/fa";
+import {Datasheet} from "../../ViewVehicleComponents/Datasheet";
+import {VehicleItems} from "../../ViewVehicleComponents/VehicleItems";
+import {SectionFinancing} from "../../SectionFinancing";
+import {Aside} from "../../ViewVehicleComponents/Aside";
+import {SectionOffers} from "../../SectionOffers";
+import {BsEnvelope, BsWhatsapp} from "react-icons/bs";
+import {Footer} from "../../Footer";
+import {api} from "../../../services/api";
+import {useRouter} from "next/router";
 
-export default function Comprar({id, data, error}) {
+export function ByVehicle() {
+    const router = useRouter();
+    const {id}: any = router.query;
     const [url, setUrl] = useState('');
     const [vehicle, setVehicle] = useState(null);
+    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        if (data) setVehicle(data.data);
-    }, [data]);
-    
+    const handleVehicle = async () => {
+        let idVehicle = id[id.length - 1].replace('.phtml', '');
+        const res: any = await api.get(`/ad/${idVehicle}/view`, {
+            headers: {
+                'X-Requested-Uri': `${router.asPath}`
+            }
+        }).catch(() => setError(true));
+        console.log(res.data.data)
+        setVehicle(res.data.data);
+    }
     useEffect(() => {
         setUrl(location.href);
+        if (id.length > 0) handleVehicle();
     }, [id]);
 
     if (error) {
@@ -40,7 +49,9 @@ export default function Comprar({id, data, error}) {
         let link = `${id[0]} ${id[1]} ${id[2]}`;
         return link.toUpperCase();
     }
-    if (!data) return <Loading />
+
+    if (!vehicle) return <Loading />
+
     return (
         <Accordion alwaysOpen className={styles.comprar + " comprar"}>
             <Head>
@@ -51,7 +62,7 @@ export default function Comprar({id, data, error}) {
                 <meta property="og:title" content={generateTitle()} />
                 <meta property="og:type" content="website" />
                 <meta property="og:description" content="Se você está procurando o carro ou moto perfeito para a sua vida e não quer pagar rios de dinheiro por isso, nós podemos te ajudar! O PortalAutos oferece a você uma forma de encontrar o seu veículo ideal de forma rápida, fácil e segura." />
-                <meta property="og:image" content={`https://portalautos.com.br/${data.data.gallery.images[0].path}`} />
+                <meta property="og:image" content={`https://portalautos.com.br/${vehicle.gallery.images[0].path}`} />
                 <meta property="og:url" content={url} />
             </Head>
             <NavbarFixed />
@@ -77,7 +88,7 @@ export default function Comprar({id, data, error}) {
                                                 </p>
                                                 <div className={"d-flex d-md-none gap-2 my-4"}>
                                                     <a href="#financing" className={styles.btn_santander}>
-                                                        <FontAwesomeIcon icon={faMoneyBillWave as IconProp} />
+                                                        <FaMoneyBillWave />
                                                         Simular Financiamento
                                                     </a>
                                                 </div>
@@ -140,18 +151,4 @@ export default function Comprar({id, data, error}) {
     );
 }
 
-export async function getServerSideProps({resolvedUrl, params}) {
-    const id = params.id;
-    const idVehicle = id[id.length - 1].replace('_', '');
-    let error = null;
-    const data = await api.get(`/ad/${idVehicle}/view`, {
-        headers: {
-            'X-Requested-Uri': `${resolvedUrl}`
-        }
-    }).then((res) => {
-        return res.data
-    }).catch(() => error = true);
-    return {
-      props: {id, data, error}, // will be passed to the page component as props
-    }
-  }
+

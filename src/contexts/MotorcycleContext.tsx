@@ -192,7 +192,6 @@ export function MotorcycleProvider({ children }) {
         motorcycle.color.setOptions([]);
         const res = await getListVehicle.version('motorcycle', motorcycle.brand.value, motorcycle.model.value, motorcycle.year_model.value);
         let array = [];
-        console.log(res)
         res.data?.forEach(item => {
             array.push({...item.version, price: item.price});
         });

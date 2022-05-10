@@ -39,8 +39,8 @@ export function CardAnnouncement({ data }) {
     }, [id]);
 
     return (
-        <Link href={`/comprar/${data.version.model.brand.id_string}/${data.version.model.id_string}/${data.version.id_string}/${data.identifier}`}>
-            <div className={styles.card + ` ${isMobile ? styles.search : null}`}>
+        <Link href={`/${data.type === 'car' ? 'carros' : 'motos'}/${data.version.model.brand.id_string}/${data.version.model.id_string}/${data.version.id_string}/${data.identifier}.phtml`}>
+                <a className={styles.card + ` ${isMobile ? styles.search : null}`}>
                 <div className={styles.card_header}>
                     {data.gallery && data.gallery.images.length > 0
                         ? <CarouselCard array={data.gallery.images} /> : <img src={NoImage.src} alt="" />}
@@ -64,11 +64,11 @@ export function CardAnnouncement({ data }) {
                         <hr />
                         <div className="d-flex justify-content-between px-2 px-md-3">
                             <span className="d-flex align-items-center gap-1"><FaMapMarkerAlt />Catalão - GO</span>
-                            <button className={styles.btn_favorites} onClick={handleFavorite}>{!isFavorite ? <FaRegHeart /> : <FaHeart style={{ color: '#e91e63' }} />}</button>
+                            <a href={"#"} className={styles.btn_favorites} onClick={handleFavorite}>{!isFavorite ? <FaRegHeart /> : <FaHeart style={{ color: '#e91e63' }} />}</a>
                         </div>
                     </footer>
                 </div>
-            </div >
+            </a >
         </Link>
 
     )

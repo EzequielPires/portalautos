@@ -13,6 +13,7 @@ export class FilterFactory {
         filter.mileage_traveled_max = useForm('text');
         filter.mileage_traveled_min = useForm('text');
         filter.brands = useSelect();
+        filter.type = useSelect();
         filter.models = useSelect();
         filter.versions = useSelect();
         filter.categories = useMultiCheckbox();

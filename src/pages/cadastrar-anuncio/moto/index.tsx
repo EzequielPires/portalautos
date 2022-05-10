@@ -8,9 +8,11 @@ import router from "next/router";
 import styles from "./styles.module.scss";
 import Head from "next/head";
 import { StoreRepository } from "../../../repositories/StoreRepository";
-import { useEffect } from "react";
+import {useContext, useEffect} from "react";
+import {MotorcycleContext} from "../../../contexts/MotorcycleContext";
 
 export default function Moto() {
+    const {setStep, clearMotorcycle} = useContext(MotorcycleContext);
     const storeRepository = new StoreRepository();
     const handleStore = async () => {
         try {
@@ -22,8 +24,8 @@ export default function Moto() {
     }
     useEffect(() => {
         handleStore();
-        //clearCar();
-        //setStep(1);
+        clearMotorcycle();
+        setStep(1);
     }, [])
     return (
         <div className={styles.cadastrar_anuncio}>

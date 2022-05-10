@@ -1,6 +1,7 @@
 import base64 from "base-64";
 
 export class FilterHelper {
+    type: any;
     brakes: any;
     brands: any;
     categories: any;
@@ -33,7 +34,7 @@ export class FilterHelper {
     }
     buildLink(id, query, page): string {
         let obj = query ? this.decode(query) : null;
-        let link = `ad/filter?type=car&total=1&limit=20&page=${page ?? '1'}`;
+        let link = `ad/filter?type=${id[0] === 'motos' ? 'motorcycle' : 'car'}&total=1&limit=20&page=${page ?? '1'}`;
         id[1] ? link = link + `&brand=${id[1]}` : null;
         id[2] ? link = link + `&model=${id[2]}` : null;
         id[3] ? link = link + `&version=${id[3]}` : null;

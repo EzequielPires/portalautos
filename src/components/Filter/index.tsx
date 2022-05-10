@@ -83,7 +83,7 @@ export function Filter({ show = false }) {
             <div className={styles.btn_filter + " d-flex justify-content-center d-md-none"}>
                 <button onClick={() => setActiveFilter(!activeFilter)}>FILTRAR</button>
             </div>
-            <ContentMore options={null} title={null} type={null} />
+            <ContentMore options={filter.brands.options} title={null} type={null} />
         </nav>
     )
 }
