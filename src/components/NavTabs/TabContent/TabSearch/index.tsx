@@ -10,7 +10,7 @@ export function TabSearch() {
         <ul className={styles.tab_content + " d-flex flex-wrap gap-4 justify-content-evelyn"}>
             {identifiedVehicle.length > 0 ? identifiedVehicle.map(item => (
                 <li key={item.id}>
-                    <TabCard content={item} />
+                    <TabCard content={item} length={identifiedVehicle.length}/>
                 </li>
             )) :
             <div className='d-flex w-100 justify-content-center'>
