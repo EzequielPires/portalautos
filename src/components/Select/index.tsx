@@ -34,6 +34,7 @@ export function Select({ label, options, onChange, value, error, validate, place
     }, [show]);
 
     useEffect(() => {
+        console.log(label)
         if (value === '0') {
             setSelected('Selecione uma opção');
         }
@@ -60,7 +61,7 @@ export function Select({ label, options, onChange, value, error, validate, place
 
 
     return (
-        <div className={options && options.length > 0 ? styles.select : styles.select + ' ' + styles.disabled}>
+        <div className={options && options.length > 0 ? styles.select : styles.select + ' ' + styles.disabled} style={{height: `${label ? 58 : 48}px !important`, minHeight: `${label ? 58 : 48}px !important`}}>
             <button className={show ? styles.show : null} onClick={handleShow}>
                 <label className={styles.label}>{label}</label>
                 <span className={selected === placeholder || selected === 'Selecione uma opção' ? styles.placeholder : null}>{selected}</span>

@@ -59,55 +59,30 @@ export function AnnouncementProvider({ children }) {
         }
     }
 
-    const searchVehiclesIdentified = async (params) => {
-        setLoading(true);
-        searchVehicles(params).then(res => {
-            setIdentifiedVehicle(res);
-            setLoading(false);
-        });
-    }
-
-    const searchForAds = async () => {
-        setLoading(true);
-        searchVehicles('complete=0').then(res => {
-            setIncompleteVehicles(res);
-            searchVehicles('active=0').then(res => {
-                setInactiveVehicles(res);
-                searchVehicles('active=1').then(res => {
-                    setActiveVehicles(res);
-                    searchVehicles('sold=1').then(res => {
-                        setVehiclesSold(res);
-                        setLoading(false);
-                    })
-                })
-            })
-        });
-    }
-
-    const activeVehicle = async (id) => {
+    const activeVehicle = async (id, length) => {
         const res = await api.put(`/vehicle/${id}/active`)
             .then((res: any) => res.data)
             .catch(() => router.push('/error'));
         if (res.success === true) {
             setActive(res.data);
-            searchVehicles(`active=1`).then(res => {
+            searchVehicles(`active=1&limit=${length}`).then(res => {
                 setActiveVehicles(res);
-                searchVehicles(`active=0`).then(res => {
+                searchVehicles(`active=0&limit=${length}`).then(res => {
                     setInactiveVehicles(res);
                 })
             })
         }
     }
 
-    const soldVehicle = async (id) => {
+    const soldVehicle = async (id, length) => {
         const res = await api.put(`/vehicle/${id}/sold`)
             .then((res: any) => res.data)
             .catch(() => router.push('/error'));
         if (res.success === true) {
             setActive(res.data);
-            searchVehicles(`sold=1`).then(res => {
+            searchVehicles(`sold=1&limit=${length}`).then(res => {
                 setVehiclesSold(res);
-                searchVehicles(`active=1`).then(res => {
+                searchVehicles(`active=1&limit=${length}`).then(res => {
                     setActiveVehicles(res);
                     searchVehicles(`active=0`).then(res => {
                         setInactiveVehicles(res);

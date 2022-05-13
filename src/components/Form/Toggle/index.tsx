@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { ModalActionContext } from "../../../contexts/ModalActionContext";
 import styles from "./styles.module.scss";
 
-export function Toggle({ label, id, onChange, announcement, checked }) {
+export function Toggle({ label, id, onChange, announcement, checked, length }) {
     const [activeToggle, setActiveToggle] = useState(checked);
     const { handleShow } = useContext(ModalActionContext);
 
@@ -28,7 +28,7 @@ export function Toggle({ label, id, onChange, announcement, checked }) {
                 mensagem = 'Deseja mesmo marcar este anúncio como vendido?' :
                 null
         }
-        handleShow(mensagem, onChange, announcement);
+        handleShow(mensagem, onChange, announcement, length);
     }
 
     useEffect(() => {

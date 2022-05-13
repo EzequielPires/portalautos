@@ -1,18 +1,19 @@
 .card {
-    width: 320px;
+    width: 100%;
     height: auto;
     display: flex;
-    flex-direction: column;
-
+    padding: 1rem;
     background: #fff;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
     overflow: hidden;
     .card_header {
-        width: 100%;
-        height: 212px;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #d3d3d3;
         overflow: hidden;
         position: relative;
+        border-radius: 6px;
         img {
             width: 100%;
             height: 100%;
@@ -39,16 +40,15 @@
             pointer-events: none;
         }
     }
-
     .card_body {
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
+        padding-left: 1rem;
         flex: 1;
-        padding: 0 1rem 1rem 1rem;
+        gap: 2rem;
         header {
-            padding: 1rem 0;
-            border-bottom: 1px solid #ddd;
+            width: 50%;
+            padding-bottom: 1rem;
             .identifier {
                 font-size: 0.75rem;
                 color: #555;
@@ -93,16 +93,6 @@
             }
         }
         main {
-            .add {
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                span {
-                    color: var(--main-color);
-                    font-size: 0.875rem;
-                    color: #555;
-                }
-            }
             button {
                 width: 100% !important;
                 max-width: unset;
@@ -118,56 +108,80 @@
                     }
                 }
             }
-            .btn_removed {
-                border: 0;
-                width: unset !important;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: .5rem;
-                background: transparent;
-                color: var(--red-color);
-                font-size: .8rem;
-                &:hover {
-                    background: transparent;
-                    color: var(--red-color);
-                    svg {
-                        color: var(--red-color);
-                    }
-                }
-            }
         }
     }
 }
-/* @media (min-width: 0px) {
+.add {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    span {
+        color: var(--main-color);
+        font-size: 0.875rem;
+        color: #555;
+        white-space: nowrap;
+        display: block;
+    }
+}
+.actions {
+    align-items: flex-end;
+    button {
+        min-width: 160px;
+        max-width: 160px;
+    }
+}
+.btn_removed {
+    border: 1px solid var(--red-color);
+    border-radius: 6px;
+    width: 190px !important;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    background: transparent;
+    color: var(--red-color);
+    font-size: .8rem;
+    margin-left: 1rem;
+    &:hover {
+        background: transparent;
+        color: var(--red-color);
+        svg {
+            color: var(--red-color);
+        }
+    }
+}
+@media (max-width: 720px) {
     .card {
-        flex-direction: column !important;
-        width: 320px !important;
-        min-width: unset;
-        height: auto;
+        width: 100%;
+        flex-direction: column;
         .card_header {
-            width: 280px;
-            height: 186px;
-            overflow: hidden;
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: 0.5s;
-            }
+            width: 100%;
+            height: 228px;
+            margin-bottom: 1rem;
         }
         .card_body {
+            padding: 0;
+            flex-direction: column;
             header {
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                div {
-                    align-items: flex-start !important;
-                }
-            }
-            .btn_edit {
                 width: 100%;
             }
         }
     }
+    .actions {
+        align-items: flex-end;
+        .btn_removed {
+            margin-left: 0;
+            margin-top: 1rem;
+        }
+        button {
+            display: flex;
+            min-width: 100%;
+            min-height: 40px;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+    }
 }
- */

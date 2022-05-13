@@ -60,7 +60,6 @@ export function TabContent({ link, active }) {
     }
 
     useEffect(() => {
-        console.log(data);
         { data && data.data.vehicles ? setVehicles(data.data.vehicles) : null}
         { data && data.data.vehicles ? setLengthResponse(data.data.vehicles.length) : null}
         { data && data.data.vehicles && active === "Ativos" ? setActiveVehicles(data.data.vehicles ) : null}
@@ -93,10 +92,10 @@ export function TabContent({ link, active }) {
                     <ul className={styles.tab_content + " d-flex flex-wrap gap-4 justify-content-evelyn"}>
                         <TabSearch/>
                     </ul>
-                    : <ul className={styles.tab_content + " d-flex flex-wrap gap-4 justify-content-evelyn"}>
+                    : <ul className={styles.tab_content + " d-flex flex-wrap gap-2 justify-content-evelyn"}>
                         {vehicles.length > 0 ? vehicles.map(item => (
                             <li key={item.id}>
-                                <TabCard content={item} />
+                                <TabCard content={item} length={vehicles.length}/>
                             </li>
                         )) : <AlertNotVehicle />}
 

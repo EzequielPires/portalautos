@@ -8,14 +8,14 @@ import { MotorcycleContext } from "../../contexts/MotorcycleContext";
 import styles from "./styles.module.scss";
 
 export function ModalAction() {
-    const { show, message, handleClose, action, id } = useContext(ModalActionContext);
+    const { show, message, handleClose, action, id, length } = useContext(ModalActionContext);
     const { editVehicle: editCar } = useContext(CarContext);
     const { activeVehicle, soldVehicle, } = useContext(AnnouncementContext);
     const { editVehicle: editMotorcycle } = useContext(MotorcycleContext);
     
     const handleAction = (e) => {
-        action === "active" ? activeVehicle(id).then(() => handleClose()) : false;
-        action === "sold" ? soldVehicle(id).then(() => handleClose()) : false;
+        action === "active" ? activeVehicle(id, length).then(() => handleClose()) : false;
+        action === "sold" ? soldVehicle(id, length).then(() => handleClose()) : false;
         action === "finalyCar" ? editCar(e, id).then(() => {
             handleClose();
             router.push(`/admin/anuncios`)

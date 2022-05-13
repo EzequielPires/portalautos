@@ -1,7 +1,8 @@
 .input_search {
     display: flex;
-    height: 40px;
+    height: 48px;
     width: 360px;
+    min-width: 360px;
     max-width: 100%;
     border: 1px solid #d3d3d3;
     border-radius: 6px;
@@ -19,9 +20,9 @@
         }
     }
     button {
-        width: 40px;
-        min-width: 40px;
-        height: 40px;
+        width: 48px;
+        min-width: 48px;
+        height: 48px;
         border: 0;
         background: #d3d3d3;
         transition: .3s;
