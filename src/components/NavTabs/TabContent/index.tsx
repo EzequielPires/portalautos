@@ -34,38 +34,39 @@ export function TabContent({ link, active }) {
         setLoading(true);
         {active === "Ativos" ?
             searchVehicles(`active=1&page=${vehicles.length / 20 + 1}&limit=20`).then(res => {
-                setActiveVehicles([...vehicles, ...res]);
+                console.log(res);
+                setActiveVehicles([...vehicles, ...res.result]);
                 setLengthResponse(res.length);
                 setLoading(false);
             })
             : null}
         {active === "Removidos" ?
             searchVehicles(`active=0&page=${vehicles.length / 20 + 1}&limit=20`).then(res => {
-                setInactiveVehicles([...vehicles, ...res]);
+                setInactiveVehicles([...vehicles, ...res.result]);
                 setLoading(false);
             })
             : null}
         {active === "Incompletos" ?
             searchVehicles(`complete=0&page=${vehicles.length / 20 + 1}&limit=20`).then(res => {
-                setIncompleteVehicles([...vehicles, ...res]);
+                setIncompleteVehicles([...vehicles, ...res.result]);
                 setLoading(false);
             })
             : null}
         {active === "Vendidos" ?
             searchVehicles(`sold=1&page=${vehicles.length / 20 + 1}&limit=20`).then(res => {
-                setVehiclesSold([...vehicles, ...res]);
+                setVehiclesSold([...vehicles, ...res.result]);
                 setLoading(false);
             })
             : null}
     }
 
     useEffect(() => {
-        { data && data.data.vehicles ? setVehicles(data.data.vehicles) : null}
-        { data && data.data.vehicles ? setLengthResponse(data.data.vehicles.length) : null}
-        { data && data.data.vehicles && active === "Ativos" ? setActiveVehicles(data.data.vehicles ) : null}
-        { data && data.data.vehicles && active === "Vendidos" ? setVehiclesSold(data.data.vehicles ) : null}
-        { data && data.data.vehicles && active === "Removidos" ? setInactiveVehicles(data.data.vehicles ) : null}
-        { data && data.data.vehicles && active === "Search" ? setIdentifiedVehicle(data.data.vehicles) : null}
+        { data && data.data.vehicles ? setVehicles(data.data.vehicles.result) : null}
+        { data && data.data.vehicles ? setLengthResponse(data.data.vehicles.result.length) : null}
+        { data && data.data.vehicles && active === "Ativos" ? setActiveVehicles(data.data.vehicles.result ) : null}
+        { data && data.data.vehicles && active === "Vendidos" ? setVehiclesSold(data.data.vehicles.result ) : null}
+        { data && data.data.vehicles && active === "Removidos" ? setInactiveVehicles(data.data.vehicles.result ) : null}
+        { data && data.data.vehicles && active === "Search" ? setIdentifiedVehicle(data.data.vehicles.result ) : null}
     }, [data]);
 
     useEffect(() => {
