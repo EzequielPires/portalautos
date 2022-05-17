@@ -30,6 +30,7 @@ export function NavbarFixed() {
                         </a>
                     </Link>
                 </div>
+
                 <div className="d-flex align-items-center w-100 gap-5 justify-content-end justify-content-lg-between">
                     <ul className={styles.list_links + " d-flex align-items-center gap-5 mb-0 h-100"} style={{marginLeft: 32}}>
                         <li>
