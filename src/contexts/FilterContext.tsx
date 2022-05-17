@@ -1,9 +1,7 @@
 import { useRouter } from "next/router";
-import { createContext, useCallback, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { FilterFactory } from "../factory/FilterFactory";
 import { FilterHelper } from "../helpers/FilterHelper";
-import { getListVehicle } from "../helpers/getListVehicle";
-import base64 from "base-64";
 import { useSelect } from "../hooks/useSelect";
 
 type Filter = {
@@ -29,7 +27,6 @@ export function FilterProvider({ children }) {
     const [brand, setBrand] = useState(null);
     const model = useSelect();
     const version = useSelect();
-    const router = useRouter();
     
     const run = async (id, link) => {
         const res = await filter.run(id, link);
@@ -65,7 +62,6 @@ export function FilterProvider({ children }) {
     const more = async (id, link, page) => {
         const res = await filter.more(id, link, page);
         let array = [...filter.vehicles.value, ...res.result.vehicles];
-        console.log(array);
         filter.vehicles.onChange(array);
     }
 

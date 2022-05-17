@@ -1,6 +1,6 @@
 .button_user {
   position: relative;
-
+  margin-right: 1rem;
   &.show {
     .btn {
       svg {
@@ -152,6 +152,7 @@
 
 @media (max-width: 992px) {
   .button_user {
+    margin-right: 0;
     .btn_sign_in {
       display: none;
     }
@@ -165,10 +166,12 @@
       align-items: center;
       justify-content: center;
       background: #fff;
-
+      width: unset;
+      margin-left: .5rem;
       svg {
         color: #333;
         font-size: 24px !important;
+        margin: 0 !important;
       }
     }
 

@@ -11,7 +11,8 @@ import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
 
 export default function Leads() {
-    const { data } = useFetch('/vehicle/list?limit=20&active=1');
+    const { data } = useFetch('/lead/report');
+    const [leads, setLeads] = useState([]);
     const headerTable = [
         { title: 'Anúncio', size: 4 },
         { title: 'Identificador', size: 1 },
@@ -21,7 +22,9 @@ export default function Leads() {
         { title: 'Ação', size: 2 }
     ]
     useEffect(() => {
-        console.log(data);
+        {
+            data && setLeads(data.data.leads.whatsapp)
+        }
     }, [data])
     return (
         <div>
@@ -35,39 +38,18 @@ export default function Leads() {
                 <MenuAside />
             </header>
             <div className={styles.content}>
-                <div className="d-flex gap-5">
-                    <div className={styles.card}>
-                        <h4>Total de Leads</h4>
-                        <p>20</p>
-                        <button>Gerar relatório</button>
-                    </div>
-                    <div className={`${styles.card} ${styles.warning}`}>
-                        <h4>Total de Anúncios</h4>
-                        <p>20</p>
-                        <button>Gerar relatório</button>
-                    </div>
-                    <div className={`${styles.card} ${styles.danger}`}>
-                        <h4>Fatura atual</h4>
-                        <p>R$ 40,00</p>
-                        <button>Pagar fatura</button>
-                    </div>
-                    <div className={`${styles.card} ${styles.success }`}>
-                        <h4>Crédito em conta</h4>
-                        <p>R$ 40,00</p>
-                        <button>Solicitar crédito</button>
-                    </div>
-                </div>
+                <h4 className={styles.title}>Leads por Whatsapp</h4>
                 <Table header={headerTable}>
-                    {data?.data?.vehicles.map((item, index) => (
+                    {leads.map((item, index) => (
                         <Row key={index}>
                             <Column
-                                image={"https://portalautos.com.br/" + item.gallery.images[0].path}
-                                title={`${item.version.model.brand.name} ${item.version.model.name}`}
-                                subtitle={`${item.version.name} ${item.version.model.name}`}
+                                image={"https://portalautos.com.br/" + item.vehicle.gallery.images[0].path}
+                                title={`${item.vehicle.version.model.brand.name} ${item.vehicle.version.model.name}`}
+                                subtitle={`${item.vehicle.version.name} ${item.vehicle.version.model.name}`}
                                 size={headerTable[0].size}
                             />
                             <Column
-                                title={item.identifier}
+                                title={item.vehicle.identifier}
                                 size={headerTable[1].size}
                             />
                             <Column
@@ -75,11 +57,11 @@ export default function Leads() {
                                 size={headerTable[2].size}
                             />
                             <Column
-                                title={'Ezequiel Pires e SIlva'}
+                                title={item.name}
                                 size={headerTable[3].size}
                             />
                             <Column
-                                title={'(64) 99969-8100'}
+                                title={item.wpp_number}
                                 size={headerTable[4].size}
                             />
                             <Column

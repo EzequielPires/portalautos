@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { FaChevronDown } from "react-icons/fa";
-import { MdClose } from "react-icons/md"
+import {useEffect, useState} from "react";
+import {FaChevronDown} from "react-icons/fa";
+import {MdClose} from "react-icons/md"
 import styles from "./styles.module.scss";
-import { Filter } from "./Filter";
-import { List } from "./List";
+import {Filter} from "./Filter";
+import {List} from "./List";
 import useFocus from "../../hooks/useFocus";
 
 type SelectType = {
@@ -19,7 +19,7 @@ type SelectType = {
     clean?: string,
 }
 
-export function Select({ label, options, onChange, value, error, validate, placeholder, filter, link }: SelectType) {
+export function Select({label, options, onChange, value, error, validate, placeholder, filter, link}: SelectType) {
     const [inputRef, setInputRef] = useFocus();
     const [show, setShow] = useState(false);
     const [filterValue, setFilterValue] = useState('');
@@ -30,11 +30,12 @@ export function Select({ label, options, onChange, value, error, validate, place
     };
 
     useEffect(() => {
-        { show ? setInputRef() : null }
+        {
+            show ? setInputRef() : null
+        }
     }, [show]);
 
     useEffect(() => {
-        console.log(label)
         if (value === '0') {
             setSelected('Selecione uma opção');
         }
@@ -46,6 +47,9 @@ export function Select({ label, options, onChange, value, error, validate, place
                 if (item.id === value) {
                     setSelected(item.name);
                     onChange(item.id);
+                }
+                if (item.id.toString() === value.toString()) {
+                    setSelected(item.name);
                 }
                 if (value.toString() === item.toString()) {
                     setSelected(item);
@@ -59,32 +63,35 @@ export function Select({ label, options, onChange, value, error, validate, place
     }, [options, value]);
 
 
-
     return (
-        <div className={options && options.length > 0 ? styles.select : styles.select + ' ' + styles.disabled} style={{height: `${label ? 58 : 48}px !important`, minHeight: `${label ? 58 : 48}px !important`}}>
+        <div className={options && options.length > 0 ? styles.select : styles.select + ' ' + styles.disabled}
+             style={{height: `${label ? 58 : 48}px !important`, minHeight: `${label ? 58 : 48}px !important`}}>
             <button className={show ? styles.show : null} onClick={handleShow}>
                 <label className={styles.label}>{label}</label>
-                <span className={selected === placeholder || selected === 'Selecione uma opção' ? styles.placeholder : null}>{selected}</span>
+                <span
+                    className={selected === placeholder || selected === 'Selecione uma opção' ? styles.placeholder : null}>{selected}</span>
                 <div className="d-flex align-items-center">
                     {value != '0' &&
                         <span className={styles.close + ' d-block mx-2'} onClick={() => onChange('0')}>
-                            <MdClose />
+                            <MdClose/>
                         </span>
                     }
-                    <FaChevronDown />
+                    <FaChevronDown/>
                 </div>
             </button>
             {show && options.length > 0 ?
                 <ul className={styles.body}>
-                    {filter || options.length > 5 ? <Filter value={filterValue} onChange={setFilterValue} inputRef={inputRef} /> : null}
-                    <List options={options} onChange={onChange} setSelected={setSelected} handleShow={handleShow} filter={filterValue} />
+                    {filter || options.length > 5 ?
+                        <Filter value={filterValue} onChange={setFilterValue} inputRef={inputRef}/> : null}
+                    <List options={options} onChange={onChange} setSelected={setSelected} handleShow={handleShow}
+                          filter={filterValue}/>
                 </ul>
                 : null}
             {error && options && options.length > 0 ? <span className={styles.select_error}>{error}</span> : null}
             <div className={styles.overflow} onClick={() => {
                 validate(value);
                 handleShow();
-            }}></div>
+            }}/>
         </div>
     );
 }

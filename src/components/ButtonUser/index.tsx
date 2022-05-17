@@ -19,7 +19,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../../contexts/AuthContext";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import {FaChevronDown} from "react-icons/fa";
+import {FaBullhorn, FaChevronDown, FaHandshake, FaQuestion, FaSignOutAlt, FaUserEdit, FaUsers} from "react-icons/fa";
 
 export function ButtonUser() {
     const [userName, setUserName] = useState('');
@@ -76,7 +76,7 @@ export function ButtonUser() {
                             <Link href="/meus-anuncios">
                                 <a className={styles.active}>
                                     <span>
-                                        <FontAwesomeIcon icon={faBullhorn as IconProp} />
+                                        <FaBullhorn />
                                     </span>
                                     Meus anúncios
                                 </a>
@@ -86,9 +86,19 @@ export function ButtonUser() {
                             <Link href="/minhas-vendas">
                                 <a>
                                     <span>
-                                        <FontAwesomeIcon icon={faHandshake as IconProp} />
+                                        <FaHandshake />
                                     </span>
                                     Minhas vendas
+                                </a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/leads">
+                                <a>
+                                    <span>
+                                        <FaUsers />
+                                    </span>
+                                    Leads
                                 </a>
                             </Link>
                         </li>
@@ -96,7 +106,7 @@ export function ButtonUser() {
                             <Link href="/editar-perfil">
                                 <a>
                                     <span>
-                                        <FontAwesomeIcon icon={faUserEdit as IconProp} />
+                                        <FaUserEdit />
                                     </span>
                                     Editar perfil
                                 </a>
@@ -106,7 +116,7 @@ export function ButtonUser() {
                             <Link href="/ajuda">
                                 <a>
                                     <span>
-                                        <FontAwesomeIcon icon={faQuestion as IconProp} />
+                                        <FaQuestion />
                                     </span>
                                     Ajuda
                                 </a>
@@ -116,7 +126,7 @@ export function ButtonUser() {
                             <Link href="/login">
                                 <a>
                                     <span>
-                                        <FontAwesomeIcon icon={faSignOutAlt as IconProp} />
+                                        <FaSignOutAlt />
                                     </span>
                                     Sair da conta
                                 </a>

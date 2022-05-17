@@ -1,63 +1,47 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import useForm from '../../hooks/useForm';
 import {TabButton} from './TabButton';
 import {TabContent} from './TabContent';
 import {InputSearch} from '../InputSearch';
-import {ButtonSecondary} from '../ButtonSecondary';
-import {faPlus} from "@fortawesome/free-solid-svg-icons";
-import {Select} from "../Select";
 
 import styles from './styles.module.scss';
 import {FilterAnnouncementsHelper} from "../../helpers/FilterAnnouncementsHelper";
 import {ModalFilterMyAnnouncement} from "../ModalFilterMyAnnouncement";
+import {useRouter} from "next/router";
+import {FilterDashboardContext, QueryFilterType} from "../../contexts/FilterDashboardContext";
 
 export function NavTabs() {
-    const filter = new FilterAnnouncementsHelper();
+    const router = useRouter();
+    const {state, type, brand, model} = router.query;
+    const {filter, run, handleQuery} = useContext(FilterDashboardContext);
     const search = useForm('search_id');
     const [active, setActive] = useState('Ativos');
     const [link, setLink] = useState('/vehicle/list?limit=20&active=1');
 
-
-    const onClick = (link) => {
-        setActive(link);
-        {
-            link === 'Ativos' ? setLink('/vehicle/list?limit=20&active=1') : null
-        }
-        {
-            link === 'Removidos' ? setLink('/vehicle/list?limit=20&active=0') : null
-        }
-        {
-            link === 'Incompletos' ? setLink('/vehicle/list?limit=20&complete=0') : null
-        }
-        {
-            link === 'Vendidos' ? setLink('/vehicle/list?limit=20&sold=1') : null
-        }
-        {
-            link === 'Search' ? setLink(`/vehicle/list?limit=21&identifier=${search.value}&plate=${search.value}`) : null
-        }
-    }
-    const searchVehicle = (e) => {
-        e.preventDefault();
-        if (search.validate()) {
-            onClick('Search');
-        }
-    }
     useEffect(() => {
-        filter.run();
-        onClick('Ativos');
-    }, [])
+        !state || !type ? handleQuery({state, type, brand, model}) : null;
+        state === 'active' && setActive("Ativos");
+        state === 'sold' && setActive("Vendidos");
+        state === 'incomplete' && setActive("Incompletos");
+        state === 'removed' && setActive("Removidos");
+    }, [router, state, type]);
+
+    useEffect(() => {
+        !state || !type && handleQuery({});
+        run(router.query);
+    }, [router.query]);
 
     return (
         <div className={styles.navtabs}>
             <div className="d-flex flex-wrap gap-3 justify-content-between mb-5">
-                <InputSearch onSubmit={searchVehicle} {...search}/>
                 <ModalFilterMyAnnouncement filter={filter} />
+                <InputSearch onSubmit={() => {}} {...search}/>
             </div>
             <nav className={styles.nav}>
-                <TabButton Link="Ativos" Active={active} onClick={onClick}/>
-                <TabButton Link="Vendidos" Active={active} onClick={onClick}/>
-                <TabButton Link="Incompletos" Active={active} onClick={onClick}/>
-                <TabButton Link="Removidos" Active={active} onClick={onClick}/>
+                <TabButton Link="Ativos" Active={active} onClick={() => handleQuery({state: 'active', type})}/>
+                <TabButton Link="Vendidos" Active={active} onClick={() => handleQuery({state: 'sold', type})}/>
+                <TabButton Link="Incompletos" Active={active} onClick={() => handleQuery({state: 'incomplete', type})}/>
+                <TabButton Link="Removidos" Active={active} onClick={() => handleQuery({state: 'removed', type})}/>
             </nav>
             <hr/>
             <div className="mt-4 mt-4 d-flex flex-column align-items-center">

@@ -6,16 +6,18 @@ import { CarContext } from "../../contexts/CarContext";
 import { ModalActionContext } from "../../contexts/ModalActionContext";
 import { MotorcycleContext } from "../../contexts/MotorcycleContext";
 import styles from "./styles.module.scss";
+import {FilterDashboardContext} from "../../contexts/FilterDashboardContext";
 
 export function ModalAction() {
     const { show, message, handleClose, action, id, length } = useContext(ModalActionContext);
     const { editVehicle: editCar } = useContext(CarContext);
-    const { activeVehicle, soldVehicle, } = useContext(AnnouncementContext);
+    //const { activeVehicle, soldVehicle, } = useContext(AnnouncementContext);
+    const {activeVehicle, searchVehicles, soldVehicle} = useContext(FilterDashboardContext);
     const { editVehicle: editMotorcycle } = useContext(MotorcycleContext);
     
     const handleAction = (e) => {
-        action === "active" ? activeVehicle(id, length).then(() => handleClose()) : false;
-        action === "sold" ? soldVehicle(id, length).then(() => handleClose()) : false;
+        action === "active" ? activeVehicle(id).then(() => handleClose()) : false;
+        action === "sold" ? soldVehicle(id).then(() => handleClose()) : false;
         action === "finalyCar" ? editCar(e, id).then(() => {
             handleClose();
             router.push(`/admin/anuncios`)

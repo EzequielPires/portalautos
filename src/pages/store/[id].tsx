@@ -22,7 +22,7 @@ export default function Store() {
         const res: any = await fetch(`/store/${id}/view`).then(res => {
             handleVehicles();
             return res;
-        });;
+        });
         setStory(res.data);
     }
     const handleVehicles = async () => {

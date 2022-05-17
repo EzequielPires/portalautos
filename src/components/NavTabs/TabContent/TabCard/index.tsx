@@ -1,16 +1,14 @@
-import router from "next/router";
 import VMasker from "vanilla-masker/build/vanilla-masker.min";
 import NoImage from "../../../../assets/no-image.svg"
 import {useContext, useEffect, useState} from "react";
-import {AnnouncementContext} from "../../../../contexts/AnnouncementContext";
 import {Toggle} from "../../../Form/Toggle";
 import {ButtonSecondary} from "../../../ButtonSecondary";
 import {faEdit, faTrashAlt, faRetweet} from "@fortawesome/free-solid-svg-icons";
-
-import styles from "./styles.module.scss";
 import {ModalActionContext} from "../../../../contexts/ModalActionContext";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
+
+import styles from "./styles.module.scss";
 
 export function TabCard({content, length}) {
     const {handleShow} = useContext(ModalActionContext);
@@ -18,7 +16,10 @@ export function TabCard({content, length}) {
 
     useEffect(() => {
         let date = new Date(content.created_at.date);
-        setDateAt(date.toLocaleDateString());
+        let dia = String(date.getDate()).padStart(2, '0');
+        let mes = String(date.getMonth() + 1).padStart(2, '0');
+        let ano = date.getFullYear();
+        setDateAt(dia + '/' + mes + '/' + ano);
     }, [content]);
 
     return (

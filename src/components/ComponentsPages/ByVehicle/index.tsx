@@ -18,6 +18,7 @@ import {BsEnvelope, BsWhatsapp} from "react-icons/bs";
 import {Footer} from "../../Footer";
 import {api} from "../../../services/api";
 import {useRouter} from "next/router";
+import {ModalWhatsapp} from "../../ModalWhatsapp";
 
 export function ByVehicle() {
     const router = useRouter();
@@ -133,10 +134,7 @@ export function ByVehicle() {
                     </div>
                     <SectionOffers />
                     <div className={styles.contact}>
-                        <button className={styles.btn_whatsapp}>
-                            <BsWhatsapp />
-                            Whatsapp
-                        </button>
+                        <ModalWhatsapp store={vehicle.store} wpp_number={vehicle.store.wpp_number} id_vehicle={vehicle.id} title="Whatsapp" />
                         <button className={styles.btn_message}>
                             <BsEnvelope />
                             Mensagem

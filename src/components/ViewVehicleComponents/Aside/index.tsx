@@ -38,7 +38,7 @@ export function Aside({ vehicle }) {
                 </button>
             </div>
             <div className="d-flex gap-2 mt-3 mb-2">
-                <ModalWhatsapp wpp_number={vehicle.store.wpp_number} title="Chamar no Whatsapp" />
+                <ModalWhatsapp store={vehicle.store} wpp_number={vehicle.store.wpp_number} id_vehicle={vehicle.id} title="Chamar no Whatsapp" />
                 <ModalDefault title="Enviar mensagem" />
             </div>
             <div className="d-flex justify-content-center my-3">

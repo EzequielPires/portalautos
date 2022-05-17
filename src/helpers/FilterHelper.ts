@@ -73,7 +73,6 @@ export class FilterHelper {
             mileage_traveled_min: '',
             state: [],
         }
-        console.log(type + ' - ' + value + ' - ' + link);
         link ? query = this.decode(link) : null;
         {type === "optional" ? query.optional.push(value) : null}
         {type === "category" ? query.category.push(value) : null}
@@ -84,7 +83,6 @@ export class FilterHelper {
         {type === "mileage_traveled" ? query.mileage_traveled_min = value[0] : null}
         {type === "mileage_traveled" ? query.mileage_traveled_max = value[1] : null}
         {type === "state" ? query.state.push(value) : null}
-        console.log(query);
         return this.encode(query);
     }
     filterQuery(type, value, link) {

@@ -80,7 +80,6 @@ function MyApp({ Component, pageProps }) {
                           <Alert />
                           {loading && <Loading />}
                         </AlertProvider>
-                        <ModalAction />
                       </AuthProvider>
                     </MotorcycleProvider>
                   </CarProvider>
