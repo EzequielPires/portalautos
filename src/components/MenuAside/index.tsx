@@ -48,16 +48,6 @@ export function MenuAside() {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/minhas-vendas">
-                        <a className={routeActive === "minhas-vendas" ? styles.active : null}>
-                            <span>
-                                <FaHandsHelping />
-                            </span>
-                            Minhas vendas
-                        </a>
-                    </Link>
-                </li>
-                <li>
                     <Link href="/favoritos">
                         <a className={routeActive === "favoritos" ? styles.active : null}>
                             <span>

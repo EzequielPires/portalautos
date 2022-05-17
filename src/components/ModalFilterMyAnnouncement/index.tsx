@@ -12,7 +12,7 @@ export function ModalFilterMyAnnouncement({filter}) {
     const {type, state, brand} = router.query;
 
     return (
-        <div className={'d-flex flex-column'}>
+        <div className={'d-flex w-100 flex-column'}>
             <div className={styles.toggle}>
                 <button className={type === 'car' ? styles.active : null} onClick={() => handleQuery({state, type: 'car'})}>Carros</button>
                 <button className={type === 'motorcycle' ? styles.active : null} onClick={() => handleQuery({state, type: 'motorcycle'})}>Motos</button>

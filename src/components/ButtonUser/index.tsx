@@ -4,16 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IoClose } from "react-icons/io5";
 import { AiOutlineUser } from "react-icons/ai";
 
-import {
-    faBars,
-    faBullhorn,
-    faChevronDown,
-    faHandshake,
-    faQuestion,
-    faSignOutAlt,
-    faUser,
-    faUserEdit
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import styles from "./styles.module.scss";
 import { useContext, useEffect, useState } from "react";
 
@@ -79,16 +70,6 @@ export function ButtonUser() {
                                         <FaBullhorn />
                                     </span>
                                     Meus anúncios
-                                </a>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/minhas-vendas">
-                                <a>
-                                    <span>
-                                        <FaHandshake />
-                                    </span>
-                                    Minhas vendas
                                 </a>
                             </Link>
                         </li>
