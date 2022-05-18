@@ -7,6 +7,7 @@ export default function Teste() {
     return (
         <div>
             <span>Id teste: {id}</span>
+
         </div>
     )
 }
