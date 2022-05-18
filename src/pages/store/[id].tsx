@@ -20,11 +20,13 @@ export default function Store() {
     const router = useRouter();
     const { id } = router.query;
     const handleStore = async () => {
-        const res: any = await fetch(`/store/${id}/view`).then(res => {
+            await fetch(`/store/${id}/view`).then(res => {
+                console.log(res.data);
             handleVehicles();
+            setStory(res.data);
             return res;
         });
-        setStory(res.data);
+
     }
     const handleVehicles = async () => {
         const res = await fetch(`store/${id}/vehicles?total=1`);
@@ -41,9 +43,6 @@ export default function Store() {
 
     return (
         <div className={styles.store}>
-            <Head>
-                <base href="https://portalautos.com.br" />
-            </Head>
             <NavbarFixed />
             <div className={styles.banner}>
                 {store.banner ? <img src={`https://portalautos.com.br/${store.banner.path}`} alt="" /> : <img src={Bg.src} alt="" />}
