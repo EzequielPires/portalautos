@@ -10,7 +10,7 @@ import { useFetchDefault } from "../../hooks/useFetchDefault";
 import Bg from "../../assets/bg.svg";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
-import Head from "next/head";
+import {Head} from "next/document";
 
 export default function Store() {
     const { fetch } = useFetchDefault();
@@ -36,7 +36,7 @@ export default function Store() {
         id ? handleStore() : null;
     }, [id]);
     if (!store) {
-        return <div></div>
+        return <div>Loja não existe</div>
     }
 
     return (
@@ -79,7 +79,6 @@ export default function Store() {
                         ))}
                     </div>
                 </div>
-
             </div>
         </div>
     )
