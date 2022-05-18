@@ -34,10 +34,12 @@ export default function Store() {
     }
 
     useEffect(() => {
+        console.log(id);
         id ? handleStore() : null;
     }, [id]);
+
     if (!store) {
-        return <div>{id}</div>
+        return <div>Ops, {id}</div>
     }
 
     return (
