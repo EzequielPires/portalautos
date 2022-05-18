@@ -65,6 +65,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>PortalAutos - Compre, venda e financie carros usados, novos e motos.</title>
         <meta name="description" content="Se você está procurando o carro ou moto perfeito para a sua vida e não quer pagar rios de dinheiro por isso, nós podemos te ajudar! O PortalAutos oferece a você uma forma de encontrar o seu veículo ideal de forma rápida, fácil e segura." />
+        <base href="https://portalautos.com.br" />
       </Head>
       <QueryClientProvider client={queryClient}>
         <ModalActionProvider>
