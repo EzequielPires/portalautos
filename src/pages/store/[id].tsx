@@ -10,6 +10,7 @@ import { useFetchDefault } from "../../hooks/useFetchDefault";
 import Bg from "../../assets/bg.svg";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
+import Head from "next/head";
 
 export default function Store() {
     const { fetch } = useFetchDefault();
@@ -40,6 +41,9 @@ export default function Store() {
 
     return (
         <div className={styles.store}>
+            <Head>
+                <base href="https://portalautos.com.br" />
+            </Head>
             <NavbarFixed />
             <div className={styles.banner}>
                 {store.banner ? <img src={`https://portalautos.com.br/${store.banner.path}`} alt="" /> : <img src={Bg.src} alt="" />}
