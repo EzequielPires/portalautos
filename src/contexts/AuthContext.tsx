@@ -72,7 +72,6 @@ export function AuthProvider({ children }) {
         const data = new FormData();
         data.append('vehicle', id.toString());
         const res = await api.post('favorite/add', data).then(res => res.data);
-        console.log(res.data.favorites);
         let array = [];
         for (let key in res.data.favorites) {
             array.push(res.data.favorites[key]);
@@ -83,7 +82,6 @@ export function AuthProvider({ children }) {
     const removeFavorite = async (id) => {
         const res = await api.delete(`favorite/${id}/remove`).then(res => res.data);
         let array = [];
-        console.log(Array.isArray(res.data.favorites));
         if(Array.isArray(res.data.favorites)) {
             setFavorites(res.data.favorites);
         } else {
@@ -176,7 +174,6 @@ export function AuthProvider({ children }) {
 
     async function resetPassword(password_first, password_second, tokenResponse) {
         const primaryToken = new FormData();
-        console.log(tokenResponse);
         primaryToken.append('token', tokenResponse);
         let token = await api.post('/credentials/reset-password-token-info', primaryToken)
             .then(function (response: any) {

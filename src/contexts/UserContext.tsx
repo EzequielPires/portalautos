@@ -1,11 +1,10 @@
-import router from "next/router";
 import { createContext, useState } from "react"
 import { User } from "../entities/User";
 import { UserFactory } from "../factory/UserFactory";
 import useForm from "../hooks/useForm";
-import { maskCep, maskCpf, maskPhone, validateCpf } from "../hooks/useMask";
+import { maskCep, maskCpf, validateCpf } from "../hooks/useMask";
 import { UserRepository } from "../repositories/UserRepository";
-import { api, apiUser } from "../services/api";
+import { api } from "../services/api";
 import { UserService } from "../services/UserService";
 
 type UserContextType = {

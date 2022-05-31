@@ -221,7 +221,6 @@ export function MotorcycleProvider({ children }) {
     const getDetail = async () => {
         const res = await getListVehicle.details('motorcycle');
         if (res.success) {
-            console.log(res)
             motorcycle.categories.setOptions(res.data.categories);
             motorcycle.styles.setOptions(res.data.styles);
             motorcycle.starters.setOptions(res.data.starters);
@@ -287,7 +286,6 @@ export function MotorcycleProvider({ children }) {
             setLoading(false);
             return res;
         })
-        console.log(res);
         res.success ? setListSafety(res.data) : console.log(res);
     }
 

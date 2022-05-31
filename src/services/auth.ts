@@ -1,5 +1,5 @@
 import { parseCookies } from 'nookies';
-import { api, apiAuth } from './api';
+import { api } from './api';
 
 type SignInRequestDataFacebook = {
   accessToken: string;

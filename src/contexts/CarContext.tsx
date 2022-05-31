@@ -1,6 +1,6 @@
 import router from "next/router";
 import { parseCookies } from "nookies";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { Car } from "../entities/Car";
 import { VehicleFactory } from "../factory/VehicleFactory";
 import { getListVehicle } from "../helpers/getListVehicle";
@@ -135,7 +135,6 @@ export function CarProvider({ children }) {
     const getDetail = async () => {
         const res = await getListVehicle.details('car');
         if (res.success) {
-            console.log(res.data);
             car.categories.setOptions(res.data.categories);
             car.styles.setOptions(res.data.styles);
             car.fuels.setOptions(res.data.fuels);
